@@ -1,0 +1,45 @@
+.checkoutContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.checkoutContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.checkoutSteps {
+  min-height: 500px;
+}
+
+.checkoutSidebar {
+  position: sticky;
+  top: 20px;
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .checkoutContent {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .checkoutSidebar {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkoutContainer {
+    padding: 12px;
+  }
+
+  .checkoutContent {
+    gap: 16px;
+  }
+}

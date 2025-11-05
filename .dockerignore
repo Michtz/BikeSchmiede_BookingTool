@@ -1,0 +1,52 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build files
+.next
+build
+
+# Git
+.git
+.gitignore
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Development tools
+.eslintcache
+.eslintrc.json
+.prettierrc.json
+
+# TypeScript cache
+tsconfig.tsbuildinfo

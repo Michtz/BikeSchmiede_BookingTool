@@ -1,0 +1,86 @@
+.icon-container {
+  display: flex;
+  user-select: none;
+
+  &[data-color='black'] {
+    color: #000000;
+  }
+
+  &[data-color='white'] {
+    color: #ffffff;
+  }
+
+  &[data-color='gray'] {
+    color: #494b4d;
+    z-index: 999;
+  }
+
+  &[data-color='lightblue'] {
+    color: #3b82f6;
+  }
+
+  &[data-color='lightgray'] {
+    color: #d1d5db;
+  }
+
+  &[data-color='smokewhite'] {
+    color: #f9fafb;
+  }
+
+  &[data-color='cloudwhite'] {
+    color: #f3f4f6;
+  }
+
+  &[data-color='green'] {
+    color: #10b981;
+  }
+
+  &[data-color='red'] {
+    color: #ef4444;
+  }
+
+  &[data-color='required-red'] {
+    color: #dc2626;
+  }
+
+  &[data-color='border-glow'] {
+    color: #60a5fa;
+  }
+
+  &[data-color='border-glow-required'] {
+    color: #f87171;
+  }
+
+  &[data-size='extra-small'] {
+    font-size: 12px;
+  }
+
+  &[data-size='small'] {
+    font-size: 16px;
+  }
+
+  &[data-size='normal'] {
+    font-size: 19px;
+  }
+
+  &[data-size='big'] {
+    font-size: 32px;
+  }
+
+  &[data-size='huge'] {
+    font-size: 32px;
+  }
+
+  &[data-clickable='true'] {
+    cursor: pointer !important;
+  }
+
+  &:focus-visible {
+    opacity: 0.8;
+  }
+}
+
+.icons-container {
+  display: flex;
+  gap: 16px;
+}

@@ -1,0 +1,78 @@
+.tagInput {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.875rem;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px / 2;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  min-height: 44px;
+  align-items: center;
+
+  &:focus-within {
+    border-color: var(--foreground);
+    box-shadow: 0 0 0 3px rgba(var(--foreground), 0.1);
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px / 2;
+  padding: 8px / 2 8px;
+  background: var(--foreground);
+  color: white;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.removeTag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  background: transparent;
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #666;
+}

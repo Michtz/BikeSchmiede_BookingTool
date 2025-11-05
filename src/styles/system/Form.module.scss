@@ -1,0 +1,47 @@
+.formRow {
+  display: flex;
+  width: 100%;
+
+  &.direction-column {
+    flex-direction: column;
+  }
+
+  &.direction-row {
+    flex-direction: row;
+  }
+
+  &.gap-small {
+    gap: 8px;
+  }
+
+  &.gap-medium {
+    gap: 16px;
+  }
+
+  &.gap-large {
+    gap: 24px;
+  }
+
+  &.align-start {
+    align-items: flex-start;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-end {
+    align-items: flex-end;
+  }
+
+  &.align-stretch {
+    align-items: stretch;
+  }
+
+  &.direction-row {
+    > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}

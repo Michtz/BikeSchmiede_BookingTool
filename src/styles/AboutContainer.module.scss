@@ -1,0 +1,21 @@
+.aboutContainer {
+  width: 100%;
+  max-width: 800px;
+  text-align: left;
+
+  .title {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2.5rem;
+  }
+
+  .content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #555;
+
+    .paragraph {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

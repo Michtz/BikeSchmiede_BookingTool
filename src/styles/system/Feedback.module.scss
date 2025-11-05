@@ -1,0 +1,48 @@
+.feedbackContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 0;
+  z-index: 1000;
+
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  background-color: #3ead3e;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+
+  animation: slideIn 0.5s forwards;
+
+  .feedbackContent {
+    color: white;
+    font-size: 1rem;
+  }
+
+  &[data-variant='error'] {
+    background-color: red;
+  }
+}
+
+.feedbackContent.hide {
+  animation: slideOut 0.5s forwards;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

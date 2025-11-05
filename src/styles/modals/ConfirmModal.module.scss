@@ -1,0 +1,132 @@
+.confirmModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0;
+  min-width: 300px;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.iconCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Default primary color - will be overridden by inline styles
+  background-color: #3b82f6;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0;
+
+  strong {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  // Handle both <p> and <div> content
+  p {
+    margin: 0;
+  }
+}
+
+.warningNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+  color: #92400e;
+
+  span {
+    flex: 1;
+    text-align: left;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 8px;
+
+  // Override ButtonContainer styles
+  width: 100%;
+  flex-direction: row;
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .confirmModal {
+    min-width: 280px;
+  }
+
+  .iconCircle {
+    width: 56px;
+    height: 56px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// Variants for different modal types
+.confirmModal {
+  &[data-variant='error'] {
+    .iconCircle {
+      background-color: #ef4444;
+    }
+  }
+
+  &[data-variant='warning'] {
+    .iconCircle {
+      background-color: #f59e0b;
+    }
+  }
+
+  &[data-variant='primary'] {
+    .iconCircle {
+      background-color: #3b82f6;
+    }
+  }
+}

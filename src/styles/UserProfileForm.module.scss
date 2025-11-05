@@ -1,0 +1,76 @@
+.userProfileForm {
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.05),
+    0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  &:hover {
+    border-color: #d1d9e0;
+  }
+}
+
+.toggleButton {
+  background: #f8fafc;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #eff6ff;
+  }
+}
+
+.infoText {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .userProfileForm {
+    padding: 16px;
+  }
+
+  .section {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .userProfileForm {
+    padding: 12px;
+  }
+
+  .section {
+    padding: 12px;
+  }
+}

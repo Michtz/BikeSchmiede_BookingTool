@@ -1,0 +1,47 @@
+.skeleton {
+  background-color: #e2e5e7;
+  display: inline-block;
+
+  &[data-animation='pulse'] {
+    animation: skeletonPulse 2s ease-in-out infinite;
+  }
+
+  &[data-animation='wave'] {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    background-size: 200px 100%;
+    background-position: -200px 0;
+    animation: skeletonWave 2s infinite;
+  }
+
+  &[data-animation='none'] {
+    // No animation
+  }
+}
+
+@keyframes skeletonPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes skeletonWave {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}

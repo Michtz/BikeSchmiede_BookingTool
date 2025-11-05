@@ -1,0 +1,44 @@
+.legalContainer {
+  width: 100%;
+  max-width: 800px;
+  text-align: left;
+
+  .title {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2.5rem;
+  }
+
+  .content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #555;
+
+    .disclaimer {
+      color: red;
+    }
+    .section {
+      margin-bottom: 2rem;
+
+      .sectionTitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1rem;
+      }
+
+      .paragraph {
+        margin-bottom: 1.5rem;
+      }
+
+      .list {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

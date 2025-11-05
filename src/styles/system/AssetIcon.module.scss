@@ -1,0 +1,36 @@
+.assetIconContainer {
+  margin: auto 0;
+  line-height: 0;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+
+  &[data-size='small'] {
+    & > span {
+      height: 24px !important;
+      width: 24px !important;
+    }
+    width: 24px;
+  }
+
+  &[data-size='normal'] {
+    & > span {
+      height: 48px !important;
+      width: 48px !important;
+    }
+    width: 48px;
+  }
+
+  &[data-size='big'] {
+    & > span {
+      height: 72px !important;
+      width: 72px !important;
+    }
+    width: 72px;
+  }
+}
+
+.assetIcon {
+  aspect-ratio: 1 / 1;
+  position: relative;
+}

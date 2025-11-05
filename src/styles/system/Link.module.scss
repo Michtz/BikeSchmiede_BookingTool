@@ -1,0 +1,8 @@
+.text {
+  color: var(--foreground-light);
+  font-family: 'Josefin Sans', sans-serif;
+
+  &[data-active='true'] {
+    border-bottom: 2px solid white;
+  }
+}
