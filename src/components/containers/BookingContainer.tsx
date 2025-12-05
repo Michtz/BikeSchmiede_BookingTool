@@ -92,7 +92,7 @@ const BookingContent: React.FC<BookingContentProps> = ({
   };
 
   return (
-    <Container justifyContent={'center'} maxWidth="100%">
+    <Container justifyContent={'center'} padding={false}>
       {getCurrentView()}
     </Container>
   );

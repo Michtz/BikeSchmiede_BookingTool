@@ -701,7 +701,7 @@
     "preview": "Preview"
   },
   "units": {
-    "currency-per-piece": "CHF {{price}} / pcs.",
+    "currency-per-piece": "CHF {{price}}.",
     "pieces": "pcs."
   },
   "userProfile": {

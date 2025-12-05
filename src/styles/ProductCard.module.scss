@@ -4,19 +4,20 @@
   gap: 2rem;
   justify-content: center;
   //padding: 0 1rem;
-  max-width: 1150px;
+  //max-width: 1150px;
 }
 
 .cardContainer {
-  width: 200px;
-  height: 323px;
+  width: 250px;
+  height: 283px;
   display: grid;
-  grid-template-rows: 2fr 1.2fr 2fr 0.5fr;
-  border-radius: 20px;
+  grid-template-rows: 5fr 1.5fr 1.6fr;
+  border-radius: 2px 50px;
   overflow: hidden;
   //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   flex-shrink: 0;
+  box-shadow: 0 14px 12px rgba(0, 0, 0, 0.05);
 
   transition:
     transform 0.2s ease,
@@ -24,7 +25,7 @@
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
     //.productImage {
     //  transform: scale(1.02);
@@ -35,7 +36,6 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    border-radius: 20px;
   }
 
   .productImage {
@@ -74,7 +74,7 @@
 
   .priceContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     //background-color: rgba(107, 114, 128, 0.06);
     padding: 10px 20px 10px 10px;
     margin: 0;

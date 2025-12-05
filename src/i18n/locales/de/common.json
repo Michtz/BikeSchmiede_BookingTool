@@ -714,7 +714,7 @@
     "preview": "Vorschau"
   },
   "units": {
-    "currency-per-piece": "CHF {{price}} / Stk.",
+    "currency-per-piece": "CHF {{price}}.",
     "pieces": "Stk."
   },
   "userProfile": {

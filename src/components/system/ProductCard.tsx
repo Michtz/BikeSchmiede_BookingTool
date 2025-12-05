@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 interface ProductCardProps {
   id: string;
-  image?: string;
+  image?: any;
   title?: string;
   description?: string;
   price?: string | number;
@@ -44,19 +44,6 @@ const ProductCard: FC<ProductCardProps> = ({
       <h1 className={style.title}>{title}</h1>
       <p className={style.description}>{description}</p>
       <span className={style.priceContainer}>
-        {onIconClick && (
-          <ButtonContainer>
-            <Button
-              variant={'ghost'}
-              appearance={'icon'}
-              visability={!disabled}
-              onClick={() => onIconClick(id)}
-            >
-              <MaterialIcon icon={'shopping_basket'} />
-            </Button>
-          </ButtonContainer>
-        )}
-
         <p className={style.price}>
           {t('units.currency-per-piece', { price })}
         </p>

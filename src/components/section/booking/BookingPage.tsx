@@ -137,7 +137,6 @@ const BookingPage: React.FC<BookingPageProps> = ({
           </div>
         )}
 
-        {/* Schritt 3: Abschluss / Zusammenfassung */}
         {selectedSlot && (
           <div className={style.summary}>
             <h3>3. Abschluss</h3>
