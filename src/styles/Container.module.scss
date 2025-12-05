@@ -56,6 +56,10 @@
     justify-content: space-evenly;
   }
 
+  &[data-background-color='true'] {
+    background-color: var(--foreground);
+  }
+
   &[data-max-width='1150'] {
     max-width: 1150px !important;
     margin: auto;

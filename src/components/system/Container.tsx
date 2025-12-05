@@ -25,6 +25,7 @@ interface ContainerProps extends PropsWithChildren {
   maxWidth?: string;
   gap?: string;
   transparent?: boolean;
+  backgroundColor?: boolean;
 }
 
 export const Container: FC<ContainerProps> = ({
@@ -36,6 +37,7 @@ export const Container: FC<ContainerProps> = ({
   maxWidth,
   gap,
   transparent,
+  backgroundColor = false,
 }) => (
   <div
     data-flow={flow}
@@ -45,6 +47,7 @@ export const Container: FC<ContainerProps> = ({
     data-max-width={maxWidth}
     data-gap={gap}
     data-transparent={transparent}
+    data-background-color={backgroundColor}
     className={style.container}
   >
     {children}

@@ -1,405 +1,564 @@
-.bookingCalendar {
-  display: grid;
-  grid-template-columns: 1fr;
+//.bookingCalendar {
+//  display: grid;
+//  grid-template-columns: 1fr;
+//  gap: 2rem;
+//  padding: 1.5rem;
+//  background: var(--card-bg, #ffffff);
+//  border-radius: 12px;
+//  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+//
+//  // Desktop layout - side by side
+//  @media (min-width: 768px) {
+//    grid-template-columns: 1fr 350px;
+//    gap: 3rem;
+//    padding: 2rem;
+//  }
+//
+//  @media (min-width: 1024px) {
+//    grid-template-columns: 1fr 400px;
+//  }
+//}
+//
+//.calendarSection {
+//  min-width: 0; // Prevent overflow
+//}
+//
+//.calendarHeader {
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-between;
+//  margin-bottom: 2rem;
+//
+//  .currentMonth {
+//    font-size: 1.25rem;
+//    font-weight: 600;
+//    color: var(--text-primary, #1a1a1a);
+//    margin: 0;
+//    text-align: center;
+//    flex: 1;
+//
+//    @media (min-width: 768px) {
+//      font-size: 1.5rem;
+//    }
+//  }
+//
+//  .navButton {
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    width: 40px;
+//    height: 40px;
+//    background: transparent;
+//    border: 2px solid var(--border-color, #e5e5e5);
+//    border-radius: 8px;
+//    cursor: pointer;
+//    transition: all 0.2s ease;
+//    color: var(--text-secondary, #666);
+//
+//    &:hover {
+//      background: var(--primary-color, #8b4513);
+//      border-color: var(--primary-color, #8b4513);
+//      color: white;
+//      transform: scale(1.05);
+//    }
+//
+//    &:active {
+//      transform: scale(0.95);
+//    }
+//
+//    svg {
+//      width: 20px;
+//      height: 20px;
+//    }
+//  }
+//}
+//
+//.weekdays {
+//  display: grid;
+//  grid-template-columns: repeat(7, 1fr);
+//  gap: 0.5rem;
+//  margin-bottom: 1rem;
+//
+//  .weekday {
+//    text-align: center;
+//    font-size: 0.875rem;
+//    font-weight: 600;
+//    color: var(--text-secondary, #666);
+//    padding: 0.5rem 0;
+//  }
+//}
+//
+//.daysGrid {
+//  display: grid;
+//  grid-template-columns: repeat(7, 1fr);
+//  gap: 0.5rem;
+//
+//  @media (min-width: 768px) {
+//    gap: 0.75rem;
+//  }
+//}
+//
+//.day {
+//  aspect-ratio: 1;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//  justify-content: center;
+//  background: var(--bg-secondary, #f9f9f9);
+//  border: 2px solid transparent;
+//  border-radius: 8px;
+//  cursor: pointer;
+//  transition: all 0.2s ease;
+//  position: relative;
+//  padding: 0.25rem;
+//
+//  .dayNumber {
+//    font-size: 0.875rem;
+//    font-weight: 500;
+//    color: var(--text-primary, #1a1a1a);
+//
+//    @media (min-width: 768px) {
+//      font-size: 1rem;
+//    }
+//  }
+//
+//  .dot {
+//    position: absolute;
+//    bottom: 4px;
+//    width: 4px;
+//    height: 4px;
+//    background: var(--success-color, #22c55e);
+//    border-radius: 50%;
+//  }
+//
+//  &.available {
+//    &:hover {
+//      background: var(--primary-light, #f3e8db);
+//      border-color: var(--primary-color, #8b4513);
+//      transform: scale(1.05);
+//    }
+//  }
+//
+//  &.unavailable {
+//    cursor: not-allowed;
+//    opacity: 0.4;
+//
+//    .dayNumber {
+//      color: var(--text-disabled, #999);
+//    }
+//  }
+//
+//  &.today {
+//    background: var(--primary-light, #f3e8db);
+//    border-color: var(--primary-color, #8b4513);
+//
+//    .dayNumber {
+//      font-weight: 700;
+//    }
+//  }
+//
+//  &.selected {
+//    background: var(--primary-color, #8b4513);
+//    border-color: var(--primary-color, #8b4513);
+//
+//    .dayNumber {
+//      color: white;
+//    }
+//
+//    .dot {
+//      background: white;
+//    }
+//  }
+//}
+//
+//.emptyDay {
+//  aspect-ratio: 1;
+//}
+//
+//.slotsSection {
+//  display: flex;
+//  flex-direction: column;
+//  gap: 1.5rem;
+//
+//  @media (min-width: 768px) {
+//    position: sticky;
+//    top: 2rem;
+//    max-height: calc(100vh - 4rem);
+//    overflow-y: auto;
+//  }
+//}
+//
+//.slotsHeader {
+//  display: flex;
+//  align-items: center;
+//  gap: 0.75rem;
+//  padding: 1rem;
+//  background: var(--bg-secondary, #f9f9f9);
+//  border-radius: 8px;
+//
+//  .icon {
+//    width: 20px;
+//    height: 20px;
+//    color: var(--primary-color, #8b4513);
+//  }
+//
+//  h3 {
+//    margin: 0;
+//    font-size: 1rem;
+//    font-weight: 600;
+//    color: var(--text-primary, #1a1a1a);
+//  }
+//}
+//
+//.slotsTitle {
+//  margin: 0;
+//  font-size: 0.875rem;
+//  font-weight: 600;
+//  color: var(--text-secondary, #666);
+//  text-transform: uppercase;
+//  letter-spacing: 0.5px;
+//}
+//
+//.slotsGrid {
+//  display: grid;
+//  grid-template-columns: 1fr;
+//  gap: 0.75rem;
+//
+//  @media (min-width: 480px) and (max-width: 767px) {
+//    grid-template-columns: repeat(2, 1fr);
+//  }
+//}
+//
+//.slot {
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-between;
+//  padding: 1rem;
+//  background: white;
+//  border: 2px solid var(--border-color, #e5e5e5);
+//  border-radius: 8px;
+//  cursor: pointer;
+//  transition: all 0.2s ease;
+//
+//  .slotTime {
+//    display: flex;
+//    align-items: center;
+//    gap: 0.5rem;
+//    font-size: 1rem;
+//    font-weight: 500;
+//    color: var(--text-primary, #1a1a1a);
+//
+//    .slotIcon {
+//      width: 16px;
+//      height: 16px;
+//      color: var(--text-secondary, #666);
+//    }
+//  }
+//
+//  .slotDuration {
+//    font-size: 0.875rem;
+//    color: var(--text-secondary, #666);
+//    background: var(--bg-secondary, #f9f9f9);
+//    padding: 0.25rem 0.5rem;
+//    border-radius: 4px;
+//  }
+//
+//  &:hover:not(.unavailable) {
+//    border-color: var(--primary-color, #8b4513);
+//    background: var(--primary-light, #f3e8db);
+//    transform: translateX(4px);
+//  }
+//
+//  &.unavailable {
+//    opacity: 0.5;
+//    cursor: not-allowed;
+//    background: var(--bg-disabled, #f5f5f5);
+//
+//    .slotTime {
+//      text-decoration: line-through;
+//    }
+//  }
+//
+//  &.selected {
+//    background: var(--primary-color, #8b4513);
+//    border-color: var(--primary-color, #8b4513);
+//
+//    .slotTime,
+//    .slotDuration {
+//      color: white;
+//    }
+//
+//    .slotIcon {
+//      color: white;
+//    }
+//
+//    .slotDuration {
+//      background: rgba(255, 255, 255, 0.2);
+//    }
+//  }
+//}
+//
+//.noSlots {
+//  text-align: center;
+//  color: var(--text-secondary, #666);
+//  padding: 2rem 1rem;
+//  font-size: 0.875rem;
+//}
+//
+//.loading {
+//  text-align: center;
+//  color: var(--text-secondary, #666);
+//  padding: 2rem 1rem;
+//  font-size: 0.875rem;
+//
+//  &::after {
+//    content: '';
+//    animation: dots 1.5s steps(3, end) infinite;
+//  }
+//
+//  @keyframes dots {
+//    0% {
+//      content: '';
+//    }
+//    33% {
+//      content: '.';
+//    }
+//    66% {
+//      content: '..';
+//    }
+//    100% {
+//      content: '...';
+//    }
+//  }
+//}
+//
+//.placeholder {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//  justify-content: center;
+//  gap: 1rem;
+//  padding: 3rem 1rem;
+//  background: var(--bg-secondary, #f9f9f9);
+//  border-radius: 8px;
+//  text-align: center;
+//
+//  .placeholderIcon {
+//    width: 48px;
+//    height: 48px;
+//    color: var(--text-disabled, #ccc);
+//  }
+//
+//  p {
+//    margin: 0;
+//    color: var(--text-secondary, #666);
+//    font-size: 0.875rem;
+//  }
+//}
+//
+//.bookButton {
+//  width: 100%;
+//  padding: 1rem;
+//  background: var(--primary-color, #8b4513);
+//  color: white;
+//  border: none;
+//  border-radius: 8px;
+//  font-size: 1rem;
+//  font-weight: 600;
+//  cursor: pointer;
+//  transition: all 0.2s ease;
+//  margin-top: auto;
+//
+//  &:hover {
+//    background: var(--primary-dark, #6b3410);
+//    transform: translateY(-2px);
+//    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+//  }
+//
+//  &:active {
+//    transform: translateY(0);
+//  }
+//}
+//
+//// Dark mode support
+//@media (prefers-color-scheme: dark) {
+//  .bookingCalendar {
+//    background: var(--card-bg-dark, #1a1a1a);
+//
+//    .day {
+//      background: var(--bg-secondary-dark, #2a2a2a);
+//
+//      &.available:hover {
+//        background: var(--primary-dark-hover, #3a2a1a);
+//      }
+//    }
+//
+//    .slot {
+//      background: var(--bg-secondary-dark, #2a2a2a);
+//      border-color: var(--border-dark, #3a3a3a);
+//
+//      &:hover:not(.unavailable) {
+//        background: var(--primary-dark-hover, #3a2a1a);
+//      }
+//    }
+//  }
+//}
+
+.bookingPage {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  padding: 1.5rem;
-  background: var(--card-bg, #ffffff);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-  // Desktop layout - side by side
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 350px;
-    gap: 3rem;
-    padding: 2rem;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 400px;
-  }
+  padding: 1rem;
 }
 
-.calendarSection {
-  min-width: 0; // Prevent overflow
-}
-
-.calendarHeader {
+.header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 
-  .currentMonth {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
+  h2 {
     margin: 0;
-    text-align: center;
-    flex: 1;
-
-    @media (min-width: 768px) {
-      font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
   }
-
-  .navButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid var(--border-color, #e5e5e5);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--text-secondary, #666);
-
-    &:hover {
-      background: var(--primary-color, #8b4513);
-      border-color: var(--primary-color, #8b4513);
-      color: white;
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+  .subtitle {
+    color: #666;
+    margin: 0;
   }
 }
 
-.weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+// Date Selector
+.dateSelectorContainer {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-  .weekday {
-    text-align: center;
-    font-size: 0.875rem;
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  .monthLabel {
     font-weight: 600;
-    color: var(--text-secondary, #666);
-    padding: 0.5rem 0;
+    font-size: 1.1rem;
   }
 }
 
 .daysGrid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.5rem;
-
-  @media (min-width: 768px) {
-    gap: 0.75rem;
-  }
 }
 
-.day {
-  aspect-ratio: 1;
+.dayButton {
+  background: transparent;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.8rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: var(--bg-secondary, #f9f9f9);
-  border: 2px solid transparent;
-  border-radius: 8px;
+  gap: 0.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  padding: 0.25rem;
+  transition: all 0.2s;
 
+  &:hover {
+    background: #f9f9f9;
+    border-color: #ddd;
+  }
+
+  &.selected {
+    background: #007bff; // Deine Primary Color
+    color: white;
+    border-color: #007bff;
+
+    .dayName,
+    .dayNumber {
+      color: white;
+    }
+  }
+
+  &.weekend {
+    background: #fafafa;
+    .dayName {
+      color: #d64040;
+    }
+  }
+
+  .dayName {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+  }
   .dayNumber {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-primary, #1a1a1a);
-
-    @media (min-width: 768px) {
-      font-size: 1rem;
-    }
-  }
-
-  .dot {
-    position: absolute;
-    bottom: 4px;
-    width: 4px;
-    height: 4px;
-    background: var(--success-color, #22c55e);
-    border-radius: 50%;
-  }
-
-  &.available {
-    &:hover {
-      background: var(--primary-light, #f3e8db);
-      border-color: var(--primary-color, #8b4513);
-      transform: scale(1.05);
-    }
-  }
-
-  &.unavailable {
-    cursor: not-allowed;
-    opacity: 0.4;
-
-    .dayNumber {
-      color: var(--text-disabled, #999);
-    }
-  }
-
-  &.today {
-    background: var(--primary-light, #f3e8db);
-    border-color: var(--primary-color, #8b4513);
-
-    .dayNumber {
-      font-weight: 700;
-    }
-  }
-
-  &.selected {
-    background: var(--primary-color, #8b4513);
-    border-color: var(--primary-color, #8b4513);
-
-    .dayNumber {
-      color: white;
-    }
-
-    .dot {
-      background: white;
-    }
-  }
-}
-
-.emptyDay {
-  aspect-ratio: 1;
-}
-
-.slotsSection {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-
-  @media (min-width: 768px) {
-    position: sticky;
-    top: 2rem;
-    max-height: calc(100vh - 4rem);
-    overflow-y: auto;
-  }
-}
-
-.slotsHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: var(--bg-secondary, #f9f9f9);
-  border-radius: 8px;
-
-  .icon {
-    width: 20px;
-    height: 20px;
-    color: var(--primary-color, #8b4513);
-  }
-
-  h3 {
-    margin: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
+    color: #333;
   }
 }
 
-.slotsTitle {
-  margin: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-secondary, #666);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.slotsGrid {
+// Slot Picker
+.slotGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-
-  @media (min-width: 480px) and (max-width: 767px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.slot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background: white;
-  border: 2px solid var(--border-color, #e5e5e5);
+.slotButton {
+  padding: 0.8rem;
+  border: 1px solid #007bff;
+  background: #fff;
+  color: #007bff;
   border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 
-  .slotTime {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-primary, #1a1a1a);
-
-    .slotIcon {
-      width: 16px;
-      height: 16px;
-      color: var(--text-secondary, #666);
-    }
-  }
-
-  .slotDuration {
-    font-size: 0.875rem;
-    color: var(--text-secondary, #666);
-    background: var(--bg-secondary, #f9f9f9);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-  }
-
-  &:hover:not(.unavailable) {
-    border-color: var(--primary-color, #8b4513);
-    background: var(--primary-light, #f3e8db);
-    transform: translateX(4px);
-  }
-
-  &.unavailable {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: var(--bg-disabled, #f5f5f5);
-
-    .slotTime {
-      text-decoration: line-through;
-    }
+  &:hover {
+    background: rgba(0, 123, 255, 0.1);
   }
 
   &.selected {
-    background: var(--primary-color, #8b4513);
-    border-color: var(--primary-color, #8b4513);
-
-    .slotTime,
-    .slotDuration {
-      color: white;
-    }
-
-    .slotIcon {
-      color: white;
-    }
-
-    .slotDuration {
-      background: rgba(255, 255, 255, 0.2);
-    }
+    background: #007bff;
+    color: white;
   }
 }
 
 .noSlots {
   text-align: center;
-  color: var(--text-secondary, #666);
-  padding: 2rem 1rem;
-  font-size: 0.875rem;
+  padding: 2rem;
+  color: #888;
+  font-style: italic;
 }
 
-.loading {
-  text-align: center;
-  color: var(--text-secondary, #666);
-  padding: 2rem 1rem;
-  font-size: 0.875rem;
-
-  &::after {
-    content: '';
-    animation: dots 1.5s steps(3, end) infinite;
-  }
-
-  @keyframes dots {
-    0% {
-      content: '';
-    }
-    33% {
-      content: '.';
-    }
-    66% {
-      content: '..';
-    }
-    100% {
-      content: '...';
-    }
-  }
-}
-
-.placeholder {
+.loader {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 3rem 1rem;
-  background: var(--bg-secondary, #f9f9f9);
-  border-radius: 8px;
+  padding: 2rem;
+}
+
+.error {
+  color: #d64040;
   text-align: center;
+}
 
-  .placeholderIcon {
-    width: 48px;
-    height: 48px;
-    color: var(--text-disabled, #ccc);
+.summary {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  border: 1px solid #eee;
+
+  h3 {
+    margin-top: 0;
   }
-
   p {
-    margin: 0;
-    color: var(--text-secondary, #666);
-    font-size: 0.875rem;
-  }
-}
-
-.bookButton {
-  width: 100%;
-  padding: 1rem;
-  background: var(--primary-color, #8b4513);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-top: auto;
-
-  &:hover {
-    background: var(--primary-dark, #6b3410);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .bookingCalendar {
-    background: var(--card-bg-dark, #1a1a1a);
-
-    .day {
-      background: var(--bg-secondary-dark, #2a2a2a);
-
-      &.available:hover {
-        background: var(--primary-dark-hover, #3a2a1a);
-      }
-    }
-
-    .slot {
-      background: var(--bg-secondary-dark, #2a2a2a);
-      border-color: var(--border-dark, #3a3a3a);
-
-      &:hover:not(.unavailable) {
-        background: var(--primary-dark-hover, #3a2a1a);
-      }
-    }
+    margin: 0.5rem 0;
+    color: #555;
   }
 }

@@ -83,7 +83,11 @@ const AdminContent: React.FC<AdminContainerProps> = ({
         return <></>;
     }
   };
-  return <Container justifyContent={'center'}>{getCurrentView()}</Container>;
+  return (
+    <Container justifyContent={'center'} padding={false}>
+      {getCurrentView()}
+    </Container>
+  );
 };
 
 export default AdminContainer;

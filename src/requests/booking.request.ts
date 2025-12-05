@@ -88,3 +88,37 @@ export const updateAdminNotes = async (
     throw e;
   }
 };
+
+export const getAvailability = async (
+  from: string,
+  to: string,
+): Promise<{ success: boolean; data: string[] }> => {
+  try {
+    const params = new URLSearchParams();
+    params.append('from', from);
+    params.append('to', to);
+
+    const response = await axiosInstance.get(
+      `${bookingsApiUrl}/availability?${params.toString()}`,
+      {
+        withCredentials: true,
+      },
+    );
+    return response.data;
+  } catch (e) {
+    Logger.error('Unable to get availability', e);
+    throw e;
+  }
+};
+
+export const createBooking = async (data: any): Promise<BookingResponse> => {
+  try {
+    const response = await axiosInstance.post(`${bookingsApiUrl}`, data, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (e) {
+    Logger.error('Unable to create booking', e);
+    throw e;
+  }
+};

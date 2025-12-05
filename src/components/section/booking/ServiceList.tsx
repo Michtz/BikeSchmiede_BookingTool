@@ -50,7 +50,7 @@ const ServiceList: React.FC<ServiceListProps> = ({ onSelectService }) => {
   }
 
   return (
-    <Container flow="column" alignItems="center">
+    <Container backgroundColor flow="column" alignItems="center">
       <h1 style={{ marginBottom: '2rem' }}>
         {t('booking.selectService', 'Wähle einen Service')}
       </h1>
