@@ -27,6 +27,24 @@ const AdminOverview: React.FC = () => {
       href: '/admin/blog',
       icon: '📝',
     },
+    {
+      title: 'BikeSchmiede Booking Management',
+      description: 'Create and manage Services',
+      href: '/admin/bookings',
+      icon: '🚲',
+    },
+    {
+      title: 'BikeSchmiede Service Management',
+      description: 'Create and manage Services',
+      href: '/admin/services',
+      icon: '🚲',
+    },
+    {
+      title: 'BikeSchmiede Schedules Management',
+      description: 'Create and manage Services',
+      href: '/admin/schedules',
+      icon: '🚲',
+    },
   ];
 
   return (

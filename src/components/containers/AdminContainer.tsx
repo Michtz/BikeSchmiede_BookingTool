@@ -6,14 +6,24 @@ import { useAuth } from '@/hooks/AuthHook';
 import Login from '@/components/section/user/Login';
 import AdminProductsContainer from '@/components/section/admin/product/AdminProductsContainer';
 import AdminBlogContainer from '@/components/section/admin/blog/AdminBlogContainer';
+import AdminBookingsContainer from '@/components/section/admin/booking/AdminBookingsContainer'; // Neuer Import
 import AdminOverview from '@/components/section/admin/AdminOverview';
 import { getAdminUsers } from '@/requests/session.request';
 import { Logger } from '@/utils/Logger.class';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import AdminServicesContainer from '@/components/section/admin/service/AdminServicesContainer';
+import AdminScheduleContainer from '@/components/section/admin/schedule/AdminScheduleContainer';
 
 interface AdminContainerProps {
-  view: 'overview' | 'login' | 'products' | 'blog';
+  view:
+    | 'overview'
+    | 'login'
+    | 'products'
+    | 'blog'
+    | 'bookings'
+    | 'services'
+    | 'schedules';
 }
 
 const AdminContainer: FC<AdminContainerProps> = ({ view }) => {
@@ -63,6 +73,12 @@ const AdminContent: React.FC<AdminContainerProps> = ({
         return <AdminProductsContainer />;
       case 'blog':
         return <AdminBlogContainer />;
+      case 'bookings':
+        return <AdminBookingsContainer />;
+      case 'services':
+        return <AdminServicesContainer />;
+      case 'schedules':
+        return <AdminScheduleContainer />;
       default:
         return <></>;
     }

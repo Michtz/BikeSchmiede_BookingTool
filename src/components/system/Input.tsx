@@ -11,7 +11,9 @@ export type InputType =
   | 'number'
   | 'tel'
   | 'url'
-  | 'search';
+  | 'search'
+  | 'time'
+  | 'date';
 
 interface TooltipProps {
   text: string;
@@ -39,6 +41,7 @@ interface InputProps
   endIcon?: string;
   clearable?: boolean;
   showPasswordToggle?: boolean;
+  containerStyle?: React.CSSProperties;
 }
 
 export const Input = forwardRef<
@@ -64,6 +67,7 @@ export const Input = forwardRef<
       clearable = false,
       showPasswordToggle = true,
       className,
+      containerStyle,
       ...props
     },
     ref,
@@ -198,7 +202,7 @@ export const Input = forwardRef<
     };
 
     return (
-      <div className={containerClasses}>
+      <div className={containerClasses} style={containerStyle}>
         {label && (
           <div className={style.labelContainer}>
             <label className={style.label}>

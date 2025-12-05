@@ -19,45 +19,42 @@ import { ContentTranslateProvider } from '@/hooks/ContentTranslationHook';
 import CookieBanner from '@/components/system/CookieBanner';
 import { CookieProvider } from '@/hooks/CookieHook';
 import { SideCartProvider } from '@/hooks/SideCartHook';
-import ThemeRegistry from '@/providers/ThemeRegistry';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <ThemeRegistry>
-      <ErrorProvider>
-        <TranslationProvider>
-          <ContentTranslateProvider>
-            <CookieProvider>
-              <FeedbackProvider>
-                <AuthProvider>
-                  <GoogleOAuthProvider
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-                  >
-                    <SocketProvider>
-                      <SideCartProvider>
-                        <html lang="de" suppressHydrationWarning>
-                          <head>
-                            <title>Barista Accessoire</title>
-                          </head>
-                          <body>
-                            <Header />
-                            <SWRProvider>{children}</SWRProvider>
-                            <Feedback />
-                            <CookieBanner />
-                            <Footer />
-                          </body>
-                        </html>
-                      </SideCartProvider>
-                    </SocketProvider>
-                  </GoogleOAuthProvider>
-                </AuthProvider>
-              </FeedbackProvider>
-            </CookieProvider>
-          </ContentTranslateProvider>
-        </TranslationProvider>
-      </ErrorProvider>
-    </ThemeRegistry>
+    <ErrorProvider>
+      <TranslationProvider>
+        <ContentTranslateProvider>
+          <CookieProvider>
+            <FeedbackProvider>
+              <AuthProvider>
+                <GoogleOAuthProvider
+                  clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+                >
+                  <SocketProvider>
+                    <SideCartProvider>
+                      <html lang="de" suppressHydrationWarning>
+                        <head>
+                          <title>Barista Accessoire</title>
+                        </head>
+                        <body>
+                          <Header />
+                          <SWRProvider>{children}</SWRProvider>
+                          <Feedback />
+                          <CookieBanner />
+                          <Footer />
+                        </body>
+                      </html>
+                    </SideCartProvider>
+                  </SocketProvider>
+                </GoogleOAuthProvider>
+              </AuthProvider>
+            </FeedbackProvider>
+          </CookieProvider>
+        </ContentTranslateProvider>
+      </TranslationProvider>
+    </ErrorProvider>
   );
 };
 
