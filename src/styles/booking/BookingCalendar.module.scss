@@ -450,13 +450,13 @@
 
 .daysGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 0.5rem;
 }
 
 .dayButton {
   background: transparent;
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   border-radius: 8px;
   padding: 0.8rem 0;
   display: flex;
@@ -472,14 +472,19 @@
   }
 
   &.selected {
-    background: #007bff; // Deine Primary Color
-    color: white;
-    border-color: #007bff;
+    border-color: rgb(66, 38, 38);
+    color: rgb(66, 38, 38);
+    background-color: rgba(66, 38, 38, 0.2);
 
     .dayName,
     .dayNumber {
-      color: white;
+      color: rgb(66, 38, 38);
     }
+  }
+
+  &.past {
+    background-color: #8e3b0952;
+    cursor: default;
   }
 
   &.weekend {
@@ -511,21 +516,20 @@
 
 .slotButton {
   padding: 0.8rem;
-  border: 1px solid #007bff;
+  border: 2px solid rgb(66, 38, 38);
   background: #fff;
-  color: #007bff;
+  color: rgb(66, 38, 38);
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(0, 123, 255, 0.1);
+    background-color: rgba(66, 38, 38, 0.1);
   }
 
   &.selected {
-    background: #007bff;
-    color: white;
+    background-color: rgba(66, 38, 38, 0.2);
   }
 }
 
@@ -552,7 +556,7 @@
   padding: 1.5rem;
   border-radius: 12px;
   margin-top: 1rem;
-  border: 1px solid #eee;
+  border: 5px solid #eee;
 
   h3 {
     margin-top: 0;

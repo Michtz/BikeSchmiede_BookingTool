@@ -91,12 +91,12 @@ const ResponsiveAppBar = () => {
           </div>
 
           <ul className={style.navItemContainer}>
-            <li className={style.navItem}>
-              <Link href={'/about'}>{t('nav.about')}</Link>
-            </li>
-            <li className={style.navItem}>
-              <Link href={'/blog'}>{t('nav.blog')}</Link>
-            </li>
+            {/*<li className={style.navItem}>*/}
+            {/*  <Link href={'/about'}>{t('nav.about')}</Link>*/}
+            {/*</li>*/}
+            {/*<li className={style.navItem}>*/}
+            {/*  <Link href={'/blog'}>{t('nav.blog')}</Link>*/}
+            {/*</li>*/}
             {isAdmin && (
               <li className={style.navItem}>
                 <Link href={'/admin'}>{t('nav.admin')}</Link>
@@ -115,11 +115,11 @@ const ResponsiveAppBar = () => {
         <span
           className={`${style.rightNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
         >
-          <div className={style.cartIcon}>
-            <CartIcon onClick={() => router.replace('/cart')} />
+          {/*<div className={style.cartIcon}>*/}
+          {/*  <CartIcon onClick={() => router.replace('/cart')} />*/}
 
-            {cartItems && cartItems?.length}
-          </div>
+          {/*  {cartItems && cartItems?.length}*/}
+          {/*</div>*/}
           <div className={style.cartIcon}>
             <ProfileIcon onClick={handleUserClick} />
           </div>

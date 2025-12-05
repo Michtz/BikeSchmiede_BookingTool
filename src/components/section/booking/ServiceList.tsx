@@ -53,7 +53,8 @@ const ServiceList: React.FC<ServiceListProps> = ({ onSelectService }) => {
     );
   }
 
-  const getImageUrl = (url: string) => {
+  const getImageUrl = (url?: string) => {
+    if (!url) return;
     switch (url) {
       case 'bikefitting_triatlon':
         return bikefitting_triatlon;
@@ -80,7 +81,7 @@ const ServiceList: React.FC<ServiceListProps> = ({ onSelectService }) => {
               id={service._id}
               title={service.name}
               description={service.description}
-              image={getImageUrl(service.imageUrl)}
+              image={getImageUrl(service?.imageUrl)}
               price={service.price}
               onCardClick={() => onSelectService(service)}
             />

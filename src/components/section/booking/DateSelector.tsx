@@ -43,7 +43,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
 
     // Wir generieren 14 Tage (2 saubere Reihen à 7 Tage)
     // Du kannst hier auch 21 nehmen für 3 Reihen
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 35; i++) {
       const d = new Date(baseDate);
       d.setDate(baseDate.getDate() + i);
       nextDays.push(d);
@@ -52,26 +52,32 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   }, [currentWeekStart]);
 
   const handlePrev = () => {
-    // Gehe exakt 1 Woche zurück
     setCurrentWeekStart((prev) => {
       const newDate = new Date(prev);
-      newDate.setDate(newDate.getDate() - 7);
+      // 1. Einen Monat zurückgehen
+      newDate.setMonth(newDate.getMonth() - 1);
 
-      // Optional: Verhindern, dass man zu weit in die Vergangenheit geht
+      // 2. WICHTIG: Wieder auf den Montag dieser Woche korrigieren
+      // Damit das Grid nicht verrutscht
+      const correctedDate = getMonday(newDate);
+
+      // Optional: Verhindern, dass man vor "Heute" springt
       const today = new Date();
       const thisMonday = getMonday(today);
-      if (newDate < thisMonday) return thisMonday; // Nicht weiter zurück als aktuelle Woche
+      if (correctedDate < thisMonday) return thisMonday;
 
-      return newDate;
+      return correctedDate;
     });
   };
 
   const handleNext = () => {
-    // Gehe exakt 1 Woche vor
     setCurrentWeekStart((prev) => {
       const newDate = new Date(prev);
-      newDate.setDate(newDate.getDate() + 7);
-      return newDate;
+      // 1. Einen Monat weitergehen
+      newDate.setMonth(newDate.getMonth() + 1);
+
+      // 2. Auf den Montag der neuen Woche korrigieren
+      return getMonday(newDate);
     });
   };
 
@@ -100,10 +106,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
           variant="ghost"
           icon="chevron_left"
           onClick={handlePrev}
-          // Deaktivieren, wenn wir am Anfang sind (optional)
         />
         <span className={style.monthLabel}>
-          {days[0]?.toLocaleDateString('de-DE', {
+          {days[10]?.toLocaleDateString('de-DE', {
             month: 'long',
             year: 'numeric',
           })}
@@ -121,11 +126,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
           const isSelected = isSameDay(date, selectedDate);
           const isWeekend = date.getDay() === 0 || date.getDay() === 6;
           const isPast = isDateInPast(date);
-
           return (
             <button
               key={date.toISOString()}
-              // Klasse 'past' hinzufügen für Styling
               className={`
                 ${style.dayButton} 
                 ${isSelected ? style.selected : ''} 
