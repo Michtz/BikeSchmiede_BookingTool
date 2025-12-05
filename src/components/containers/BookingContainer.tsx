@@ -1,37 +1,62 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Container } from '@/components/system/Container';
-import MainBooking from '@/components/section/booking/MainBooking';
-import DateSelector from '@/components/section/booking/DateSelector';
-import BookingCalendar from '@/components/section/booking/DateSelector';
-import BookingPage from '@/components/section/booking/BookingPage';
+import ServiceList from '@/components/section/booking/ServiceList'; // Neuer Import
+import { IService } from '@/types/service.types';
 
 interface BookingContainerProps {
-  view: 'booking_main' | 'date_selector';
+  view: 'services' | 'booking_main';
 }
 
-const BookingContainer: FC<BookingContainerProps> = ({ view }) => {
+const BookingContainer: FC<BookingContainerProps> = ({ view: initialView }) => {
+  const [currentView, setCurrentView] = useState(initialView);
+  const [selectedService, setSelectedService] = useState<IService | null>(null);
+
+  const handleServiceSelect = (service: IService) => {
+    setSelectedService(service);
+    setCurrentView('booking_main');
+  };
+
+  const handleBackToServices = () => {
+    setSelectedService(null);
+    setCurrentView('services');
+  };
+
   return (
     <Container padding={false} flow={'column'}>
-      <BookingContent view={view} />
+      <BookingContent
+        view={currentView}
+        onSelectService={handleServiceSelect}
+        selectedService={selectedService}
+        onBack={handleBackToServices}
+      />
     </Container>
   );
 };
 
-const BookingContent: React.FC<BookingContainerProps> = ({
+interface BookingContentProps {
+  view: 'services' | 'booking_main';
+  onSelectService: (service: IService) => void;
+  selectedService: IService | null;
+  onBack: () => void;
+}
+
+const BookingContent: React.FC<BookingContentProps> = ({
   view,
+  onSelectService,
+  selectedService,
+  onBack,
 }): React.ReactElement => {
   const getCurrentView = (): React.ReactElement => {
     switch (view) {
-      case 'booking_main':
-        return <BookingPage />;
-      case 'date_selector':
-        return <BookingPage />;
+      case 'services':
+        return <ServiceList onSelectService={onSelectService} />;
       default:
         return <></>;
     }
   };
+
   return <Container justifyContent={'center'}>{getCurrentView()}</Container>;
 };
 

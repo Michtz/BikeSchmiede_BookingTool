@@ -1,0 +1,30 @@
+(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
+    script: typeof document === "object" ? document.currentScript : undefined,
+    chunks: [
+  "static/chunks/src_b2348576._.js",
+  "static/chunks/sdk_src_be36b9fb._.js",
+  "static/chunks/[root-of-the-server]__0b5143d2._.js",
+  "static/chunks/node_modules_next_dist_compiled_next-devtools_index_1dd7fb59.js",
+  "static/chunks/node_modules_next_dist_compiled_stream-http_index_10f74c95.js",
+  "static/chunks/node_modules_next_dist_compiled_667fd0c7._.js",
+  "static/chunks/node_modules_next_dist_shared_lib_27f0b2d6._.js",
+  "static/chunks/node_modules_next_dist_client_83346107._.js",
+  "static/chunks/node_modules_next_dist_a30da027._.js",
+  "static/chunks/node_modules_next_ec3d9475._.js",
+  "static/chunks/node_modules_react-dom_4411d9bd._.js",
+  "static/chunks/node_modules_@mui_material_esm_8e6c3b0a._.js",
+  "static/chunks/node_modules_moment_0c55cd92._.js",
+  "static/chunks/d8c98_axios_lib_c917b55c._.js",
+  "static/chunks/node_modules_@mui_system_esm_cbc144eb._.js",
+  "static/chunks/node_modules_@popperjs_core_lib_bd65ae83._.js",
+  "static/chunks/node_modules_@hello-pangea_dnd_dist_dnd_esm_b5f80d02.js",
+  "static/chunks/node_modules_motion-dom_dist_es_01ad550f._.js",
+  "static/chunks/node_modules_framer-motion_dist_es_c152664b._.js",
+  "static/chunks/node_modules_luxon_build_node_luxon_15a0301e.js",
+  "static/chunks/node_modules_@emotion_aad5bbb3._.js",
+  "static/chunks/node_modules_d15b114f._.js",
+  "static/chunks/d8c98_e1064731._.js",
+  "static/chunks/src_styles_modules_4fc83caf._.css"
+],
+    source: "entry"
+});

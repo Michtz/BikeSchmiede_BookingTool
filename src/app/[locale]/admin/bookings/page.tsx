@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import AdminContainer from '@/components/containers/AdminContainer';
 
-const AdminBlogPage: FC = () => <AdminContainer view={'bookings'} />;
+const AdminBookingPage: FC = () => <AdminContainer view={'bookings'} />;
 
-export default AdminBlogPage;
+export default AdminBookingPage;
