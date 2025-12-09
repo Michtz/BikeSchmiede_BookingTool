@@ -25,7 +25,7 @@ interface ContainerProps extends PropsWithChildren {
   maxWidth?: string;
   gap?: string;
   transparent?: boolean;
-  backgroundColor?: boolean;
+  backgroundColor?: boolean | 'white';
 }
 
 export const Container: FC<ContainerProps> = ({

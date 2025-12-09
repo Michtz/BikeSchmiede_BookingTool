@@ -28,7 +28,7 @@ const AdminServicesContainer = () => {
   };
 
   return (
-    <Container maxWidth="100%">
+    <Container padding={false} justifyContent={'center'} maxWidth="100%">
       {isCreating ? (
         <ServiceForm onClose={handleCloseForm} service={editingService} />
       ) : (

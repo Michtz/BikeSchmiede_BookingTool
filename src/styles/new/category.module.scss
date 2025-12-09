@@ -1,0 +1,23 @@
+.titleImageContainer {
+  margin-bottom: -3rem;
+}
+
+.titleImage {
+  width: 100vw;
+  height: 700px;
+  object-fit: cover;
+}
+
+.titleText {
+  position: relative;
+  top: -600px;
+  font-size: 65px;
+  left: 40px;
+}
+
+.titleButton {
+  position: relative;
+  top: -200px;
+  right: 40px;
+  justify-content: flex-end !important;
+}

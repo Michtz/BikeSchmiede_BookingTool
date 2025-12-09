@@ -1,0 +1,143 @@
+{
+  "services": [
+    {
+      "id": "rennrad-service-brons",
+      "category": "brons",
+      "name": "Rennrad Service Brons",
+      "price": "CHF 125.-",
+      "features": [
+        "Grobe Reinigung des Velos ohne Antrieb",
+        "Luftdruck / Reifenkontrolle",
+        "Funktionskontrolle und Einstellung der Bremsen",
+        "Kontrolle der Kette, wenn nötig ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen (Tretlager ersetzen, wird separat verrechnet)",
+        "Laufräder prüfen (Laufräder zentrieren, Verrechnung nach Zeitaufwand)",
+        "Alle Schrauben nachziehen",
+        "Probefahrt"
+      ],
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, usw."
+    },
+    {
+      "id": "rennrad-service-silver",
+      "category": "silver",
+      "name": "Rennrad Service Silver",
+      "price": "CHF 175.-",
+      "features": [
+        "Luftdruck / Reifenkontrolle",
+        "Hydraulische Bremsen entlüften, inkl. Flüssigkeit (Mineralöl / DOT)",
+        "Bremskabel inkl. Hülle ersetzen (mechanische Bremsen)",
+        "Funktionskontrolle und Einstellung der Bremsen / Bremsbeläge tauschen",
+        "Kontrolle des Antriebs, wenn nötig ersetzen",
+        "Schaltkabel inkl. Hülle ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen / ersetzen",
+        "Laufräder prüfen / zentrieren",
+        "Alle Schrauben nachziehen",
+        "Probefahrt"
+      ],
+      "includes": "Inkl. Klein- und Reinigungsmaterial, Hydrauliköl, etc.",
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, Kassette usw."
+    },
+    {
+      "id": "rennrad-service-gold",
+      "name": "Rennrad Service Gold",
+      "category": "gold",
+      "price": "CHF 220.-",
+      "features": [
+        "Luftdruck / Reifenkontrolle",
+        "Hydraulische Bremsen entlüften, inkl. Flüssigkeit (Mineralöl / DOT)",
+        "Bremskabel inkl. Hülle ersetzen (mechanische Bremsen)",
+        "Funktionskontrolle und Einstellung der Bremsen / Bremsbeläge tauschen",
+        "Kontrolle des Antriebs, wenn nötig ersetzen",
+        "Schaltkabel inkl. Hülle ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen / ersetzen",
+        "Laufräder prüfen / zentrieren",
+        "Alle Schrauben nachziehen",
+        "Probefahrt",
+        "Bremsen einbremsen (maschinell)",
+        "Kette wachen (Hot wax)"
+      ],
+      "includes": "Inkl. Klein- und Reinigungsmaterial, Hydrauliköl, etc.",
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, Kassette usw."
+    },
+    {
+      "id": "citybike-gold",
+      "category": "gold",
+      "name": "citybike gold",
+      "price": "CHF 220.-",
+      "features": [
+        "Luftdruck / Reifenkontrolle",
+        "Hydraulische Bremsen entlüften, inkl. Flüssigkeit (Mineralöl / DOT)",
+        "Bremskabel inkl. Hülle ersetzen (mechanische Bremsen)",
+        "Funktionskontrolle und Einstellung der Bremsen / Bremsbeläge tauschen",
+        "Kontrolle des Antriebs, wenn nötig ersetzen",
+        "Schaltkabel inkl. Hülle ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen / ersetzen",
+        "Lichtkontrolle / Reparatur",
+        "Laufräder prüfen / zentrieren",
+        "Alle Schrauben nachziehen",
+        "Probefahrt",
+        "service update software bosch/schimano",
+        "Bremsen einbremsen (maschinell)"
+      ],
+      "includes": "Inkl. Klein- und Reinigungsmaterial, Hydrauliköl, etc.",
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, Kassette usw."
+    },
+    {
+      "id": "mtb-silver",
+      "category": "silver",
+      "name": "mtb silver",
+      "price": "CHF 175.-",
+      "features": [
+        "Luftdruck / Reifenkontrolle",
+        "Hydraulische Bremsen entlüften, inkl. Flüssigkeit (Mineralöl / DOT)",
+        "Bremskabel inkl. Hülle ersetzen (mechanische Bremsen)",
+        "Funktionskontrolle und Einstellung der Bremsen / Bremsbeläge tauschen",
+        "Kontrolle des Antriebs, wenn nötig ersetzen",
+        "Schaltkabel inkl. Hülle ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen / ersetzen",
+        "Lichtkontrolle / Reparatur",
+        "Laufräder prüfen / zentrieren",
+        "Alle Schrauben nachziehen",
+        "Probefahrt",
+        "service update software bosch/schimano"
+      ],
+      "includes": "Inkl. Klein- und Reinigungsmaterial, Hydrauliköl, etc.",
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, Kassette usw."
+    },
+    {
+      "id": "mtb-gold",
+      "name": "mtb gold",
+      "category": "gold",
+      "price": "CHF 220.-",
+      "features": [
+        "Luftdruck / Reifenkontrolle",
+        "Hydraulische Bremsen entlüften, inkl. Flüssigkeit (Mineralöl / DOT)",
+        "Bremskabel inkl. Hülle ersetzen (mechanische Bremsen)",
+        "Funktionskontrolle und Einstellung der Bremsen / Bremsbeläge tauschen",
+        "Kontrolle des Antriebs, wenn nötig ersetzen",
+        "Schaltkabel inkl. Hülle ersetzen",
+        "Funktionskontrolle und Einstellung der Schaltung",
+        "Schmierung der Kette und aller beweglichen Teile",
+        "Tretlager prüfen / ersetzen",
+        "Laufräder prüfen / zentrieren",
+        "Alle Schrauben nachziehen",
+        "Probefahrt",
+        "Bremsen einbremsen (maschinell)",
+        "Kette wachen (Hot wax)"
+      ],
+      "includes": "Inkl. Klein- und Reinigungsmaterial, Hydrauliköl, etc.",
+      "excludes": "Exkl. Material wie Bremsklötze, Kette, Kassette usw.",
+      "note": "Gabel unterhalt optional ab 01/03/2026"
+    }
+  ]
+}

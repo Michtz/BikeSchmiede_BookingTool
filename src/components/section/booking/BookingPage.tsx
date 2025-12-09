@@ -26,14 +26,11 @@ const BookingPage: React.FC<BookingPageProps> = ({
   const { t } = useTranslation();
   const { showFeedback } = useFeedback();
   const router = useRouter();
-
-  // State
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
   const [customerNotes, setCustomerNotes] = useState('');
   const [isBooking, setIsBooking] = useState(false);
 
-  // Wenn kein Service gewählt ist (sollte durch Container verhindert werden), zurück
   if (!selectedService) {
     return (
       <Container>
@@ -55,8 +52,6 @@ const BookingPage: React.FC<BookingPageProps> = ({
 
     setIsBooking(true);
     try {
-      // Backend erwartet start, end, services[] und notes
-      // Wir berechnen das Ende basierend auf der Service-Dauer
       const durationMs = selectedService.durationTotalMinutes * 60000;
       const endDate = new Date(selectedSlot.getTime() + durationMs);
 
@@ -71,8 +66,6 @@ const BookingPage: React.FC<BookingPageProps> = ({
           },
         ],
         customerNotes: customerNotes,
-        // userId wird im Backend aus dem Token geholt (falls eingeloggt)
-        // Falls Gast-Buchung erlaubt sein soll, müsstest du hier Name/Email Felder ergänzen
       };
 
       const result = await createBooking(bookingData);
@@ -82,9 +75,6 @@ const BookingPage: React.FC<BookingPageProps> = ({
           t('booking.success', 'Termin erfolgreich gebucht!'),
           'success',
         );
-        // Weiterleitung zum Profil oder eine Success-Page
-        // router.push('/profile');
-        // Oder Reset:
         onBack();
       }
     } catch (error) {
@@ -113,19 +103,17 @@ const BookingPage: React.FC<BookingPageProps> = ({
           </div>
         </div>
 
-        {/* Schritt 1: Datum wählen */}
         <div>
           <h3>1. Datum wählen</h3>
           <DateSelector
             selectedDate={selectedDate}
             onSelectDate={(date) => {
               setSelectedDate(date);
-              setSelectedSlot(null); // Slot resetten wenn Datum wechselt
+              setSelectedSlot(null);
             }}
           />
         </div>
 
-        {/* Schritt 2: Zeit wählen (Nur wenn Datum da) */}
         {selectedDate && (
           <div>
             <h3>2. Uhrzeit wählen</h3>

@@ -71,7 +71,7 @@ const AdminBookingsContainer = () => {
   };
 
   return (
-    <Container maxWidth="100%">
+    <Container padding={false} maxWidth="100%">
       <AdminBookingList
         bookings={bookings}
         isLoading={isLoading}

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import style from '@/styles/booking/BookingCalendar.module.scss';
 import Button from '@/components/system/Button';
-import MaterialIcon from '@/components/system/MaterialIcon';
 
 interface DateSelectorProps {
   selectedDate: Date | null;
@@ -15,34 +14,25 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   onSelectDate,
 }) => {
   const [days, setDays] = useState<Date[]>([]);
-  // Wir tracken nicht mehr einen simplen Offset, sondern das Datum des ersten angezeigten Montags
   const [currentWeekStart, setCurrentWeekStart] = useState<Date>(new Date());
 
-  // Hilfsfunktion: Finde den Montag eines beliebigen Datums
   const getMonday = (d: Date) => {
     const date = new Date(d);
-    const day = date.getDay(); // 0=Sonntag, 1=Montag, ...
-    // Wenn Sonntag (0), dann ziehe 6 Tage ab, sonst (Tag - 1)
+    const day = date.getDay();
     const diff = date.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(date.setDate(diff));
   };
 
-  // Initialisierung beim ersten Laden
   useEffect(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    // Wir setzen den Startpunkt auf den Montag dieser Woche
     setCurrentWeekStart(getMonday(today));
   }, []);
 
-  // Generierung der Tage, wenn sich der Wochen-Start ändert
   useEffect(() => {
     const nextDays = [];
     const baseDate = new Date(currentWeekStart);
     baseDate.setHours(0, 0, 0, 0);
-
-    // Wir generieren 14 Tage (2 saubere Reihen à 7 Tage)
-    // Du kannst hier auch 21 nehmen für 3 Reihen
     for (let i = 0; i < 35; i++) {
       const d = new Date(baseDate);
       d.setDate(baseDate.getDate() + i);
@@ -54,14 +44,8 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   const handlePrev = () => {
     setCurrentWeekStart((prev) => {
       const newDate = new Date(prev);
-      // 1. Einen Monat zurückgehen
       newDate.setMonth(newDate.getMonth() - 1);
-
-      // 2. WICHTIG: Wieder auf den Montag dieser Woche korrigieren
-      // Damit das Grid nicht verrutscht
       const correctedDate = getMonday(newDate);
-
-      // Optional: Verhindern, dass man vor "Heute" springt
       const today = new Date();
       const thisMonday = getMonday(today);
       if (correctedDate < thisMonday) return thisMonday;
@@ -73,10 +57,8 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   const handleNext = () => {
     setCurrentWeekStart((prev) => {
       const newDate = new Date(prev);
-      // 1. Einen Monat weitergehen
       newDate.setMonth(newDate.getMonth() + 1);
 
-      // 2. Auf den Montag der neuen Woche korrigieren
       return getMonday(newDate);
     });
   };
@@ -90,11 +72,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
     );
   };
 
-  // Hilfsfunktion: Ist das Datum in der Vergangenheit?
   const isDateInPast = (date: Date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    // Vergleiche Zeitstempel
     return date.getTime() < today.getTime();
   };
 
@@ -124,19 +104,21 @@ const DateSelector: React.FC<DateSelectorProps> = ({
       <div className={style.daysGrid}>
         {days.map((date) => {
           const isSelected = isSameDay(date, selectedDate);
-          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+          const isWeekend = date.getDay() === 1 || date.getDay() === 0;
           const isPast = isDateInPast(date);
+          console.log(days);
           return (
             <button
               key={date.toISOString()}
               className={`
                 ${style.dayButton} 
                 ${isSelected ? style.selected : ''} 
-                ${isWeekend ? style.weekend : ''} 
                 ${isPast ? style.past : ''}
+                
+                ${isWeekend ? style.weekend : ''} 
               `}
               onClick={() => !isPast && onSelectDate(date)}
-              disabled={isPast} // Button deaktivieren
+              disabled={isPast || isWeekend}
             >
               <span className={style.dayName}>
                 {date.toLocaleDateString('de-DE', { weekday: 'short' })}

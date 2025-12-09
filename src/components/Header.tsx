@@ -91,12 +91,21 @@ const ResponsiveAppBar = () => {
           </div>
 
           <ul className={style.navItemContainer}>
-            {/*<li className={style.navItem}>*/}
-            {/*  <Link href={'/about'}>{t('nav.about')}</Link>*/}
-            {/*</li>*/}
-            {/*<li className={style.navItem}>*/}
-            {/*  <Link href={'/blog'}>{t('nav.blog')}</Link>*/}
-            {/*</li>*/}
+            <li className={style.navItem}>
+              <Link href={'/about'}>BIKEFITTING</Link>
+            </li>
+            <li className={style.navItem}>
+              <Link href={'/workshop'}>WERKSTATT</Link>
+            </li>{' '}
+            <li className={style.navItem}>
+              <Link href={'/roadbikes'}>RENNRÄDER</Link>
+            </li>
+            <li className={style.navItem}>
+              <Link href={'/blog'}>E-BIKES</Link>
+            </li>{' '}
+            <li className={style.navItem}>
+              <Link href={'/blog'}>MARKEN</Link>
+            </li>
             {isAdmin && (
               <li className={style.navItem}>
                 <Link href={'/admin'}>{t('nav.admin')}</Link>
@@ -104,14 +113,12 @@ const ResponsiveAppBar = () => {
             )}
           </ul>
         </div>
-
         <span
           className={`${style.logo} ${!isLoading ? style.logoSmall : ''}`}
           onClick={() => router.replace(`/${Cookies.get('language') || ''}`)}
         >
           <Logo className={style.headerLogo} />
         </span>
-
         <span
           className={`${style.rightNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
         >

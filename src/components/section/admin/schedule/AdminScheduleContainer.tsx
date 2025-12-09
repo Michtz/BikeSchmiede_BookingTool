@@ -28,7 +28,7 @@ const AdminScheduleContainer = () => {
   };
 
   return (
-    <Container maxWidth="100%">
+    <Container padding={false} justifyContent={'center'} maxWidth="100%">
       {isCreating ? (
         <ScheduleForm onClose={handleCloseForm} schedule={editingSchedule} />
       ) : (

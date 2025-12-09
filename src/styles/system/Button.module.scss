@@ -66,15 +66,20 @@
     margin: 1rem;
 
     font-weight: bold;
-    letter-spacing: 0.6px;
-    color: var(--font-primare-color);
+    letter-spacing: 1.2px;
+    color: var(--foreground);
 
     &:hover:not(:disabled) {
       background-color: var(--foreground);
+      color: var(--foreground-light);
     }
 
     &:active:not(:disabled) {
       background-color: var(--foreground);
+      color: var(--foreground-light);
+      box-shadow: inset 6px 3px 9px 4px rgba(0, 0, 0, 0.04);
+      transform: scale(0.97);
+      opacity: 0.95;
     }
   }
 
