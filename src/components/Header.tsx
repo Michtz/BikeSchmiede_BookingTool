@@ -104,7 +104,7 @@ const ResponsiveAppBar = () => {
               <Link href={'/blog'}>E-BIKES</Link>
             </li>{' '}
             <li className={style.navItem}>
-              <Link href={'/blog'}>MARKEN</Link>
+              <Link href={'/brands'}>MARKEN</Link>
             </li>
             {isAdmin && (
               <li className={style.navItem}>

@@ -1,6 +1,6 @@
-import HomePageContainer from '@/components/containers/HomePageContainer';
+import CategoriesContainer from '@/components/containers/CategoriesContainer';
 import { FC } from 'react';
 
-const App: FC = () => <HomePageContainer />;
+const App: FC = () => <CategoriesContainer />;
 
 export default App;
