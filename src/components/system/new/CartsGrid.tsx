@@ -6,6 +6,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import Button, { ButtonContainer } from '@/components/system/Button';
 import Logo from '@/components/icons/Logo';
+import OdinLogo from '@/components/icons/OdinLogo';
 type ServiceLevel = 'brons' | 'silver' | 'gold';
 
 export interface Service {
@@ -36,7 +37,7 @@ const CartsGridContainer: FC<CartsGridContainerProps> = ({ items }) => {
         >
           <div className={style.wrapper}>
             <div className={style.iconContainer}>
-              <Logo
+              <OdinLogo
                 color={
                   item.category === 'gold'
                     ? '#CDB14F'

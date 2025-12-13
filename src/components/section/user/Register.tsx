@@ -21,6 +21,7 @@ import { Logger } from '@/utils/Logger.class';
 import { useAuth } from '@/hooks/AuthHook';
 import { useFeedback } from '@/hooks/FeedbackHook';
 import Logo from '@/components/icons/Logo';
+import OdinLogo from '@/components/icons/OdinLogo';
 
 interface RegisterFormData {
   email: string;
@@ -84,7 +85,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({}) => {
   return (
     <div className={style.loginContainer}>
       <span className={style.logo} onClick={() => router.replace('/')}>
-        <Logo color={'gray'} height={60} />
+        <OdinLogo color={'gray'} height={60} />
       </span>
       <div className={style.loginHeader}>
         <p className={style.loginSubtitle}>{t('register.createAccount')}</p>

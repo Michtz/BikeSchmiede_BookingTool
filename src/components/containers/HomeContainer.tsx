@@ -3,15 +3,15 @@
 import React, { FC, useState } from 'react';
 import { Container } from '@/components/system/Container';
 import Image from 'next/image';
-import logoA from '@/assets/schmolke_logo.svg';
-import logoB from '@/assets/CHAPTER2-Logo-Aqua.png';
+import logoA from '@/assets/gebioMized.avif';
+import logoB from '@/assets/logo_black.png';
 import bikeTietleImage from '@/assets/odin_back_green.jpg';
 import bikeA from '@/assets/1.png';
 import bikeTitleImage from '@/assets/title_image_michel.jpg';
-import bikeB from '@/assets/chapter2_bike.jpg';
+import bikeB from '@/assets/3.png';
 import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
-import bikejitting from '@/assets/bikefitting_test.jpg';
+import bikejitting from '@/assets/bikefitting_cutout_white.png';
 import bikeC from '@/assets/odin_roadbike.jpeg';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
@@ -27,6 +27,7 @@ import CartsGridContainer, { Service } from '@/components/system/new/CartsGrid';
 import Logo from '@/components/icons/Logo';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import OdinLogo from '@/components/icons/OdinLogo';
 
 interface HomeContainerProps {}
 
@@ -35,15 +36,21 @@ const HomeContainer: FC<HomeContainerProps> = () => {
   const [services, setServices] = useState<any[]>(serviceOptions.services);
 
   const items: ImageGridContainerItem[] = [
-    { id: 1, bike: bikeA, logo: logoA, alt: 'Schmolke Bike', url: '/schmolke' },
-    { id: 2, bike: bikeB, logo: logoB, alt: 'Odin Bike', url: '/odin' },
+    {
+      id: 1,
+      bike: bikejitting,
+      logo: logoA,
+      alt: 'Schmolke Bike',
+      url: '/bikefitting',
+    },
+    { id: 2, bike: bikeB, logo: logoB, alt: 'Odin Bike', url: '/workshop' },
   ];
 
   return (
     <Container padding={false} backgroundColor flow={'column'}>
       <div className={style.titleImageContainer}>
         <Image src={bikeTietleImage} className={style.titleImage} alt={'jhf'} />{' '}
-        <Logo width={350} className={style.titleText} color={'#3A7361'} />
+        <OdinLogo width={350} className={style.titleText} color={'#3A7361'} />
         <ButtonContainer className={style.titleButton}>
           <Button>Besprechung Buchen</Button>
         </ButtonContainer>
@@ -83,16 +90,16 @@ const HomeContainer: FC<HomeContainerProps> = () => {
       {/*  findest du bei uns die stylische Funktionsbekleidung der spanischen*/}
       {/*  Marke SIROKO und die Fahrradschuhe von LAKE.*/}
       {/*</p>*/}
-
+      <TextImageGridContainer items={items} />
       <div className={style.imageWallContainer}>
         <div className={style.wrapper}>
           <Image alt={'gv'} src={marken} className={style.imageWallItem} />
 
           <div className={style.overlay}>
-            <h2>UNSERE MARKEN</h2>
+            <h2>E-BIKES</h2>
             <Button>MEHR</Button>
           </div>
-        </div>{' '}
+        </div>
         <div className={style.wrapper}>
           <Image alt={'gv'} src={angela} className={style.imageWallItem} />
 
@@ -102,11 +109,19 @@ const HomeContainer: FC<HomeContainerProps> = () => {
           </div>
         </div>{' '}
         <div className={style.wrapper}>
+          <Image alt={'gv'} src={marken} className={style.imageWallItem} />
+
+          <div className={style.overlay}>
+            <h2>UNSERE MARKEN</h2>
+            <Button>MEHR</Button>
+          </div>
+        </div>{' '}
+        <div className={style.wrapper}>
           <Image alt={'gv'} src={workshop} className={style.imageWallItem} />
 
           <div className={style.overlay}>
             <h2>WERKSTATT</h2>
-            <Button>MEHR</Button>
+            <Button onClick={() => router.push('/workshop')}>MEHR</Button>
           </div>
         </div>{' '}
         <div className={style.wrapper}>
@@ -117,23 +132,11 @@ const HomeContainer: FC<HomeContainerProps> = () => {
             <Button onClick={() => router.push('/roadbikes')}>MEHR</Button>
           </div>
         </div>{' '}
-        <div className={style.wrapper}>
-          <Image alt={'gv'} src={marken} className={style.imageWallItem} />
-
-          <div className={style.overlay}>
-            <h2>E-BIKES</h2>
-            <Button>MEHR</Button>
-          </div>
-        </div>
         {/*<Image alt={'gv'} src={workshop} className={style.imageWallItem} />*/}
         {/*<Image alt={'gv'} src={bikejitting} className={style.imageWallItem} />*/}
         {/*<Image alt={'gv'} src={marken} className={style.imageWallItem} />*/}
         {/*<Image alt={'gv'} src={marken} className={style.imageWallItem} />*/}
       </div>
-
-      <ImageGridContainer items={items} />
-      <TextGridContainer items={items} />
-      <TextImageGridContainer items={items} />
     </Container>
   );
 

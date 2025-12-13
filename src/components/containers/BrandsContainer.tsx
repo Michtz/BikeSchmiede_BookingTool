@@ -27,6 +27,7 @@ import CartsGridContainer, { Service } from '@/components/system/new/CartsGrid';
 import Logo from '@/components/icons/Logo';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import OdinLogo from '@/components/icons/OdinLogo';
 
 interface HomeContainerProps {}
 
@@ -43,7 +44,7 @@ const BrandsContainer: FC<HomeContainerProps> = () => {
     <Container padding={false} backgroundColor flow={'column'}>
       <div className={style.titleImageContainer}>
         <Image src={bikeTietleImage} className={style.titleImage} alt={'jhf'} />{' '}
-        <Logo width={350} className={style.titleText} color={'#3A7361'} />
+        <OdinLogo width={350} className={style.titleText} color={'#3A7361'} />
         <ButtonContainer className={style.titleButton}>
           <Button>Besprechung Buchen</Button>
         </ButtonContainer>

@@ -34,9 +34,9 @@ const WorkshopContainer: FC<HomeContainerProps> = () => {
     <Container padding={false} backgroundColor flow={'column'}>
       <div className={style.titleImageContainer}>
         <Image src={bikeTitleImage} className={style.titleImage} alt={'jhf'} />{' '}
-        <h1 className={style.titleText}>WERKSTATT</h1>
+        {/*<h1 className={style.titleText}>WERKSTATT</h1>*/}
         <ButtonContainer className={style.titleButton}>
-          <Button>Termin Buchen</Button>
+          <Button></Button>
         </ButtonContainer>
       </div>
 

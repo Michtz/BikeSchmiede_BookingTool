@@ -19,6 +19,7 @@ import { Params } from 'next/dist/server/request/params';
 import SideCart from '@/components/system/SideCart';
 import { useSideCart } from '@/hooks/SideCartHook';
 import useCart from '@/hooks/CartHook';
+import OdinLogo from '@/components/icons/OdinLogo';
 
 const ResponsiveAppBar = () => {
   const { t, i18n } = useTranslation();
@@ -71,7 +72,7 @@ const ResponsiveAppBar = () => {
       <div
         className={`${style.loadingOverlay} ${!isLoading ? style.hidden : ''}`}
       >
-        <Logo className={style.loadingLogo} />
+        <OdinLogo className={style.loadingLogo} />
         <LoadingSpinner color={'white'} />
       </div>
 
@@ -117,7 +118,7 @@ const ResponsiveAppBar = () => {
           className={`${style.logo} ${!isLoading ? style.logoSmall : ''}`}
           onClick={() => router.replace(`/${Cookies.get('language') || ''}`)}
         >
-          <Logo className={style.headerLogo} />
+          <OdinLogo className={style.headerLogo} />
         </span>
         <span
           className={`${style.rightNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
