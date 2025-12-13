@@ -72,7 +72,7 @@ const ResponsiveAppBar = () => {
       <div
         className={`${style.loadingOverlay} ${!isLoading ? style.hidden : ''}`}
       >
-        <OdinLogo className={style.loadingLogo} />
+        <OdinLogo width={300} className={style.loadingLogo} />
         <LoadingSpinner color={'white'} />
       </div>
 
@@ -80,7 +80,7 @@ const ResponsiveAppBar = () => {
         className={`${style.header} ${isLoading ? style.headerHidden : style.headerVisible}`}
       >
         <div
-          className={`${style.leftNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
+          className={`${style.NavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
         >
           <div className={style.hamburgerMenu}>
             <HamburgerIcon
@@ -93,81 +93,80 @@ const ResponsiveAppBar = () => {
 
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/about'}>BIKEFITTING</Link>
+              <Link href={'/about'}>Gravelbikes</Link>
             </li>
             <li className={style.navItem}>
-              <Link href={'/workshop'}>WERKSTATT</Link>
+              <Link href={'/workshop'}>Roadbikes</Link>
             </li>{' '}
-            <li className={style.navItem}>
-              <Link href={'/roadbikes'}>RENNRÄDER</Link>
-            </li>
-            <li className={style.navItem}>
-              <Link href={'/blog'}>E-BIKES</Link>
-            </li>{' '}
-            <li className={style.navItem}>
-              <Link href={'/brands'}>MARKEN</Link>
-            </li>
             {isAdmin && (
               <li className={style.navItem}>
                 <Link href={'/admin'}>{t('nav.admin')}</Link>
               </li>
             )}
           </ul>
+          <span
+            className={`${style.logo} ${!isLoading ? style.logoSmall : ''}`}
+            onClick={() => router.replace(`/${Cookies.get('language') || ''}`)}
+          >
+            <OdinLogo className={style.headerLogo} />
+          </span>
+          <ul className={style.navItemContainer}>
+            <li className={style.navItem}>
+              <Link href={'/roadbikes'}>Configurator</Link>
+            </li>
+            <li className={style.navItem}>
+              <Link href={'/blog'}>Weels</Link>
+            </li>{' '}
+          </ul>
         </div>
-        <span
-          className={`${style.logo} ${!isLoading ? style.logoSmall : ''}`}
-          onClick={() => router.replace(`/${Cookies.get('language') || ''}`)}
-        >
-          <OdinLogo className={style.headerLogo} />
-        </span>
-        <span
-          className={`${style.rightNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
-        >
-          {/*<div className={style.cartIcon}>*/}
-          {/*  <CartIcon onClick={() => router.replace('/cart')} />*/}
 
-          {/*  {cartItems && cartItems?.length}*/}
-          {/*</div>*/}
-          <div className={style.cartIcon}>
-            <ProfileIcon onClick={handleUserClick} />
-          </div>
-          <div className={style.translationIcon}>
-            <span
-              className={`${style.navItem} ${style.languageDropdown}`}
-              ref={languageDropdownRef}
-            >
-              <span
-                onClick={toggleLanguageDropdown}
-                className={style.languageToggle}
-              >
-                <TranslateIcon />
-              </span>
-              {isLanguageDropdownOpen && (
-                <div className={style.dropdownMenu}>
-                  {languagesOptions.map((lang) => (
-                    <span
-                      key={lang.code}
-                      className={`${style.dropdownItem} ${params.locale === lang.code ? style.activeLanguage : ''}`}
-                      onClick={() =>
-                        handleLanguageChange({
-                          language: lang.code,
-                          router,
-                          path,
-                          preferences: sessionData?.data.preferences,
-                          sessionId: sessionData?.sessionId as string,
-                          action: i18n.changeLanguage,
-                          setIsLanguageDropdownOpen,
-                        })
-                      }
-                    >
-                      {lang.name}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </span>
-          </div>
-        </span>
+        {/*<span*/}
+        {/*  className={`${style.rightNavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}*/}
+        {/*>*/}
+        {/*  /!*<div className={style.cartIcon}>*!/*/}
+        {/*  /!*  <CartIcon onClick={() => router.replace('/cart')} />*!/*/}
+        {/*  /!*  {cartItems && cartItems?.length}*!/*/}
+        {/*  /!*</div>*!/*/}
+        {/*  <div className={style.cartIcon}>*/}
+        {/*    <ProfileIcon onClick={handleUserClick} />*/}
+        {/*  </div>*/}
+        {/*  <div className={style.translationIcon}>*/}
+        {/*    <span*/}
+        {/*      className={`${style.navItem} ${style.languageDropdown}`}*/}
+        {/*      ref={languageDropdownRef}*/}
+        {/*    >*/}
+        {/*      <span*/}
+        {/*        onClick={toggleLanguageDropdown}*/}
+        {/*        className={style.languageToggle}*/}
+        {/*      >*/}
+        {/*        <TranslateIcon />*/}
+        {/*      </span>*/}
+        {/*      {isLanguageDropdownOpen && (*/}
+        {/*        <div className={style.dropdownMenu}>*/}
+        {/*          {languagesOptions.map((lang) => (*/}
+        {/*            <span*/}
+        {/*              key={lang.code}*/}
+        {/*              className={`${style.dropdownItem} ${params.locale === lang.code ? style.activeLanguage : ''}`}*/}
+        {/*              onClick={() =>*/}
+        {/*                handleLanguageChange({*/}
+        {/*                  language: lang.code,*/}
+        {/*                  router,*/}
+        {/*                  path,*/}
+        {/*                  preferences: sessionData?.data.preferences,*/}
+        {/*                  sessionId: sessionData?.sessionId as string,*/}
+        {/*                  action: i18n.changeLanguage,*/}
+        {/*                  setIsLanguageDropdownOpen,*/}
+        {/*                })*/}
+        {/*              }*/}
+        {/*            >*/}
+        {/*              {lang.name}*/}
+        {/*            </span>*/}
+        {/*          ))}*/}
+        {/*        </div>*/}
+        {/*      )}*/}
+        {/*    </span>*/}
+        {/*  </div>*/}
+        {/*</span>*/}
       </header>
 
       <SideNav isOpen={isSideNavOpen} onClose={closeSideNav} />
