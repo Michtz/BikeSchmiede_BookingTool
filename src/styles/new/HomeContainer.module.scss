@@ -91,21 +91,19 @@
   align-items: center;
 }
 
-.videoElement {
+.videoElement,
+.videoElement2 {
   width: 100%;
   height: 100%;
-  object-fit: cover; // Wichtig: Video füllt den Screen ohne Verzerrung
+  object-fit: cover;
   display: block;
 }
 
-// Der Inhalt, der NACH dem Video kommt (optionaler Style für den Übergang)
 .contentBelow {
   position: relative;
   z-index: 2;
-  background-color: white;
 }
 
-// Deine bestehenden Overlay-Styles für Logo und Button
 .overlayContent {
   position: absolute;
   top: 50%;
@@ -115,35 +113,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // ... hier deine Logo/Button Styles rein
 }
 
-// HomeContainer.module.scss
-
-// 1. Der "Platzhalter": Erzeugt die Scrollhöhe (400vh), ist aber unsichtbar.
 .scrollContainer {
   height: 400vh;
   width: 100%;
   position: relative;
-  // Wichtig: pointer-events none, damit man "durchklicken" kann, falls nötig
   pointer-events: none;
 }
 
-// 2. Der Video-Wrapper: Jetzt FIXED statt sticky!
 .stickyWrapper {
-  position: fixed; // <--- DIE ÄNDERUNG
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 0; // Tiefster Layer (Ganz hinten)
+  z-index: 0;
   overflow: hidden;
 
-  // Interaktionen wieder aktivieren, falls Buttons im Video sind
   pointer-events: all;
 }
 
-.videoElement {
+.videoElement,
+.videoElement2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -177,10 +169,11 @@
     width: 100%;
     text-align: center;
     font-size: 130px;
-    letter-spacing: 3px;
+    letter-spacing: -10px;
     font-weight: 400;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
+    padding-top: 48rem;
+    padding-bottom: 15rem;
+    margin-bottom: 46rem;
     color: #fff;
     text-transform: capitalize;
   }

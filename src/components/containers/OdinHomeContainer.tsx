@@ -5,13 +5,13 @@ import { Container } from '@/components/system/Container';
 import Image from 'next/image';
 import logoA from '@/assets/gebioMized.avif';
 import logoB from '@/assets/logo_black.png';
-import bikeTietleImage from '@/assets/odin_back_green.jpg';
+import bikeTietleImage from '@/assets/schmolke_bike_2.jpg';
 import bikeA from '@/assets/1.png';
 import bikeTitleImage from '@/assets/title_image_michel.jpg';
 import bikeB from '@/assets/3.png';
 import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
-import bikejitting from '@/assets/bikefitting_cutout_white.png';
+import bikejitting from '@/assets/schmolke_bike_2.jpg';
 import bikeC from '@/assets/odin_roadbike.jpeg';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
@@ -32,6 +32,8 @@ import OdinLogo from '@/components/icons/OdinLogo';
 import dynamic from 'next/dynamic';
 import frame from '@/assets/3.png';
 
+/* video  DO NOT DELETE!!!!!!!!!!!!!!!!!! edit prompt MacBook-Pro assets % ffmpeg -i odin_animatie.mp4   -c:v libx264 -x264-params keyint=1:scenecut=0 -crf 22 -preset medium -an output_smooth_odin_frame.mp4*/
+
 interface HomeContainerProps {}
 
 const OdinHomeContainer: FC<HomeContainerProps> = () => {
@@ -51,120 +53,113 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showLogo, setShowLogo] = useState<boolean>(false);
+  const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
   const showLogoRef = useRef(false);
   const isTicking = useRef(false);
+  const showImageOverlayRef = useRef(false);
+  const contentTriggerRef = useRef<HTMLDivElement>(null);
 
+  const updateVideoPosition = () => {
+    if (!containerRef.current || !videoRef.current) return;
+
+    const container = containerRef.current;
+    const video = videoRef.current;
+
+    const containerTop = container.getBoundingClientRect().top;
+    const scrollLength = container.scrollHeight - window.innerHeight;
+
+    let progress = -containerTop / scrollLength;
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
+
+    // --- VIDEO UPDATE ---
+    if (Number.isFinite(video.duration)) {
+      const targetTime = video.duration * progress;
+      if (Math.abs(video.currentTime - targetTime) > 0.01) {
+        video.currentTime = targetTime;
+      }
+    }
+
+    const shouldShowLogo = progress > 0.25;
+    if (showLogoRef.current !== shouldShowLogo) {
+      showLogoRef.current = shouldShowLogo;
+      setShowLogo(shouldShowLogo);
+    }
+  };
+
+  const handleScroll = () => {
+    if (contentTriggerRef.current) {
+      const contentRect = contentTriggerRef.current.getBoundingClientRect();
+
+      // Wenn 'top' kleiner oder gleich 0 ist, füllt der Container den Screen ab oben.
+      // Du kannst hier auch "-100" nehmen, wenn es etwas später passieren soll.
+      const isCovering = contentRect.top <= 0;
+
+      // Nur State ändern, wenn er sich wirklich geändert hat!
+      if (showImageOverlayRef.current !== isCovering) {
+        showImageOverlayRef.current = isCovering;
+        console.log(isCovering);
+
+        setShowImageOverlay(isCovering);
+      }
+    }
+    if (!isTicking.current) {
+      window.requestAnimationFrame(() => {
+        updateVideoPosition();
+        isTicking.current = false;
+      });
+      isTicking.current = true;
+    }
+  };
   useEffect(() => {
-    // 1. Wir nutzen useRef für den "Ticking"-Status, damit kein Re-Render ausgelöst wird
-
-    const handleScroll = () => {
-      // Wenn schon ein Update geplant ist (isTicking = true),
-      // IGNORIEREN wir dieses Scroll-Event komplett.
-      // Das blockt die hunderten unnötigen Aufrufe ab.
-      if (!isTicking.current) {
-        // Wir planen das Update für den nächsten Monitor-Refresh (ca. 16ms später)
-        window.requestAnimationFrame(() => {
-          updateVideoPosition();
-          // Erst JETZT erlauben wir wieder neue Updates
-          isTicking.current = false;
-        });
-
-        // Wir markieren, dass wir beschäftigt sind
-        isTicking.current = true;
-      }
-    };
-    //
-    // // Die eigentliche Logik haben wir ausgelagert, um es sauber zu halten
-    // const updateVideoPosition = () => {
-    //   if (!containerRef.current || !videoRef.current) return;
-    //
-    //   const container = containerRef.current;
-    //   const video = videoRef.current;
-    //
-    //   const containerTop = container.getBoundingClientRect().top;
-    //   const scrollLength = container.scrollHeight - window.innerHeight;
-    //
-    //   let progress = -containerTop / scrollLength;
-    //
-    //   // Clamping
-    //   if (progress < 0) progress = 0;
-    //   if (progress > 1) progress = 1;
-    //
-    //   // Nur updaten, wenn duration verfügbar ist
-    //   if (Number.isFinite(video.duration)) {
-    //     // Optional: Mikro-Optimierung
-    //     console.log(video.duration);
-    //     // Nur setzen, wenn sich die Zeit wirklich relevant geändert hat (z.B. > 0.01s)
-    //     const targetTime = video.duration * progress;
-    //     if (Math.abs(video.currentTime - targetTime) > 0.01) {
-    //       video.currentTime = targetTime;
-    //     }
-    //   }
-    // };
-
-    // ... in deinem useEffect ...
-
-    const updateVideoPosition = () => {
-      if (!containerRef.current || !videoRef.current) return;
-
-      const container = containerRef.current;
-      const video = videoRef.current;
-
-      const containerTop = container.getBoundingClientRect().top;
-      const scrollLength = container.scrollHeight - window.innerHeight;
-
-      let progress = -containerTop / scrollLength;
-
-      // Clamping
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
-
-      // --- VIDEO UPDATE ---
-      if (Number.isFinite(video.duration)) {
-        const targetTime = video.duration * progress;
-        if (Math.abs(video.currentTime - targetTime) > 0.01) {
-          video.currentTime = targetTime;
-        }
-      }
-
-      // --- LOGO LOGIK (Der neue Teil) ---
-      // Wir wollen das Logo ab 25% (0.25) einblenden
-      const shouldShowLogo = progress > 0.25;
-
-      // PERFORMANCE SCHUTZ:
-      // Wir rufen setServices NUR auf, wenn sich der Wert WIRKLICH geändert hat.
-      // Wir vergleichen mit dem Ref, nicht mit dem State, da der Ref immer sofort aktuell ist.
-      if (showLogoRef.current !== shouldShowLogo) {
-        showLogoRef.current = shouldShowLogo; // Ref updaten
-        setShowLogo(shouldShowLogo); // State updaten (löst Re-Render aus)
-      }
-    };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return (
     <>
       <div className={style.scrollContainer} ref={containerRef}>
         <div className={style.stickyWrapper}>
-          <video
-            ref={videoRef}
-            className={style.videoElement}
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src="/assets/output_smooth.mp4" type="video/mp4" />
-          </video>
+          {showImageOverlay ? (
+            // <Image
+            //   src={bikeTietleImage}
+            //   className={style.titleImage}
+            //   alt={'jhf'}
+            // />
+            <video
+              className={style.videoElement2}
+              muted
+              autoPlay
+              loop
+              playsInline
+              preload="auto"
+              key={'b'}
+            >
+              <source
+                src="/assets/output_smooth_odin_frame.mp4"
+                type="video/mp4"
+              />
+              Dein Browser unterstützt das Video-Tag nicht.
+            </video>
+          ) : (
+            <video
+              ref={videoRef}
+              className={style.videoElement}
+              muted
+              playsInline
+              preload="auto"
+              key={'a'}
+            >
+              <source src="/assets/output_smooth.mp4" type="video/mp4" />
+            </video>
+          )}
 
-          {/* Logo Overlay */}
           <div className={style.overlayContent}>
             <div
               style={{
-                opacity: showLogo ? 1 : 0,
+                opacity: showLogo && !showImageOverlay ? 1 : 0,
                 transition: 'opacity 0.5s',
                 pointerEvents: showLogo ? 'all' : 'none',
               }}
@@ -175,12 +170,23 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
         </div>
       </div>
 
-      {/* Dieser Container schiebt sich jetzt ÜBER das Video.
-          Wichtig: Er beginnt erst NACH den 400vh des scrollContainers.
-      */}
+      <div className={style.contentBelow} ref={contentTriggerRef}>
+        <h2>WHAT IS ODIN</h2>
+
+        <span className={style.stickyWrapper2}>
+          <div
+            style={{
+              opacity: showImageOverlay ? 1 : 0,
+              transition: 'opacity 0.5s',
+              pointerEvents: showImageOverlay ? 'all' : 'none',
+              color: 'red',
+            }}
+          ></div>
+        </span>
+      </div>
+
       <div className={style.contentBelow}>
         <Container padding={false} flow={'column'}>
-          <h2>WHAT IS ODIN</h2>
           <span className={style.contentBoxA}>
             <p>
               Mit Schmolke Carbon haben wir einen der führenden Lieferanten von
@@ -247,7 +253,6 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
               bei uns genau richtig! Kontaktiere uns für eine Beratung!
             </p>
           </span>
-          {/* Ein bisschen Abstand oben, damit der Text nicht am Rand klebt */}
           <div style={{ paddingTop: '80px', paddingBottom: '40px' }}>
             <div className={style.titleImageContainer}>
               <OdinLogo
@@ -255,7 +260,6 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
                 className={style.titleText}
                 color={'#3A7361'}
               />
-              {/* ... Rest deines Headers ... */}
             </div>
 
             <h2
@@ -268,7 +272,6 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
               WAS WIR ZU BIETEN HABEN
             </h2>
 
-            {/* ... Rest deiner Seite (Grids etc.) ... */}
             <TextImageGridContainer items={items} />
             <div className={style.imageWallContainer}>
               {/* ... Image Wall ... */}
