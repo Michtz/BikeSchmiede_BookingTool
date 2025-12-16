@@ -82,12 +82,9 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
     if (contentTriggerRef.current) {
       const contentRect = contentTriggerRef.current.getBoundingClientRect();
 
-      // Wenn 'top' kleiner oder gleich 0 ist, füllt der Container den Screen ab oben.
-      // Du kannst hier auch "-100" nehmen, wenn es etwas später passieren soll.
       const isCoveringImage = contentRect.top <= 0;
-      const isTextVisible = contentRect.top <= 0;
-      console.log(contentRect.top);
-      // Nur State ändern, wenn er sich wirklich geändert hat!
+      const isTextVisible = contentRect.top <= -80;
+
       if (showImageOverlayRef.current !== isCoveringImage) {
         showImageOverlayRef.current = isCoveringImage;
         setShowImageOverlay(isCoveringImage);
@@ -167,7 +164,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
         <h2>WHAT IS ODIN</h2>
-        <p style={{ opacity: showText ? '1' : '0', transition: '0.5s easy' }}>
+        <p style={{ opacity: showText ? '1' : '0', transition: '2.5s' }}>
           ODIN Roadbikes steht für garantierten Fahrspass. Wir bauen die
           Fahrräder individuell nach Ihren Körpermaßen und mit Komponenten Ihrer
           Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
