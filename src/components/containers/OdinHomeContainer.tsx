@@ -42,10 +42,13 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showLogo, setShowLogo] = useState<boolean>(false);
   const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
+  const [showText, setShowText] = useState<boolean>(false);
   const showLogoRef = useRef(false);
   const isTicking = useRef(false);
   const showImageOverlayRef = useRef(false);
+  const showTextRef = useRef(false);
   const contentTriggerRef = useRef<HTMLDivElement>(null);
+  const isVisible = showLogo && !showImageOverlay;
 
   const updateVideoPosition = () => {
     if (!containerRef.current || !videoRef.current) return;
@@ -81,14 +84,18 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
 
       // Wenn 'top' kleiner oder gleich 0 ist, füllt der Container den Screen ab oben.
       // Du kannst hier auch "-100" nehmen, wenn es etwas später passieren soll.
-      const isCovering = contentRect.top <= 0;
-
+      const isCoveringImage = contentRect.top <= 0;
+      const isTextVisible = contentRect.top <= 0;
+      console.log(contentRect.top);
       // Nur State ändern, wenn er sich wirklich geändert hat!
-      if (showImageOverlayRef.current !== isCovering) {
-        showImageOverlayRef.current = isCovering;
-        console.log(isCovering);
+      if (showImageOverlayRef.current !== isCoveringImage) {
+        showImageOverlayRef.current = isCoveringImage;
+        setShowImageOverlay(isCoveringImage);
+      }
 
-        setShowImageOverlay(isCovering);
+      if (showTextRef.current !== isTextVisible) {
+        showTextRef.current = isTextVisible;
+        setShowText(isTextVisible);
       }
     }
     if (!isTicking.current) {
@@ -134,8 +141,8 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
             </video>
           ) : (
             <video
-              ref={videoRef}
               className={style.videoElement}
+              ref={videoRef}
               muted
               playsInline
               preload="auto"
@@ -146,22 +153,21 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
           )}
 
           <div className={style.overlayContent}>
-            <div
-              style={{
-                opacity: showLogo && !showImageOverlay ? 1 : 0,
-                transition: 'opacity 0.5s',
-                pointerEvents: showLogo ? 'all' : 'none',
-              }}
+            <h1
+              className={`${style.logoFade} ${isVisible ? style.visible : ''}`}
             >
               <OdinLogo width={400} />
-            </div>
+              <span className={style.srOnly}>
+                Odin Roadbikes – Premium Carbon Rennräder aus der Schweiz
+              </span>
+            </h1>
           </div>
         </div>
       </div>
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
         <h2>WHAT IS ODIN</h2>
-        <p>
+        <p style={{ opacity: showText ? '1' : '0', transition: '0.5s easy' }}>
           ODIN Roadbikes steht für garantierten Fahrspass. Wir bauen die
           Fahrräder individuell nach Ihren Körpermaßen und mit Komponenten Ihrer
           Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
