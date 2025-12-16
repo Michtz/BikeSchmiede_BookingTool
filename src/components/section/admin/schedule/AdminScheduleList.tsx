@@ -10,7 +10,7 @@ import { ISchedule } from '@/types/schedule.types';
 import { useFeedback } from '@/hooks/FeedbackHook';
 import { useModal } from '@/hooks/ModalProvide';
 import { createConfirmModal } from '@/components/modals/ConfirmModal';
-import style from '@/styles/admin/AdminProductList.module.scss'; // Reuse styles
+import style from '@/styles/admin/AdminProductList.module.scss';
 import MaterialIcon from '@/components/system/MaterialIcon';
 import Button, { ButtonContainer } from '@/components/system/Button';
 import { ScheduleTable } from './ScheduleTable';
@@ -32,8 +32,10 @@ const AdminScheduleList: React.FC<AdminScheduleListProps> = ({
     '/api/schedules',
     getAllSchedules,
   );
-  const schedules =
-    response?.data && Array.isArray(response.data) ? response.data : [];
+
+  const schedules = useMemo(() => {
+    return response?.data && Array.isArray(response.data) ? response.data : [];
+  }, [response]);
 
   const [sortConfig, setSortConfig] = useState<{
     key: keyof ISchedule | null;
@@ -75,7 +77,7 @@ const AdminScheduleList: React.FC<AdminScheduleListProps> = ({
         await deleteSchedule(schedule._id);
         showFeedback('Plan gelöscht', 'success');
         mutate('/api/schedules');
-      } catch (e) {
+      } catch {
         showFeedback('Fehler beim Löschen', 'error');
       }
     }
@@ -86,7 +88,7 @@ const AdminScheduleList: React.FC<AdminScheduleListProps> = ({
       await activateSchedule(schedule._id);
       showFeedback(`Plan "${schedule.name}" ist jetzt aktiv`, 'success');
       mutate('/api/schedules');
-    } catch (e) {
+    } catch {
       showFeedback('Fehler beim Aktivieren', 'error');
     }
   };

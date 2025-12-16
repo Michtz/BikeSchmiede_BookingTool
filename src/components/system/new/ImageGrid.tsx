@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import style from '@/styles/system/new/ImageGridContainer.module.scss';
 import Image, { StaticImageData } from 'next/image';
 import Button from '@/components/system/Button';

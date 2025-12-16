@@ -5,9 +5,7 @@ import { Container } from '@/components/system/Container';
 import Image from 'next/image';
 import logoA from '@/assets/gebioMized.avif';
 import logoB from '@/assets/logo_black.png';
-import bikeTietleImage from '@/assets/schmolke_bike_2.jpg';
-import bikeA from '@/assets/1.png';
-import bikeTitleImage from '@/assets/title_image_michel.jpg';
+
 import bikeB from '@/assets/3.png';
 import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
@@ -15,21 +13,12 @@ import bikejitting from '@/assets/schmolke_bike_2.jpg';
 import bikeC from '@/assets/odin_roadbike.jpeg';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
-import Button, { ButtonContainer } from '@/components/system/Button';
-import serviceOptions from '../../../testData.json';
-import Video from 'next-video';
-
-import ImageGridContainer, {
-  ImageGridContainerItem,
-} from '@/components/system/new/ImageGrid';
-import TextGridContainer from '@/components/system/new/TextGrid';
+import Button from '@/components/system/Button';
+import { ImageGridContainerItem } from '@/components/system/new/ImageGrid';
 import TextImageGridContainer from '@/components/system/new/TextImageGrid';
-import CartsGridContainer, { Service } from '@/components/system/new/CartsGrid';
-import Logo from '@/components/icons/Logo';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import OdinLogo from '@/components/icons/OdinLogo';
-import dynamic from 'next/dynamic';
 import frame from '@/assets/3.png';
 
 /* video  DO NOT DELETE!!!!!!!!!!!!!!!!!! edit prompt MacBook-Pro assets % ffmpeg -i odin_animatie.mp4   -c:v libx264 -x264-params keyint=1:scenecut=0 -crf 22 -preset medium -an output_smooth_odin_frame.mp4*/
@@ -38,7 +27,6 @@ interface HomeContainerProps {}
 
 const OdinHomeContainer: FC<HomeContainerProps> = () => {
   const router: AppRouterInstance = useRouter();
-  const [services, setServices] = useState<any[]>(serviceOptions.services);
 
   const items: ImageGridContainerItem[] = [
     {
@@ -116,6 +104,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+    // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import style from '@/styles/admin/ProductForm.module.scss'; // Reuse styles
+import style from '@/styles/admin/ProductForm.module.scss';
 import { IService, CreateServiceRequest } from '@/types/service.types';
 import { createService, updateService } from '@/requests/service.request';
 import { useFeedback } from '@/hooks/FeedbackHook';
@@ -23,7 +22,6 @@ interface ServiceFormProps {
 const CATEGORIES = ['Werkstatt', 'Beratung', 'Bikefitting', 'Sonstiges'];
 
 const ServiceForm: React.FC<ServiceFormProps> = ({ onClose, service }) => {
-  const { t } = useTranslation();
   const { showFeedback } = useFeedback();
 
   const {
@@ -56,7 +54,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ onClose, service }) => {
       }
       mutate('/api/services');
       onClose();
-    } catch (e) {
+    } catch {
       showFeedback('Fehler beim Speichern', 'error');
     }
   };

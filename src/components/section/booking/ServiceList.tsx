@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { getAllServices } from '@/requests/service.request';
 import ProductCard, { CartsContainer } from '@/components/system/ProductCard';
 import { IService } from '@/types/service.types';
-import style from '@/styles/ProductCard.module.scss'; // Reuse styles
 import { Container } from '@/components/system/Container';
 import bikefitting_triatlon from '@/assets/bikeFiting_triatlon.jpg';
 import bikefitting_adv from '@/assets/bikefiting_adv.avif';
@@ -18,8 +17,6 @@ interface ServiceListProps {
 
 const ServiceList: React.FC<ServiceListProps> = ({ onSelectService }) => {
   const { t } = useTranslation();
-
-  // Fetch services
   const {
     data: response,
     isLoading,

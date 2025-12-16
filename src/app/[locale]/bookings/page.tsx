@@ -1,7 +1,6 @@
 'use client';
 import { FC } from 'react';
-import MainContainer from '@/components/containers/MainContainer';
 import BookingContainer from '@/components/containers/BookingContainer';
 
-const BookingsPage: FC = () => <BookingContainer view={'booking_main'} />;
+const BookingsPage: FC = () => <BookingContainer view={'booking'} />;
 export default BookingsPage;

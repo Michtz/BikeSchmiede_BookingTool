@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR, { mutate } from 'swr';
 import { getAllServices, deleteService } from '@/requests/service.request';
@@ -24,14 +24,15 @@ const AdminServiceList: React.FC<AdminServiceListProps> = ({
   const { showFeedback } = useFeedback();
   const { awaitModalResult } = useModal();
 
-  // Data Fetching
   const {
     data: response,
-    error,
+
     isLoading,
   } = useSWR('/api/services', getAllServices);
-  const services =
-    response?.data && Array.isArray(response.data) ? response.data : [];
+
+  const services = useMemo(() => {
+    return response?.data && Array.isArray(response.data) ? response.data : [];
+  }, [response]);
 
   const [sortConfig, setSortConfig] = useState<{
     key: keyof IService | null;
@@ -42,9 +43,7 @@ const AdminServiceList: React.FC<AdminServiceListProps> = ({
     const items = [...services];
     if (sortConfig.key) {
       items.sort((a, b) => {
-        // @ts-ignore
         const aVal = a[sortConfig.key!];
-        // @ts-ignore
         const bVal = b[sortConfig.key!];
         if (!aVal || !bVal) return 0;
         if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
@@ -58,7 +57,7 @@ const AdminServiceList: React.FC<AdminServiceListProps> = ({
   const handleDelete = async (service: IService) => {
     const confirmed = await awaitModalResult(
       createConfirmModal(
-        t('common.deleteConfirmTitle', 'Löschen bestätigen'), // Translation keys anpassen
+        t('common.deleteConfirmTitle', 'Löschen bestätigen'),
         <>
           {t(
             'common.deleteConfirmMessage',
@@ -77,7 +76,7 @@ const AdminServiceList: React.FC<AdminServiceListProps> = ({
           'success',
         );
         mutate('/api/services');
-      } catch (e) {
+      } catch {
         showFeedback(t('feedback.error', 'Fehler beim Löschen'), 'error');
       }
     }

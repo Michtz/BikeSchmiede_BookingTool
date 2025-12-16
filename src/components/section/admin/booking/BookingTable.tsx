@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import style from '@/styles/admin/AdminProductList.module.scss'; // Recycle Style
+import style from '@/styles/admin/AdminProductList.module.scss';
 import { IBooking, BookingStatus } from '@/types/booking.types';
 import MaterialIcon from '@/components/system/MaterialIcon';
 import Button from '@/components/system/Button';
@@ -31,23 +31,21 @@ export const BookingTable: React.FC<BookingTableProps> = ({
   };
 
   const getStatusBadge = (status: string) => {
-    let colorClass = '';
+    let colorClass;
     switch (status) {
       case 'confirmed':
         colorClass = 'available';
-        break; // Grün (aus deinem CSS)
+        break;
       case 'completed':
         colorClass = 'low';
-        break; // Gelb/Orange
+        break;
       case 'cancelled':
         colorClass = 'out';
-        break; // Rot
+        break;
       default:
         colorClass = '';
     }
 
-    // Wir nutzen hier Klassen, die wir aus AdminProductList kennen (stock status styles)
-    // Idealerweise erstellst du eigene Klassen für Booking Status
     return (
       <span className={`${style.stockStatus} ${style[colorClass]}`}>
         {t(`booking.status.${status}`)}

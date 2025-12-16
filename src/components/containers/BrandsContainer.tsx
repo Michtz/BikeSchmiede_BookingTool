@@ -1,30 +1,23 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Container } from '@/components/system/Container';
 import Image from 'next/image';
 import logoA from '@/assets/schmolke_logo.svg';
 import logoB from '@/assets/gebioMized.avif';
 import bikeTietleImage from '@/assets/odin_back_green.jpg';
-import bikeA from '@/assets/1.png';
-import bikeTitleImage from '@/assets/title_image_michel.jpg';
-import bikeB from '@/assets/chapter2_bike.jpg';
 import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
-import bikejitting from '@/assets/bikefitting_test.jpg';
 import bikeC from '@/assets/odin_roadbike.jpeg';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
 import Button, { ButtonContainer } from '@/components/system/Button';
-import serviceOptions from '../../../testData.json';
 
 import ImageGridContainer, {
   ImageGridContainerItem,
 } from '@/components/system/new/ImageGrid';
 import TextGridContainer from '@/components/system/new/TextGrid';
 import TextImageGridContainer from '@/components/system/new/TextImageGrid';
-import CartsGridContainer, { Service } from '@/components/system/new/CartsGrid';
-import Logo from '@/components/icons/Logo';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import OdinLogo from '@/components/icons/OdinLogo';
@@ -33,7 +26,6 @@ interface HomeContainerProps {}
 
 const BrandsContainer: FC<HomeContainerProps> = () => {
   const router: AppRouterInstance = useRouter();
-  const [services, setServices] = useState<any[]>(serviceOptions.services);
 
   const items: ImageGridContainerItem[] = [
     { id: 1, bike: logoA, logo: logoA, alt: 'Schmolke Bike', url: '/schmolke' },

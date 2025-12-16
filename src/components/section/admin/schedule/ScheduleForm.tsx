@@ -1,18 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  useForm,
-  SubmitHandler,
-  Controller,
-  useFieldArray,
-} from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import style from '@/styles/admin/ProductForm.module.scss';
-import {
-  ISchedule,
-  CreateScheduleRequest,
-  IWeekProfile,
-} from '@/types/schedule.types';
+import { ISchedule, CreateScheduleRequest } from '@/types/schedule.types';
 import { createSchedule, updateSchedule } from '@/requests/schedule.request';
 import { useFeedback } from '@/hooks/FeedbackHook';
 import { mutate } from 'swr';
@@ -42,7 +33,6 @@ const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose, schedule }) => {
   const {
     register,
     handleSubmit,
-    control,
     watch,
     setValue,
     formState: { errors, isLoading, isDirty, isValid },
@@ -100,7 +90,7 @@ const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose, schedule }) => {
       }
       mutate('/api/schedules');
       onClose();
-    } catch (e) {
+    } catch {
       showFeedback('Fehler beim Speichern', 'error');
     }
   };
@@ -211,7 +201,6 @@ const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose, schedule }) => {
                 >
                   <Input
                     type="time"
-                    // @ts-ignore
                     inputProps={register(
                       `openingHours.${day.key}.${index}.start` as const,
                       { required: true },
@@ -221,7 +210,6 @@ const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose, schedule }) => {
                   <span>bis</span>
                   <Input
                     type="time"
-                    // @ts-ignore
                     inputProps={register(
                       `openingHours.${day.key}.${index}.end` as const,
                       { required: true },

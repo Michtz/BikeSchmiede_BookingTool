@@ -1,8 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import style from '@/styles/ProductCard.module.scss';
-import Button, { ButtonContainer } from '@/components/system/Button';
-import MaterialIcon from '@/components/system/MaterialIcon';
 import Image from 'next/image';
 
 interface ProductCardProps {
@@ -22,9 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({
   description,
   title,
   price,
-  disabled,
   onCardClick,
-  onIconClick,
 }) => {
   const { t } = useTranslation();
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import style from '@/styles/system/new/TextImageGridContainer.module.scss';
 import Image, { StaticImageData } from 'next/image';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';

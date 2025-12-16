@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/navigation';
 import style from '@/styles/booking/BookingCalendar.module.scss';
 import { IService } from '@/types/service.types';
 import DateSelector from './DateSelector';
@@ -25,7 +24,6 @@ const BookingPage: React.FC<BookingPageProps> = ({
 }) => {
   const { t } = useTranslation();
   const { showFeedback } = useFeedback();
-  const router = useRouter();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
   const [customerNotes, setCustomerNotes] = useState('');
@@ -77,7 +75,7 @@ const BookingPage: React.FC<BookingPageProps> = ({
         );
         onBack();
       }
-    } catch (error) {
+    } catch {
       showFeedback(t('booking.error', 'Fehler bei der Buchung.'), 'error');
     } finally {
       setIsBooking(false);

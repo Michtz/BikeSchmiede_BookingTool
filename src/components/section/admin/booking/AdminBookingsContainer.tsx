@@ -26,7 +26,6 @@ const AdminBookingsContainer = () => {
   const fetchBookings = async () => {
     setIsLoading(true);
     try {
-      // Optional: Hier könnten wir Datumsfilter aus einem State übergeben
       const response = await getAdminBookings();
       console.log(response);
       if (response.success && response.data) {
@@ -43,7 +42,7 @@ const AdminBookingsContainer = () => {
   };
 
   useEffect(() => {
-    fetchBookings();
+    fetchBookings(); // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, []);
 
   const handleStatusChange = async (id: string, newStatus: BookingStatus) => {
@@ -53,7 +52,7 @@ const AdminBookingsContainer = () => {
         showFeedback(t('feedback.save-success'), 'success');
         fetchBookings(); // Reload list
       }
-    } catch (error) {
+    } catch {
       showFeedback(t('feedback.save-error'), 'error');
     }
   };
@@ -65,7 +64,7 @@ const AdminBookingsContainer = () => {
         showFeedback(t('feedback.create-success'), 'success');
         fetchBookings();
       }
-    } catch (error) {
+    } catch {
       showFeedback(t('feedback.create-error'), 'error');
     }
   };

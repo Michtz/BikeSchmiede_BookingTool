@@ -2,10 +2,7 @@
 
 import { FC } from 'react';
 import style from '@/styles/system/new/CartsGridContainer.module.scss';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { useRouter } from 'next/navigation';
 import Button, { ButtonContainer } from '@/components/system/Button';
-import Logo from '@/components/icons/Logo';
 import OdinLogo from '@/components/icons/OdinLogo';
 type ServiceLevel = 'brons' | 'silver' | 'gold';
 
@@ -25,16 +22,10 @@ interface CartsGridContainerProps {
 }
 
 const CartsGridContainer: FC<CartsGridContainerProps> = ({ items }) => {
-  const router: AppRouterInstance = useRouter();
-  console.log(items);
   return (
     <div className={style.gridContainer}>
       {items.map((item: Service) => (
-        <div
-          key={item.id}
-          className={style.cardItem}
-          // onClick={() => router.push(item.url)}
-        >
+        <div key={item.id} className={style.cardItem}>
           <div className={style.wrapper}>
             <div className={style.iconContainer}>
               <OdinLogo
@@ -50,8 +41,8 @@ const CartsGridContainer: FC<CartsGridContainerProps> = ({ items }) => {
             </div>
             <h3>{item.name}</h3>
             <ul className={style.featureList}>
-              {item.features.map((feature) => (
-                <li>{feature}</li>
+              {item.features.map((feature, i) => (
+                <li key={feature + i}>{feature}</li>
               ))}
             </ul>
             <hr />

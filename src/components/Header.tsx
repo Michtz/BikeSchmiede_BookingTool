@@ -1,37 +1,25 @@
 import * as React from 'react';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import style from '@/styles/Header.module.scss';
 import Link from '@/components/system/Link';
 import { useAuth } from '@/hooks/AuthHook';
-import CartIcon from '@/components/icons/CartIcon';
-import ProfileIcon from '@/components/icons/ProfileIcon';
-import Logo from '@/components/icons/Logo';
 import HamburgerIcon from '@/components/icons/HamburgerIcon';
 import SideNav from '@/components/system/SideNav';
-import TranslateIcon from '@/components/icons/TranslateIcon';
 import LoadingSpinner from '@/components/system/LoadingSpinner';
 import Cookies from 'js-cookie';
-import { handleLanguageChange, languagesOptions } from '@/i18n/client';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { Params } from 'next/dist/server/request/params';
 import SideCart from '@/components/system/SideCart';
 import { useSideCart } from '@/hooks/SideCartHook';
-import useCart from '@/hooks/CartHook';
 import OdinLogo from '@/components/icons/OdinLogo';
 
 const ResponsiveAppBar = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const router: AppRouterInstance = useRouter();
-  const { cartItems } = useCart();
-  const path = usePathname();
-  const params: Params = useParams();
-  const { userSessionData, sessionData, isLoading, isAdmin } = useAuth();
+  const { isLoading, isAdmin } = useAuth();
   const { isSideCartOpen, closeSideCart } = useSideCart();
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const languageDropdownRef = useRef<HTMLLIElement>(null);
 
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
@@ -40,31 +28,6 @@ const ResponsiveAppBar = () => {
   const closeSideNav = () => {
     setIsSideNavOpen(false);
   };
-
-  const handleUserClick = () => {
-    if (!!userSessionData) router.replace('/profile');
-    if (!userSessionData) router.replace('/login');
-  };
-
-  const toggleLanguageDropdown = () => {
-    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
-  };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        languageDropdownRef.current &&
-        !languageDropdownRef.current.contains(event.target as Node)
-      )
-        setIsLanguageDropdownOpen(false);
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
     <>

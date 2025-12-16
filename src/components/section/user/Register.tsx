@@ -20,7 +20,6 @@ import Button from '@/components/system/Button';
 import { Logger } from '@/utils/Logger.class';
 import { useAuth } from '@/hooks/AuthHook';
 import { useFeedback } from '@/hooks/FeedbackHook';
-import Logo from '@/components/icons/Logo';
 import OdinLogo from '@/components/icons/OdinLogo';
 
 interface RegisterFormData {

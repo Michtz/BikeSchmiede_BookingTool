@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useSWR from 'swr';
 import { getAvailability } from '@/requests/booking.request';
 import style from '@/styles/booking/BookingCalendar.module.scss';
@@ -17,14 +17,11 @@ const TimeSlotPicker: React.FC<TimeSlotPickerProps> = ({
   onSelectSlot,
   selectedSlot,
 }) => {
-  // Wir laden immer Slots für den ganzen Tag (00:00 bis 23:59)
   const startOfDay = new Date(selectedDate);
   startOfDay.setHours(0, 0, 0, 0);
 
   const endOfDay = new Date(selectedDate);
   endOfDay.setHours(23, 59, 59, 999);
-
-  // SWR Key ändert sich mit dem Datum -> automatischer Refetch
   const {
     data: response,
     isLoading,

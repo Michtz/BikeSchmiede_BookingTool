@@ -1,4 +1,3 @@
-import CategoriesContainer from '@/components/containers/CategoriesContainer';
 import { FC } from 'react';
 import WorkshopContainer from '@/components/containers/WorkshopContainer';
 

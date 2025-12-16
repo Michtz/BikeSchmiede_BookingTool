@@ -1,24 +1,17 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Container } from '@/components/system/Container';
 import Image from 'next/image';
 import logoA from '@/assets/schmolke_logo.svg';
-import logoB from '@/assets/CHAPTER2-Logo-Aqua.png';
 import bikeTitleImage from '@/assets/schmolke_roadBike.jpg';
 import frame from '@/assets/3.png';
-import bikeC from '@/assets/odin_roadbike.jpeg';
 import bikeB from '@/assets/schmolke_bike_two.png';
 import style from '@/styles/system/new/ArticleContainer.module.scss';
 import Button, { ButtonContainer } from '@/components/system/Button';
-import serviceOptions from '../../../testData.json';
 
-import ImageGridContainer, {
-  ImageGridContainerItem,
-} from '@/components/system/new/ImageGrid';
-import TextGridContainer from '@/components/system/new/TextGrid';
+import { ImageGridContainerItem } from '@/components/system/new/ImageGrid';
 import TextImageGridContainer from '@/components/system/new/TextImageGrid';
-import CartsGridContainer, { Service } from '@/components/system/new/CartsGrid';
 import schmolkeLogo from '@/assets/schmolke_logo.svg';
 import bikeA from '@/assets/1.png';
 
@@ -26,7 +19,7 @@ interface HomeContainerProps {
   article: string;
 }
 
-const ArticleContainer: FC<HomeContainerProps> = ({ article }) => {
+const ArticleContainer: FC<HomeContainerProps> = () => {
   const items: ImageGridContainerItem[] = [
     { id: 1, bike: bikeA, logo: logoA, alt: 'Schmolke Bike', url: '/schmolke' },
     {

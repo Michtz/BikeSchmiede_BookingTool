@@ -9,7 +9,7 @@ import {
 import { BookingTable } from './BookingTable';
 import MaterialIcon from '@/components/system/MaterialIcon';
 import Button, { ButtonContainer } from '@/components/system/Button';
-import Input from '@/components/system/Input'; // Für einfache Filter
+import Input from '@/components/system/Input';
 
 interface AdminBookingListProps {
   bookings: IBooking[];
@@ -22,7 +22,6 @@ const AdminBookingList: React.FC<AdminBookingListProps> = ({
   bookings,
   isLoading,
   onStatusChange,
-  onCreateBlocker,
 }) => {
   const { t } = useTranslation();
   const [filterText, setFilterText] = useState('');
@@ -30,14 +29,13 @@ const AdminBookingList: React.FC<AdminBookingListProps> = ({
     key: keyof IBooking | null;
     direction: 'asc' | 'desc';
   }>({
-    key: 'start', // Default sort by date
+    key: 'start',
     direction: 'asc',
   });
 
   const sortedBookings = useMemo(() => {
     let items = [...bookings];
 
-    // Simple Filter by OrderNr or Name
     if (filterText) {
       const lower = filterText.toLowerCase();
       items = items.filter(
@@ -51,9 +49,7 @@ const AdminBookingList: React.FC<AdminBookingListProps> = ({
 
     if (sortConfig.key !== null) {
       items.sort((a, b) => {
-        // @ts-ignore - einfacher Zugriff für Sortierung
         const aValue = a[sortConfig.key!];
-        // @ts-ignore
         const bValue = b[sortConfig.key!];
         if (!aValue || !bValue) return 0;
         if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
@@ -92,7 +88,6 @@ const AdminBookingList: React.FC<AdminBookingListProps> = ({
       <div className={style.listHeader}>
         <div className={style.headerActions}>
           <h2>{t('adminBookings.title', { count: bookings.length })}</h2>
-          {/* Hier könnte später ein DatePicker hin */}
           <div style={{ width: '300px' }}>
             <Input
               placeholder={t('adminBookings.searchPlaceholder')}
@@ -105,7 +100,6 @@ const AdminBookingList: React.FC<AdminBookingListProps> = ({
               variant="primary"
               icon="block"
               onClick={() => {
-                // Todo: Modal öffnen für Blocker
                 console.log('Open Blocker Modal');
               }}
             >
