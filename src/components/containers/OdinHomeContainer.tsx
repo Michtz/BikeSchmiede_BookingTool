@@ -161,7 +161,13 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
         <h2>WHAT IS ODIN</h2>
-
+        <p>
+          ODIN Roadbikes steht für garantierten Fahrspass. Wir bauen die
+          Fahrräder individuell nach Ihren Körpermaßen und mit Komponenten Ihrer
+          Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
+          zugeschnitten ist. Bei verschiedenen Modellen können Sie sogar die
+          Farben und das Design selbst auswählen.
+        </p>
         <span className={style.stickyWrapper2}>
           <div
             style={{

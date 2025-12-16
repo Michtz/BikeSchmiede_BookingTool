@@ -116,7 +116,7 @@
 }
 
 .scrollContainer {
-  height: 400vh;
+  height: 150vh;
   width: 100%;
   position: relative;
   pointer-events: none;
@@ -163,6 +163,8 @@
   box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.1);
 
   width: 100%;
+  padding-bottom: 26rem;
+  margin-bottom: 46rem;
 
   h2 {
     font-family: 'Istok Web', sans-serif;
@@ -172,10 +174,21 @@
     letter-spacing: -10px;
     font-weight: 400;
     padding-top: 48rem;
-    padding-bottom: 15rem;
-    margin-bottom: 46rem;
+    padding-bottom: 5rem;
     color: #fff;
     text-transform: capitalize;
+  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    max-width: 850px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1.5px;
+    line-height: 28px;
   }
 }
 .contentBoxA {
