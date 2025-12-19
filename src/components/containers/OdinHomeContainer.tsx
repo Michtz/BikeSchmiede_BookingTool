@@ -174,16 +174,15 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       </div>
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
-        <h2>WHAT IS ODIN</h2>
-        {/*Hier könnte man das odin logo mit opacity 0.2 dahinter haben um*/}
-        {/*dasschwarz aufzubrechen (ändlich wie bei*/}
-        {/*https://www.festka.com/en/technology)*/}
+        <h2 style={{ opacity: showText ? '0.03' : '0.1', transition: '2.5s' }}>
+          ODIN
+        </h2>
+        <h3>Individualität ohne Kompromisse.</h3>
         <p style={{ opacity: showText ? '1' : '0', transition: '2.5s' }}>
-          ODIN Roadbikes steht für garantierten Fahrspass. Wir bauen die
-          Fahrräder individuell nach Ihren Körpermassen und mit Komponenten
-          Ihrer Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
-          zugeschnitten ist. Bei verschiedenen Modellen können Sie sogar die
-          Farben und das Design selbst auswählen.
+          Wir bauen nicht einfach Fahrräder, sondern Ihr persönliches Traumrad.
+          Es wird individuell auf Ihre Körpermasse abgestimmt und in Ihrem
+          Wunschdesign lackiert. Für ein Fahrerlebnis, das so einzigartig ist
+          wie Sie selbst.
         </p>
         <span className={style.stickyWrapper2}>
           <div
