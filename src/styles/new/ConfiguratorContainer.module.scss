@@ -1,0 +1,235 @@
+.configuratorWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 40px;
+  padding: 20px 40px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+// --- Content Left ---
+.contentContainer {
+  flex: 2; // Nimmt mehr Platz ein als die Summary (ca 66% / 33% Verhältnis oder 50/50 je nach Wunsch)
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.pictureContainer {
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0);
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 400px; // Feste Höhe für den Bildcontainer
+
+    @media (max-width: 768px) {
+      height: 250px;
+    }
+  }
+}
+
+.selectionContainer {
+  .selectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    //border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .resetButton {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #ffffff;
+      transition: color 0.2s;
+
+      &:hover {
+        //color: #000;
+      }
+    }
+  }
+
+  .groupsList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .groupItem {
+    .groupTitle {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+    }
+  }
+
+  .optionsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .optionCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+
+    //border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #000000;
+
+    &:hover {
+      border: 1px solid #808080;
+      background-color: rgba(128, 128, 128, 0.09);
+    }
+
+    &.active {
+      border-color: #545454;
+      //background-color: #494949;
+
+      .radioButton {
+        border-color: #ffffff;
+
+        .radioInner {
+          transform: scale(1);
+          background-color: white;
+        }
+      }
+    }
+
+    .optionInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .optionName {
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .optionPrice {
+        font-size: 0.85rem;
+        color: #666;
+      }
+    }
+
+    .radioButton {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+
+      .radioInner {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #000;
+        transform: scale(0);
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+  }
+}
+
+// --- Summary Right ---
+.summaryContainer {
+  flex: 1;
+  min-width: 300px;
+
+  .summaryCard {
+    position: sticky;
+    top: 20px; // Sticky beim Scrollen
+    background-color: #000000;
+    border: 1px solid #676767;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    .summaryTitle {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 20px 0;
+    }
+
+    .summaryList {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .summaryItem {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      line-height: 1.4;
+
+      .summaryItemInfo {
+        display: flex;
+        flex-direction: column;
+
+        .itemGroup {
+          color: #ffffff;
+          font-size: 0.8rem;
+        }
+
+        .itemName {
+          font-weight: 500;
+        }
+      }
+
+      .itemPrice {
+        font-weight: 400;
+        white-space: nowrap;
+      }
+    }
+
+    .divider {
+      height: 1px;
+      background-color: #696969;
+      margin: 20px 0;
+    }
+
+    .totalRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .actionButtons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}

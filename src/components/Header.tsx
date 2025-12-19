@@ -56,10 +56,10 @@ const ResponsiveAppBar = () => {
 
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/about'}>Gravelbikes</Link>
+              <Link href={'/gravelbikes'}>Gravelbikes</Link>
             </li>
             <li className={style.navItem}>
-              <Link href={'/workshop'}>Roadbikes</Link>
+              <Link href={'/roadbikes'}>Roadbikes</Link>
             </li>{' '}
             {isAdmin && (
               <li className={style.navItem}>
@@ -75,10 +75,10 @@ const ResponsiveAppBar = () => {
           </span>
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/roadbikes'}>Configurator</Link>
+              <Link href={'/configurator'}>Configurator</Link>
             </li>
             <li className={style.navItem}>
-              <Link href={'/blog'}>Weels</Link>
+              <Link href={'/parts'}>Parts</Link>
             </li>{' '}
           </ul>
         </div>
