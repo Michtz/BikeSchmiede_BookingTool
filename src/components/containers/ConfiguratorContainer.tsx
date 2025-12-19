@@ -99,6 +99,7 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
       }
     });
     setSelections(initialSelections);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummyBikeData]);
 
   const handleSelectionChange = (groupId: string, optionId: string) => {
@@ -127,6 +128,7 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
         option: selectedOption,
       };
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummyBikeData, selections]);
 
   const totalPrice = useMemo(() => {
@@ -134,6 +136,7 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
       return acc + (curr.option?.price || 0);
     }, 0);
     return dummyBikeData.basePrice + optionsPrice;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummyBikeData.basePrice, selectedOptionsList]);
 
   return (
@@ -237,8 +240,8 @@ const SelectionContainer: FC<SelectionContainerProps> = ({
 
       <div className={style.groupsList}>
         {groups.map((group, i) => (
-          <Accordion title={group.title} defaultOpen={i === 1}>
-            <div key={group.id} className={style.groupItem}>
+          <Accordion key={group.id} title={group.title} defaultOpen={i === 1}>
+            <div className={style.groupItem}>
               <div className={style.optionsGrid}>
                 {group.items.map((item) => {
                   const isSelected = selections[group.id] === item.id;

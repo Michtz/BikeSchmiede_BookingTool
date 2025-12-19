@@ -40,7 +40,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (localStorage.getItem('authProv') === 'true') setIsAuth(true);
-  });
+  }, []);
 
   const onSubmit = (data: FormValues) => {
     if (data.password !== '6048') return;
