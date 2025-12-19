@@ -153,6 +153,9 @@
   flex-direction: column;
   align-items: center;
 }
+.titleImage {
+  object-fit: contain;
+}
 
 // 3. Der Inhalt danach: Muss HÖHER liegen und eine FARBE haben
 .contentBelow {
@@ -164,7 +167,7 @@
 
   width: 100%;
   padding-bottom: 20rem;
-  margin-bottom: 46rem;
+  margin-bottom: 90vh;
   min-height: 100vh;
 
   h2 {
@@ -206,6 +209,7 @@
     color: #fff;
     letter-spacing: 2.5px;
     line-height: 48px;
+    //margin-bottom: 5rem;
   }
 }
 .contentBoxA {
@@ -226,7 +230,7 @@
 .logoFade {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0s ease;
 
   &.visible {
     opacity: 1;

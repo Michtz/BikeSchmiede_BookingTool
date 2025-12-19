@@ -6,10 +6,11 @@ import Image from 'next/image';
 import logoA from '@/assets/gebioMized.avif';
 import logoB from '@/assets/logo_black.png';
 
-import bikeB from '@/assets/3.png';
+import bikeTietleImage from '@/assets/tow_bianci_2.png';
 import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
-import bikejitting from '@/assets/schmolke_bike_2.jpg';
+import bikejitting from '@/assets/pantani-news.jpg';
+import bikejitting2 from '@/assets/pantani-news-modified.jpg';
 import bikeC from '@/assets/odin_roadbike.jpeg';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
@@ -36,7 +37,13 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       alt: 'Schmolke Bike',
       url: '/bikefitting',
     },
-    { id: 2, bike: bikeB, logo: logoB, alt: 'Odin Bike', url: '/workshop' },
+    {
+      id: 2,
+      bike: bikejitting2,
+      logo: logoB,
+      alt: 'Odin Bike',
+      url: '/workshop',
+    },
   ];
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -49,6 +56,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
   const showTextRef = useRef(false);
   const contentTriggerRef = useRef<HTMLDivElement>(null);
   const isVisible = showLogo && !showImageOverlay;
+  const isVisibleText = showImageOverlay;
 
   const updateVideoPosition = () => {
     if (!containerRef.current || !videoRef.current) return;
@@ -83,7 +91,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       const contentRect = contentTriggerRef.current.getBoundingClientRect();
 
       const isCoveringImage = contentRect.top <= 0;
-      const isTextVisible = contentRect.top <= -20;
+      const isTextVisible = contentRect.top <= 100;
 
       if (showImageOverlayRef.current !== isCoveringImage) {
         showImageOverlayRef.current = isCoveringImage;
@@ -116,27 +124,29 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       <div className={style.scrollContainer} ref={containerRef}>
         <div className={style.stickyWrapper}>
           {showImageOverlay ? (
-            // <Image
-            //   src={bikeTietleImage}
-            //   className={style.titleImage}
-            //   alt={'jhf'}
-            // />
-            <video
-              className={style.videoElement2}
-              muted
-              autoPlay
-              loop
-              playsInline
-              preload="auto"
-              key={'b'}
-            >
-              <source
-                src="/assets/output_smooth_odin_frame.mp4"
-                type="video/mp4"
+            <>
+              <Image
+                src={bikeTietleImage}
+                className={style.titleImage}
+                alt={'jhf'}
               />
-              Dein Browser unterstützt das Video-Tag nicht.
-            </video>
+            </>
           ) : (
+            // <video
+            //   className={style.videoElement2}
+            //   muted
+            //   autoPlay
+            //   loop
+            //   playsInline
+            //   preload="auto"
+            //   key={'b'}
+            // >
+            //   <source
+            //     src="/assets/output_smooth_odin_frame.mp4"
+            //     type="video/mp4"
+            //   />
+            //   Dein Browser unterstützt das Video-Tag nicht.
+            // </video>
             <video
               className={style.videoElement}
               ref={videoRef}
@@ -160,7 +170,18 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
                 Switzerland
               </span>
             </h1>
+            <h2
+              className={`${style.logoFade} ${isVisibleText ? style.visible : ''}`}
+              style={{
+                fontSize: '40px',
+                position: 'absolute',
+                top: '60%',
+              }}
+            >
+              Unsere neusten Kreationen
+            </h2>
           </div>
+
           <h2>
             {/*odin logo animieren so das (logo aber über die volle breite wie beim*/}
             {/*feska) logo zuerst kaum sichtbar und wird dan je nach dem wie tief*/}
@@ -174,16 +195,18 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       </div>
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
-        <h2 style={{ opacity: showText ? '0.03' : '0.1', transition: '2.5s' }}>
+        <h2 style={{ opacity: showText ? '0.03' : '0.1', transition: '1.5s' }}>
           ODIN
         </h2>
         <h3>Individualität ohne Kompromisse.</h3>
-        <p style={{ opacity: showText ? '1' : '0', transition: '2.5s' }}>
+        <p style={{ opacity: showText ? '1' : '0', transition: '1.5s' }}>
           Wir bauen nicht einfach Fahrräder, sondern Ihr persönliches Traumrad.
           Es wird individuell auf Ihre Körpermasse abgestimmt und in Ihrem
           Wunschdesign lackiert. Für ein Fahrerlebnis, das so einzigartig ist
           wie Sie selbst.
         </p>
+        {/*<TextImageGridContainer items={items} />*/}
+
         <span className={style.stickyWrapper2}>
           <div
             style={{
