@@ -83,7 +83,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       const contentRect = contentTriggerRef.current.getBoundingClientRect();
 
       const isCoveringImage = contentRect.top <= 0;
-      const isTextVisible = contentRect.top <= -80;
+      const isTextVisible = contentRect.top <= -20;
 
       if (showImageOverlayRef.current !== isCoveringImage) {
         showImageOverlayRef.current = isCoveringImage;
@@ -154,20 +154,34 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
               className={`${style.logoFade} ${isVisible ? style.visible : ''}`}
             >
               <OdinLogo width={400} />
+
               <span className={style.srOnly}>
-                Odin Roadbikes – Premium Carbon Rennräder aus der Schweiz
+                Odin Roadbikes – Premium Custom-Build Carbon Roadbikes from
+                Switzerland
               </span>
             </h1>
           </div>
+          <h2>
+            {/*odin logo animieren so das (logo aber über die volle breite wie beim*/}
+            {/*feska) logo zuerst kaum sichtbar und wird dan je nach dem wie tief*/}
+            {/*man scrolled sichtbarer opacyty 0.1 to 1 das gibt dem user eine*/}
+            {/*scroll gefühl und das video kan in ruhe im hintergrund ablaufen mit*/}
+            {/*dem scrollen vereint dem video eine leichten 1px rahmen gebn aber*/}
+            {/*der raman selbst hat ca 10px abstand zum rand des bildschirms (und*/}
+            {/*untem anm foto)*/}
+          </h2>
         </div>
       </div>
 
       <div className={style.contentBelow} ref={contentTriggerRef}>
         <h2>WHAT IS ODIN</h2>
+        {/*Hier könnte man das odin logo mit opacity 0.2 dahinter haben um*/}
+        {/*dasschwarz aufzubrechen (ändlich wie bei*/}
+        {/*https://www.festka.com/en/technology)*/}
         <p style={{ opacity: showText ? '1' : '0', transition: '2.5s' }}>
           ODIN Roadbikes steht für garantierten Fahrspass. Wir bauen die
-          Fahrräder individuell nach Ihren Körpermaßen und mit Komponenten Ihrer
-          Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
+          Fahrräder individuell nach Ihren Körpermassen und mit Komponenten
+          Ihrer Wahl. Wir sorgen dafür, dass Ihr Traumfahrrad genau auf Sie
           zugeschnitten ist. Bei verschiedenen Modellen können Sie sogar die
           Farben und das Design selbst auswählen.
         </p>
@@ -185,6 +199,7 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
 
       <div className={style.contentBelow}>
         <Container padding={false} flow={'column'}>
+          <h2>Percicly made for your phisicy / body oder so</h2>
           <span className={style.contentBoxA}>
             <p>
               Mit Schmolke Carbon haben wir einen der führenden Lieferanten von
