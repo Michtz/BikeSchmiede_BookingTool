@@ -1,6 +1,6 @@
 export const dummyBikeData = {
   basePrice: 2999.0,
-  defaultImage: '/assets/pantani-news-modified.jpg',
+  defaultImage: '/assets/drift_frame.jpg',
   groups: [
     {
       id: 'frame-color',
