@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import style from '@/styles/Header.module.scss';
@@ -17,10 +17,12 @@ import OdinLogo from '@/components/icons/OdinLogo';
 const ResponsiveAppBar = () => {
   const { t } = useTranslation();
   const router: AppRouterInstance = useRouter();
+  const params = useParams();
+  const pathName = usePathname();
   const { isLoading, isAdmin } = useAuth();
   const { isSideCartOpen, closeSideCart } = useSideCart();
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-
+  console.log(router, params, pathName.split('/').pop());
   const toggleSideNav = () => {
     setIsSideNavOpen(!isSideNavOpen);
   };
@@ -59,7 +61,11 @@ const ResponsiveAppBar = () => {
               <Link href={'/gravelbikes'}>Gravelbikes</Link>
             </li>
             <li className={style.navItem}>
-              <Link href={'/roadbikes'}>Roadbikes</Link>
+              <Link href={'/roadbikes'}>
+                {pathName.split('/').pop() === 'roadbikes'
+                  ? 'Besprechung Buchen'
+                  : 'Rennräder'}
+              </Link>
             </li>{' '}
             {isAdmin && (
               <li className={style.navItem}>
@@ -75,7 +81,11 @@ const ResponsiveAppBar = () => {
           </span>
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/configurator'}>Configurator</Link>
+              <Link href={'/configurator'}>
+                {pathName.split('/').pop() === 'configurator'
+                  ? 'Besprechung Buchen'
+                  : 'Configurator'}
+              </Link>
             </li>
             <li className={style.navItem}>
               <Link href={'/parts'}>Parts</Link>
