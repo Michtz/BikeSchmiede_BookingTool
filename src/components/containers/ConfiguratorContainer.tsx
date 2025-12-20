@@ -90,23 +90,33 @@ interface ConfiguratorContainerProps {}
 
 const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
   const [selections, setSelections] = useState<Record<string, string>>({});
+  const [image, setImage] = useState<string>(dummyBikeData.defaultImage);
 
   useEffect(() => {
     const initialSelections: Record<string, string> = {};
-    dummyBikeData.groups.forEach((group) => {
-      if (group.items.length > 0) {
-        initialSelections[group.id] = group.items[0].id;
-      }
-    });
+    dummyBikeData.groups[0].items[0].id;
+    initialSelections[dummyBikeData.groups[0].id] =
+      dummyBikeData.groups[0].items[0].id;
+
     setSelections(initialSelections);
+
+    setImage(dummyBikeData.defaultImage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummyBikeData]);
 
   const handleSelectionChange = (groupId: string, optionId: string) => {
+    console.log(groupId, optionId, selectedOptionsList);
     setSelections((prev) => ({
       ...prev,
       [groupId]: optionId,
     }));
+    const newOption = selectedOptionsList?.find(
+      (option) => option.groupId === groupId,
+    );
+    console.log(newOption);
+    if (!newOption?.option?.image) return;
+    setImage(newOption.option.image);
+    console.log(newOption.option.image);
   };
 
   const handleReset = () => {
@@ -125,7 +135,9 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
       const selectedOption = group.items.find((item) => item.id === selectedId);
       return {
         groupTitle: group.title,
+        groupId: group.id,
         option: selectedOption,
+        selectedId,
       };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -144,6 +156,7 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
       <div className={style.configuratorWrapper}>
         <ContentContainer
           data={dummyBikeData}
+          image={image}
           selections={selections}
           onSelectionChange={handleSelectionChange}
           onReset={handleReset}
@@ -164,6 +177,7 @@ interface ContentContainerProps {
   selections: Record<string, string>;
   onSelectionChange: (groupId: string, optionId: string) => void;
   onReset: () => void;
+  image: string;
 }
 
 const ContentContainer: FC<ContentContainerProps> = ({
@@ -171,10 +185,11 @@ const ContentContainer: FC<ContentContainerProps> = ({
   selections,
   onSelectionChange,
   onReset,
+  image,
 }) => {
   return (
     <div className={style.contentContainer}>
-      <PictureContainer image={data.defaultImage} />
+      <PictureContainer image={image} />
       <SelectionContainer
         groups={data.groups}
         selections={selections}
@@ -240,7 +255,7 @@ const SelectionContainer: FC<SelectionContainerProps> = ({
 
       <div className={style.groupsList}>
         {groups.map((group, i) => (
-          <Accordion key={group.id} title={group.title} defaultOpen={i === 1}>
+          <Accordion key={group.id} title={group.title} defaultOpen={i === 0}>
             <div className={style.groupItem}>
               <div className={style.optionsGrid}>
                 {group.items.map((item) => {
