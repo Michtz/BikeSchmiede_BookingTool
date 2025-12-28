@@ -76,7 +76,7 @@ const CategoriesContainer: FC = () => {
       title: 'GRAVITY',
       text: 'Made to Climb',
 
-      url: '/schmolke',
+      url: '/bikes/roadbikes/gravity',
     },
     {
       id: 2,
@@ -86,7 +86,7 @@ const CategoriesContainer: FC = () => {
       title: 'REACTION',
       text: 'Feel the Power',
 
-      url: '/schmolke',
+      url: '/bikes/roadbikes/gravity',
     },
     {
       id: 3,
@@ -96,7 +96,7 @@ const CategoriesContainer: FC = () => {
       title: 'FLOW',
       text: 'Follow your Spirit',
 
-      url: '/schmolke',
+      url: '/bikes/roadbikes/gravity',
     },
     {
       id: 4,
@@ -105,7 +105,7 @@ const CategoriesContainer: FC = () => {
       alt: 'Schmolke Bike',
       title: 'SLIDE',
       text: 'Slide the Wind',
-      url: '/schmolke',
+      url: '/bikes/roadbikes/gravity',
     },
   ];
 

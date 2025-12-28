@@ -4,15 +4,14 @@ import React, { FC } from 'react';
 import { Container } from '@/components/system/Container';
 import Image from 'next/image';
 import logoA from '@/assets/schmolke_logo.svg';
-import bikeTitleImage from '@/assets/schmolke_roadBike.jpg';
+import bikeTitleImage from '@/assets/odin_frame_black_gravity_textt.png';
 import frame from '@/assets/3.png';
-import bikeB from '@/assets/schmolke_bike_two.png';
+import bikeB from '@/assets/odin_frame_black.png';
 import style from '@/styles/system/new/ArticleContainer.module.scss';
 import Button, { ButtonContainer } from '@/components/system/Button';
 
 import { ImageGridContainerItem } from '@/components/system/new/ImageGrid';
 import TextImageGridContainer from '@/components/system/new/TextImageGrid';
-import schmolkeLogo from '@/assets/schmolke_logo.svg';
 import bikeA from '@/assets/1.png';
 
 interface HomeContainerProps {
@@ -42,21 +41,11 @@ const ArticleContainer: FC<HomeContainerProps> = () => {
     <Container padding={false} backgroundColor flow={'column'}>
       <div className={style.titleImageContainer}>
         <Image src={bikeTitleImage} className={style.titleImage} alt={'jhf'} />
-        <Image src={schmolkeLogo} alt={'scgmolke'} className={style.logo} />
         <ButtonContainer className={style.titleButton}>
           <Button>Besprechung Buchen</Button>
         </ButtonContainer>
       </div>
-      <h2
-        style={{
-          textAlign: 'center',
-          width: '100%',
-          fontFamily: '"Notable", sans-serif',
-          fontSize: '40px',
-        }}
-      >
-        Schmolke Carbon
-      </h2>
+
       <span className={style.contentBoxA}>
         <p>
           Mit Schmolke Carbon haben wir einen der führenden Lieferanten von
@@ -88,14 +77,6 @@ const ArticleContainer: FC<HomeContainerProps> = () => {
       </h2>
     </Container>
   );
-
-  // return (
-  //   <Container padding={false} flow={'column'}>
-  //     <div>
-  //       <Image src={titeImage} alt={'jhf'} />
-  //     </div>
-  //   </Container>
-  // );
 };
 
 export default ArticleContainer;
