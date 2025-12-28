@@ -1,63 +1,146 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { Container } from '@/components/system/Container';
-import Image from 'next/image';
-import logoA from '@/assets/schmolke_logo.svg';
-import logoB from '@/assets/CHAPTER2-Logo-Aqua.png';
-import bikeTitleImage from '@/assets/toa_white_bike.jpeg';
-import bikeA from '@/assets/1.png';
-import bikeB from '@/assets/chapter2_bike.jpg';
-import style from '@/styles/new/category.module.scss';
-import Button, { ButtonContainer } from '@/components/system/Button';
+import logoA from '@/assets/odin_frame_black.png';
+import bikeA from '@/assets/odin_white.png';
 
-import ImageGridContainer, {
-  ImageGridContainerItem,
-} from '@/components/system/new/ImageGrid';
-import TextGridContainer from '@/components/system/new/TextGrid';
-import TextImageGridContainer from '@/components/system/new/TextImageGrid';
+import bikeTietleImage from '@/assets/tow_bianci_2.png';
+import ScrollHero from '@/components/system/ScrollHero';
+import ImageHoverImageContainer, {
+  HoverImageContainerItem,
+} from '@/components/system/new/ImageHoverImageContainer';
 
-interface HomeContainerProps {}
+const CategoriesContainer: FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
+  const contentTriggerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isTicking = useRef(false);
 
-const CategoriesContainer: FC<HomeContainerProps> = () => {
-  const items: ImageGridContainerItem[] = [
-    { id: 1, bike: bikeA, logo: logoA, alt: 'Schmolke Bike', url: '/schmolke' },
-    { id: 2, bike: bikeB, logo: logoB, alt: 'Odin Bike', url: '/odin' },
+  const showImageOverlayRef = useRef(false);
+
+  const updateVideoPosition = () => {
+    if (!containerRef.current || !videoRef.current) return;
+
+    const container = containerRef.current;
+    const video = videoRef.current;
+
+    const containerTop = container.getBoundingClientRect().top;
+    const scrollLength = container.scrollHeight - window.innerHeight;
+
+    let progress = -containerTop / scrollLength;
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
+
+    if (Number.isFinite(video.duration)) {
+      const targetTime = video.duration * progress;
+      if (Math.abs(video.currentTime - targetTime) > 0.01) {
+        video.currentTime = targetTime;
+      }
+    }
+  };
+
+  const handleScroll = () => {
+    if (contentTriggerRef.current) {
+      const contentRect = contentTriggerRef.current.getBoundingClientRect();
+
+      const isCoveringImage = contentRect.top <= 0;
+
+      if (showImageOverlayRef.current !== isCoveringImage) {
+        showImageOverlayRef.current = isCoveringImage;
+        setShowImageOverlay(isCoveringImage);
+      }
+    }
+    if (!isTicking.current) {
+      window.requestAnimationFrame(() => {
+        updateVideoPosition();
+        isTicking.current = false;
+      });
+      isTicking.current = true;
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+    // eslint-disable-next-line  react-hooks/exhaustive-deps
+  }, []);
+  const items: HoverImageContainerItem[] = [
+    {
+      id: 1,
+      imageA: bikeA,
+      imageB: logoA,
+      alt: 'Schmolke Bike',
+      title: 'GRAVITY',
+      text: 'Made to Climb',
+
+      url: '/schmolke',
+    },
+    {
+      id: 2,
+      imageA: bikeA,
+      imageB: logoA,
+      alt: 'Schmolke Bike',
+      title: 'REACTION',
+      text: 'Feel the Power',
+
+      url: '/schmolke',
+    },
+    {
+      id: 3,
+      imageA: bikeA,
+      imageB: logoA,
+      alt: 'Schmolke Bike',
+      title: 'FLOW',
+      text: 'Follow your Spirit',
+
+      url: '/schmolke',
+    },
+    {
+      id: 4,
+      imageA: bikeA,
+      imageB: logoA,
+      alt: 'Schmolke Bike',
+      title: 'SLIDE',
+      text: 'Slide the Wind',
+      url: '/schmolke',
+    },
   ];
 
   return (
     <Container padding={false} backgroundColor flow={'column'}>
-      <div className={style.titleImageContainer}>
-        <Image src={bikeTitleImage} className={style.titleImage} alt={'jhf'} />{' '}
-        <h1 className={style.titleText}>ROADBIKES</h1>
-        <ButtonContainer className={style.titleButton}>
-          <Button>Besprechung Buchen</Button>
-        </ButtonContainer>
-      </div>
+      <ScrollHero
+        videoSrc="/assets/output_smooth_odin_drive_right.mp4"
+        fallbackImage={bikeTietleImage}
+        showImageOverlay={showImageOverlay}
+      />
+
+      {/*<OverlayContainer*/}
+      {/*  ref={contentTriggerRef}*/}
+      {/*  showText={showText}*/}
+      {/*  showImageOverlay={showImageOverlay}*/}
+      {/*  content={overlayOne}*/}
+      {/*/>*/}
+
       <h2
         style={{
           textAlign: 'center',
           width: '100%',
           fontFamily: '"Notable", sans-serif',
           fontSize: '40px',
+          paddingBottom: '60px',
+          marginBottom: '60px',
+          marginTop: '60px',
         }}
       >
-        Unser Angebot
+        Rahmen Typen
       </h2>
 
-      <ImageGridContainer items={items} />
-      <TextGridContainer items={items} />
-      <TextImageGridContainer items={items} />
+      <ImageHoverImageContainer items={items} />
     </Container>
   );
-
-  // return (
-  //   <Container padding={false} flow={'column'}>
-  //     <div>
-  //       <Image src={titeImage} alt={'jhf'} />
-  //     </div>
-  //   </Container>
-  // );
 };
 
 export default CategoriesContainer;
