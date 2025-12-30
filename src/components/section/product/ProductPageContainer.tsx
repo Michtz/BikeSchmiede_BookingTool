@@ -29,7 +29,7 @@ const ProductPageContainer: FC = () => {
       </OverlayContainer>
       <OverlayContainer ref={contentTriggerRef}>
         <ScrollDeepDiveBike
-          imageSrc={'/assets/odin_roadbike_cutout.png'}
+          imageSrc={'/assets/festka_test.webp'}
           title={'Gravity'}
         />
       </OverlayContainer>
