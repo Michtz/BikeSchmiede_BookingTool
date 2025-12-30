@@ -2,19 +2,19 @@
 
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Container } from '@/components/system/Container';
-import logoA from '@/assets/odin_frame_black.png';
-import bikeA from '@/assets/odin_white.png';
+import bikeA from '@/assets/odin_frame_black.png';
 
 import bikeTietleImage from '@/assets/tow_bianci_2.png';
-import ScrollHero from '@/components/system/ScrollHero';
-import ImageHoverImageContainer, {
-  HoverImageContainerItem,
-} from '@/components/system/new/ImageHoverImageContainer';
+import ScrollHeroVideo from '@/components/system/ScrollHeroVideo';
+import ImageHoverTextContainer from '@/components/system/new/ImageHoverTextContainer';
+import { PLACHOLDERTEXT } from '@/components/section/product/ProductPageContainer';
+import OverlayContainer from '@/components/system/OverlayContainer';
 
 const CategoriesContainer: FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
   const contentTriggerRef = useRef<HTMLDivElement>(null);
+  const contentTriggerRef2 = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isTicking = useRef(false);
 
@@ -48,6 +48,7 @@ const CategoriesContainer: FC = () => {
       const isCoveringImage = contentRect.top <= 0;
 
       if (showImageOverlayRef.current !== isCoveringImage) {
+        console.log(isCoveringImage);
         showImageOverlayRef.current = isCoveringImage;
         setShowImageOverlay(isCoveringImage);
       }
@@ -67,69 +68,52 @@ const CategoriesContainer: FC = () => {
     };
     // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, []);
-  const items: HoverImageContainerItem[] = [
+  const items: any[] = [
     {
       id: 1,
       imageA: bikeA,
-      imageB: logoA,
       alt: 'Schmolke Bike',
-      title: 'GRAVITY',
-      text: 'Made to Climb',
-
+      title: 'Gravity',
+      text: PLACHOLDERTEXT,
       url: '/bikes/roadbikes/gravity',
     },
     {
       id: 2,
       imageA: bikeA,
-      imageB: logoA,
       alt: 'Schmolke Bike',
-      title: 'REACTION',
-      text: 'Feel the Power',
+      title: 'Reaction',
+      text: PLACHOLDERTEXT,
 
       url: '/bikes/roadbikes/gravity',
     },
     {
       id: 3,
       imageA: bikeA,
-      imageB: logoA,
       alt: 'Schmolke Bike',
-      title: 'FLOW',
-      text: 'Follow your Spirit',
+      title: 'Flow',
+      text: PLACHOLDERTEXT,
 
       url: '/bikes/roadbikes/gravity',
     },
     {
       id: 4,
       imageA: bikeA,
-      imageB: logoA,
       alt: 'Schmolke Bike',
-      title: 'SLIDE',
-      text: 'Slide the Wind',
+      title: 'Slide',
+      text: PLACHOLDERTEXT,
       url: '/bikes/roadbikes/gravity',
     },
   ];
 
-  return (
-    <Container padding={false} backgroundColor flow={'column'}>
-      <ScrollHero
-        videoSrc="/assets/output_smooth_odin_drive_right.mp4"
-        fallbackImage={bikeTietleImage}
-        showImageOverlay={showImageOverlay}
-      />
-
-      {/*<OverlayContainer*/}
-      {/*  ref={contentTriggerRef}*/}
-      {/*  showText={showText}*/}
-      {/*  showImageOverlay={showImageOverlay}*/}
-      {/*  content={overlayOne}*/}
-      {/*/>*/}
-
+  const content = (
+    <>
       <h2
         style={{
           textAlign: 'center',
           width: '100%',
-          fontFamily: '"Notable", sans-serif',
           fontSize: '40px',
+          fontWeight: 'bold',
+
           paddingBottom: '60px',
           marginBottom: '60px',
           marginTop: '60px',
@@ -137,8 +121,44 @@ const CategoriesContainer: FC = () => {
       >
         Rahmen Typen
       </h2>
+      <ImageHoverTextContainer items={items} />
+    </>
+  );
+  const content2 = (
+    <>
+      <h2
+        style={{
+          textAlign: 'center',
+          width: '100%',
+          fontSize: '40px',
+          fontWeight: 'bold',
+          paddingBottom: '60px',
+          marginBottom: '60px',
+          marginTop: '60px',
+        }}
+      >
+        Ganzes Rennrad
+      </h2>
+      <ImageHoverTextContainer items={items} />
+    </>
+  );
 
-      <ImageHoverImageContainer items={items} />
+  return (
+    <Container padding={false} backgroundColor flow={'column'}>
+      <ScrollHeroVideo
+        videoSrc="/assets/output_smooth_odin_drive_right.mp4"
+        fallbackImage={bikeTietleImage}
+        showImageOverlay={showImageOverlay}
+      />
+
+      <OverlayContainer key={1} ref={contentTriggerRef}>
+        {content}
+      </OverlayContainer>
+      <div style={{ height: '80vh', backgroundColor: 'transparent' }}></div>
+
+      <OverlayContainer key={2} ref={contentTriggerRef2}>
+        {content2}
+      </OverlayContainer>
     </Container>
   );
 };

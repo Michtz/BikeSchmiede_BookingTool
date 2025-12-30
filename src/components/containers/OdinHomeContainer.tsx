@@ -22,7 +22,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import OdinLogo from '@/components/icons/OdinLogo';
 import frame from '@/assets/3.png';
 import OverlayContainer from '@/components/system/OverlayContainer';
-import ScrollHero from '@/components/system/ScrollHero';
+import ScrollHeroVideo from '@/components/system/ScrollHeroVideo';
 
 // <video
 //   className={style.videoElement2}
@@ -65,10 +65,8 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
   ];
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [showLogo, setShowLogo] = useState<boolean>(false);
   const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
   const [showText, setShowText] = useState<boolean>(false);
-  const showLogoRef = useRef(false);
   const isTicking = useRef(false);
   const showImageOverlayRef = useRef(false);
   const showTextRef = useRef(false);
@@ -93,12 +91,6 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
       if (Math.abs(video.currentTime - targetTime) > 0.01) {
         video.currentTime = targetTime;
       }
-    }
-
-    const shouldShowLogo = progress > 0.25;
-    if (showLogoRef.current !== shouldShowLogo) {
-      showLogoRef.current = shouldShowLogo;
-      setShowLogo(shouldShowLogo);
     }
   };
 
@@ -141,19 +133,38 @@ const OdinHomeContainer: FC<HomeContainerProps> = () => {
     text: `Wir bauen nicht einfach Fahrräder, sondern Ihr persönliches Traumrad Es wird individuell auf Ihre Körpermasse abgestimmt und in Ihrem Wunschdesign lackiert. Für ein Fahrerlebnis, das so einzigartig ist wie Sie selbst.`,
   };
 
+  const content = (
+    <>
+      <h2
+        className={style.backgroundTitle}
+        style={{ opacity: showText ? '0.03' : '0.1', transition: '1.5s' }}
+      >
+        {overlayOne.backgroundText}
+      </h2>
+      <h3 className={style.title}>{overlayOne.title}</h3>
+      <p
+        className={style.text}
+        style={{ opacity: showText ? '1' : '0', transition: '1.5s' }}
+      >
+        {overlayOne.text}
+      </p>
+    </>
+  );
+
   return (
     <>
-      <ScrollHero
+      <ScrollHeroVideo
         videoSrc="/assets/output_smooth.mp4"
         fallbackImage={bikeTietleImage}
         showImageOverlay={showImageOverlay}
       />
       <OverlayContainer
         ref={contentTriggerRef}
-        showText={showText}
-        showImageOverlay={showImageOverlay}
-        content={overlayOne}
-      />
+        // showText={showText}
+        // showImageOverlay={showImageOverlay}
+      >
+        {content}
+      </OverlayContainer>
       {/*odin logo animieren so das (logo aber über die volle breite wie beim*/}
       {/*feska) logo zuerst kaum sichtbar und wird dan je nach dem wie tief*/}
       {/*man scrolled sichtbarer opacyty 0.1 to 1 das gibt dem user eine*/}

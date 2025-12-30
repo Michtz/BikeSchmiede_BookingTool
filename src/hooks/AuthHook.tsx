@@ -19,7 +19,6 @@ import {
   googleLogin as _googleLogin,
 } from '@/requests/session.request';
 import { Logger } from '@/utils/Logger.class';
-import { UserProfileFormData } from '@/components/section/user/UserInformationForm';
 import Cookies from 'js-cookie';
 
 interface AuthContextType {
@@ -51,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [userSessionData, setUserSessionData] = useState<User | undefined>(
     undefined,
   );
-  const [userInformation, setUserInformation] = useState<UserProfileFormData>();
+  const [userInformation, setUserInformation] = useState<any>();
   const [sessionData, setSessionData] = useState<SessionData>();
   const [isLoading, setIsLoading] = useState(true);
   const [isSessionReady, setIsSessionReady] = useState(false);

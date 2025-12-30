@@ -20,10 +20,10 @@
 }
 .titleImageContainer {
   margin-bottom: -3rem;
+  position: relative;
 
   h1 {
     font-size: 20rem;
-
     text-transform: uppercase;
     position: absolute;
     top: 30%;
@@ -35,6 +35,8 @@
   width: 100vw;
   height: 700px;
   object-fit: contain;
+  position: sticky;
+  top: 0;
 }
 
 .logo {

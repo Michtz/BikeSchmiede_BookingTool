@@ -24,13 +24,13 @@ const ProductContent: React.FC<ProductContainerProps> = ({
   const getCurrentView = (): React.ReactElement => {
     switch (view) {
       case 'gravity':
-        return <ProductPageContainer article={view} />;
+        return <ProductPageContainer />;
       default:
         return <></>;
     }
   };
   return (
-    <Container justifyContent={'center'} padding={false}>
+    <Container justifyContent={'center'} flow={'column'} padding={false}>
       {getCurrentView()}
     </Container>
   );

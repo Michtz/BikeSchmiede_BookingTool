@@ -10,8 +10,6 @@ import SideNav from '@/components/system/SideNav';
 import LoadingSpinner from '@/components/system/LoadingSpinner';
 import Cookies from 'js-cookie';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import SideCart from '@/components/system/SideCart';
-import { useSideCart } from '@/hooks/SideCartHook';
 import OdinLogo from '@/components/icons/OdinLogo';
 
 const ResponsiveAppBar = () => {
@@ -20,7 +18,6 @@ const ResponsiveAppBar = () => {
   const params = useParams();
   const pathName = usePathname();
   const { isLoading, isAdmin } = useAuth();
-  const { isSideCartOpen, closeSideCart } = useSideCart();
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   console.log(router, params, pathName.split('/').pop());
   const toggleSideNav = () => {
@@ -143,7 +140,6 @@ const ResponsiveAppBar = () => {
       </header>
 
       <SideNav isOpen={isSideNavOpen} onClose={closeSideNav} />
-      <SideCart isOpen={isSideCartOpen} onClose={() => closeSideCart()} />
     </>
   );
 };

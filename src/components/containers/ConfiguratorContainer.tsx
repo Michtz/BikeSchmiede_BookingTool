@@ -94,7 +94,8 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
 
   useEffect(() => {
     const initialSelections: Record<string, string> = {};
-    dummyBikeData.groups[0].items[0].id;
+
+    // dummyBikeData.groups[0].items[0].id;
     initialSelections[dummyBikeData.groups[0].id] =
       dummyBikeData.groups[0].items[0].id;
 
