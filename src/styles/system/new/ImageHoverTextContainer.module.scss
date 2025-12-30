@@ -58,7 +58,7 @@
   .title {
     position: absolute;
     z-index: 2;
-    color: white;
+    color: var(--font-color_offWhite);
     font-size: 3rem;
     font-weight: bold;
     transition: opacity 0.3s ease;
@@ -96,7 +96,7 @@
   align-items: center;
 
   .titleOverlay {
-    color: #fff;
+    color: var(--font-color_offWhite);
     font-weight: bold;
     margin: 0;
     line-height: 1.1;
@@ -108,7 +108,7 @@
   }
 
   .textOverlay {
-    color: #fff;
+    color: var(--font-color_offWhite);
     margin-top: 1rem;
     width: 80%;
     line-height: 1.5;

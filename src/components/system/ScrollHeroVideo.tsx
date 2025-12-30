@@ -69,7 +69,6 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
       <div className={style.stickyWrapper}>
         {showImageOverlay ? (
           <>
-            imageggggghjhb
             <Image
               src={fallbackImage}
               className={style.titleImage}

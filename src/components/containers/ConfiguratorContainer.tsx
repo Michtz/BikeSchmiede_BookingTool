@@ -66,6 +66,7 @@ import style from '@/styles/new/ConfiguratorContainer.module.scss';
 import Button from '@/components/system/Button';
 import { dummyBikeData } from '@/data/ConfiguratorData';
 import { Accordion } from '@/components/system/Accordion';
+import BikeConfigurator from '@/components/section/configurator/BikeConfigurator';
 
 interface ConfiguratorOption {
   id: string;
@@ -154,6 +155,8 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
 
   return (
     <Container padding={false} flow={'column'}>
+      <BikeConfigurator />
+
       <div className={style.configuratorWrapper}>
         <ContentContainer
           data={dummyBikeData}

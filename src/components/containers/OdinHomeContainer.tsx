@@ -11,7 +11,7 @@ import marken from '@/assets/title_mikel_full.jpg';
 import workshop from '@/assets/werkstatt1_edited.jpg';
 import bikejitting from '@/assets/pantani-news.jpg';
 import bikejitting2 from '@/assets/pantani-news-modified.jpg';
-import bikeC from '@/assets/odin_roadbike.jpeg';
+import bikeC from '@/assets/odin_roadbike.png';
 import angela from '@/assets/angela.jpg';
 import style from '@/styles/new/HomeContainer.module.scss';
 import Button from '@/components/system/Button';
