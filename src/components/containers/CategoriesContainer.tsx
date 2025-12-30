@@ -84,7 +84,7 @@ const CategoriesContainer: FC = () => {
       title: 'Reaction',
       text: PLACHOLDERTEXT,
 
-      url: '/bikes/roadbikes/gravity',
+      url: '/bikes/roadbikes/reaction',
     },
     {
       id: 3,
@@ -93,7 +93,7 @@ const CategoriesContainer: FC = () => {
       title: 'Flow',
       text: PLACHOLDERTEXT,
 
-      url: '/bikes/roadbikes/gravity',
+      url: '/bikes/roadbikes/flow',
     },
     {
       id: 4,
@@ -101,7 +101,7 @@ const CategoriesContainer: FC = () => {
       alt: 'Schmolke Bike',
       title: 'Slide',
       text: PLACHOLDERTEXT,
-      url: '/bikes/roadbikes/gravity',
+      url: '/bikes/roadbikes/slide',
     },
   ];
 

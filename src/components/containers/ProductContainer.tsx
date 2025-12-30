@@ -24,7 +24,10 @@ const ProductContent: React.FC<ProductContainerProps> = ({
   const getCurrentView = (): React.ReactElement => {
     switch (view) {
       case 'gravity':
-        return <ProductPageContainer />;
+      case 'flow':
+      case 'reaction':
+      case 'slide':
+        return <ProductPageContainer view={view} />;
       default:
         return <></>;
     }

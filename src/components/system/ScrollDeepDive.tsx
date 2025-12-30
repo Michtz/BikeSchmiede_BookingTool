@@ -17,8 +17,8 @@ interface ScrollDeepDiveBikeProps {
 const ScrollDeepDiveBike: FC<ScrollDeepDiveBikeProps> = ({
   imageSrc,
   title,
-  zoomDurationVh = 100,
-  holdDurationVh = 100,
+  zoomDurationVh = 150,
+  holdDurationVh = 150,
 }) => {
   const router: AppRouterInstance = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -89,6 +89,9 @@ const ScrollDeepDiveBike: FC<ScrollDeepDiveBikeProps> = ({
               priority
               width={100}
               height={100}
+              style={{
+                transform: `scale(${buttonScale * 1.2})`,
+              }}
             />
           </div>
 
@@ -104,7 +107,7 @@ const ScrollDeepDiveBike: FC<ScrollDeepDiveBikeProps> = ({
               className={style.mainButton}
               onClick={() => router.push('/configurator')}
             >
-              zum Konfigurator
+              Konfigurator
             </Button>
             <Button
               className={style.mainButton}

@@ -1,0 +1,52 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 Spalten
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+  width: 100%;
+
+  // Padding unten, damit die nach unten geschobenen Bilder nicht
+  // in die nächste Sektion ragen
+  padding-bottom: 15rem;
+  background-color: #000;
+}
+
+.gridItem {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.2s ease-out; // Macht das Scrollen "weicher"
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; // Hochkant-Format für edlen Look
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+
+  .image {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    object-position: top;
+  }
+
+  &:hover .image {
+    transform: scale(1.05);
+  }
+}
+
+// Responsive Anpassung für Mobile (2 Spalten statt 3)
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    // Wir deaktivieren hier ggf. die Offsets oder passen sie an
+  }
+}

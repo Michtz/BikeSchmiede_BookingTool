@@ -55,10 +55,10 @@ const ResponsiveAppBar = () => {
 
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/gravelbikes'}>Gravelbikes</Link>
+              <Link href={'/bikes/gravelbikes'}>Gravelbikes</Link>
             </li>
             <li className={style.navItem}>
-              <Link href={'/roadbikes'}>
+              <Link href={'/bikes/roadbikes'}>
                 {pathName.split('/').pop() === 'roadbikes'
                   ? 'Besprechung Buchen'
                   : 'Rennräder'}
