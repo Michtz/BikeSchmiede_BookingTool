@@ -57,11 +57,11 @@
 .imageContainer {
   width: 100%;
   max-width: 1400px;
-  will-change: transform; // Performance-Optimierung für Animationen
+  will-change: transform;
   display: flex;
   z-index: 10;
   justify-content: center;
-  transition: transform 0.1s ease-out; // Macht die Bewegung geschmeidiger
+  transition: transform 0.1s ease-out;
 }
 
 .image {

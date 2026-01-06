@@ -1,52 +1,45 @@
-.gridContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 Spalten
-  gap: 2rem;
-  padding: 4rem 2rem;
+.container {
+  display: flex;
+  gap: 1rem;
   max-width: 1400px;
   margin: 0 auto;
-  align-items: start;
   width: 100%;
 
-  // Padding unten, damit die nach unten geschobenen Bilder nicht
-  // in die nächste Sektion ragen
-  padding-bottom: 15rem;
   background-color: #000;
+
+  clip-path: inset(-100% 0% 0% 0%);
+  margin-bottom: -50px;
+  height: 800px;
+  justify-content: center;
 }
 
-.gridItem {
+.overlay {
   position: relative;
+  top: -50px;
+  height: 100px;
   width: 100%;
-  will-change: transform;
-  transition: transform 0.2s ease-out; // Macht das Scrollen "weicher"
-  overflow: hidden;
+  background: linear-gradient(to bottom, transparent, #000);
+  z-index: 999;
 }
+.row {
+  display: flex;
+  flex-direction: column;
+  //flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
-.imageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5; // Hochkant-Format für edlen Look
-  overflow: hidden;
-  border-radius: 4px;
-  background-color: #1a1a1a;
+  width: 30vw;
 
   .image {
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    object-position: top;
-  }
-
-  &:hover .image {
-    transform: scale(1.05);
+    width: 100%;
+    height: auto;
   }
 }
 
-// Responsive Anpassung für Mobile (2 Spalten statt 3)
-@media (max-width: 768px) {
-  .gridContainer {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-    // Wir deaktivieren hier ggf. die Offsets oder passen sie an
-  }
-}
+//@media (max-width: 768px) {
+//  .gridContainer {
+//    grid-template-columns: 1fr 1fr;
+//    gap: 1rem;
+//  }
+//}

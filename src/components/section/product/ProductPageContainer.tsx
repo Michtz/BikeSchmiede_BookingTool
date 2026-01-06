@@ -2,7 +2,8 @@
 
 import React, { FC, useRef } from 'react';
 import bikeTietleImage from '@/assets/odin_frame_black_cutout_1.png';
-import image1 from '@/assets/title_image_michel.jpg';
+import image1 from '@/assets/maikel_hochformat.jpg';
+
 import OverlayContainer from '@/components/system/OverlayContainer';
 import MidScrollVideoPlayer from '@/components/system/MidScrollVideoPlayer';
 import ScrollDeepDiveBike from '@/components/system/ScrollDeepDive';
