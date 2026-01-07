@@ -35,13 +35,32 @@ const ProductPageContainer: FC<ProductPageContainerProps> = ({ view }) => {
         <MidScrollVideoPlayer
           videoSrc={'assets/output_smooth_assembly_odin_white.mp4'}
         />
-      </OverlayContainer>{' '}
+      </OverlayContainer>
       <OverlayContainer ref={contentTriggerRef}>
         <ScrollDeepDiveBike imageSrc={'/assets/test_feska.webp'} title={view} />
-      </OverlayContainer>{' '}
+      </OverlayContainer>
       <OverlayContainer ref={contentTriggerRef}>
         <ScrollStaggeredGrid
-          images={[image1, image1, image1, image1, image1, image1]}
+          imagesArray={[
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+            image1,
+          ]}
         />
       </OverlayContainer>
     </>

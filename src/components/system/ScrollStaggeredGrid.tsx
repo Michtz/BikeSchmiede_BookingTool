@@ -5,46 +5,56 @@ import Image, { StaticImageData } from 'next/image';
 import style from '@/styles/system/ScrollStaggeredGrid.module.scss';
 
 interface ScrollStaggeredGridProps {
-  images: (StaticImageData | string)[];
+  imagesArray: (StaticImageData | string)[];
 }
 
-const ScrollStaggeredGrid: FC<ScrollStaggeredGridProps> = ({ images }) => {
+interface RowProps {
+  images: string[] | StaticImageData[];
+  transform?: any;
+}
+
+const ScrollStaggeredGrid: FC<ScrollStaggeredGridProps> = ({ imagesArray }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
-
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight: number = window.innerHeight;
-
       const start = windowHeight;
 
       let currentProgress = (start - rect.top) / (start + rect.height * 0.5);
-
       if (currentProgress < 0) currentProgress = 0;
       if (currentProgress > 1) currentProgress = 1;
-
       setProgress(currentProgress);
-      console.log(currentProgress);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initialer Aufruf
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const multipliers = [-70, 0, -70];
+  const multipliers = [-100, 0, -100];
+
+  const splitIntoParts = (arr: any[], parts: number) => {
+    const result = [];
+    const size = Math.ceil(arr.length / parts);
+
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+
+    return result;
+  };
+
   return (
     <>
       <div className={style.container} ref={containerRef}>
-        {images.slice(0, 3).map((src, index) => (
+        {splitIntoParts(imagesArray, 3).map((images, index) => (
           <Row
-            src={src}
+            images={images}
             key={index}
-            index={index}
             transform={{
               transform: `translate3d(0, ${progress * multipliers[index]}px, 0)`,
             }}
@@ -55,17 +65,17 @@ const ScrollStaggeredGrid: FC<ScrollStaggeredGridProps> = ({ images }) => {
     </>
   );
 };
-interface RowProps {
-  src: string | StaticImageData;
-  index: number;
-  transform?: any;
-}
-const Row: FC<RowProps> = ({ src, index, transform }) => {
+
+const Row: FC<RowProps> = ({ images, transform }) => {
   return (
     <div className={style.row} style={transform}>
-      <Image src={src} alt={`Grid Image ${index}`} className={style.image} />
-      <Image src={src} alt={`Grid Image ${index}`} className={style.image} />
-      <Image src={src} alt={`Grid Image ${index}`} className={style.image} />
+      {images.map((src) => (
+        <Image
+          src={src}
+          alt={`add a better way for seo ${src}`}
+          className={style.image}
+        />
+      ))}
     </div>
   );
 };
