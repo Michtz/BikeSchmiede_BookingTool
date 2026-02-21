@@ -1,5 +1,5 @@
+'use client';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import MaterialIcon from '../materialIcon/MaterialIcon';
 import Link from '../link/Link';
 import style from './Button.module.scss';
@@ -36,12 +36,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation();
     const buttonContent = (
       <>
         {!loading && children}
         {icon && !loading && <MaterialIcon icon={icon} iconSize={size} />}
-        {loading && <span>{t('ui.loading')}</span>}
+        {loading && <span>Laden...</span>}
       </>
     );
 

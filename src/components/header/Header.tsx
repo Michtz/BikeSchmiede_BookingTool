@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import style from './Header.module.scss';
 import Link from '@/components/system/link/Link';

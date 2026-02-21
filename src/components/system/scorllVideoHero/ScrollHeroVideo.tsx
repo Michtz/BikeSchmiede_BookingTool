@@ -74,6 +74,10 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
                 src={fallbackImage}
                 className={style.titleImage}
                 alt="Hero Background"
+                fill
+                priority
+                sizes="100vw"
+                style={{ objectFit: 'cover' }}
               />
             )}
           </>

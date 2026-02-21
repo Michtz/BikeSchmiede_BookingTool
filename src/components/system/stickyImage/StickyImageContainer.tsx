@@ -13,7 +13,15 @@ const StickyImageContainer: FC<ScrollHeroProps> = ({ image, title }) => {
   return (
     <div className={style.scrollContainer}>
       <div className={style.stickyWrapper}>
-        <Image src={image} className={style.titleImage} alt="Hero Background" />
+        <Image
+          src={image}
+          className={style.titleImage}
+          alt="Hero Background"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
         <div className={style.overlayContent}>
           <h1 className={`${style.logoFade} ${style.visible}`}>{title}</h1>
         </div>

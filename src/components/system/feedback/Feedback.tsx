@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import MaterialIcon from '@/components/system/materialIcon/MaterialIcon';
 import { useFeedback } from '@/hooks/FeedbackHook';

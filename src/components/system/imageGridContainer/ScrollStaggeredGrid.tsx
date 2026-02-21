@@ -69,12 +69,15 @@ const ScrollStaggeredGrid: FC<ScrollStaggeredGridProps> = ({ imagesArray }) => {
 const Row: FC<RowProps> = ({ images, transform }) => {
   return (
     <div className={style.row} style={transform}>
-      {images.map((src) => (
+      {images.map((src, i) => (
         <Image
-          key={src as string}
+          key={`${src}-${i}`}
           src={src}
-          alt={`add a better way for seo ${src}`}
+          alt={`Gallery image ${i}`}
           className={style.image}
+          width={400}
+          height={600}
+          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
         />
       ))}
     </div>

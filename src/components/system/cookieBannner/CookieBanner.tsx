@@ -3,13 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { useCookie } from '@/hooks/CookieHook';
 import styles from '@/components/system/cookieBannner/CookieBanner.module.scss';
-import { useTranslation } from 'react-i18next';
 import Button from '@/components/system/button/Button';
 import MaterialIcon from '@/components/system/materialIcon/MaterialIcon';
 
 const CookieBanner: React.FC = () => {
   const { showBanner, acceptCookies } = useCookie();
-  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -36,7 +34,7 @@ const CookieBanner: React.FC = () => {
     <div
       className={`${styles.cookieBanner} ${isVisible ? styles.visible : ''} ${isClosing ? styles.closing : ''}`}
       role="dialog"
-      aria-label={t('cookies.banner.title')}
+      aria-label="Cookie Banner"
       aria-describedby="cookie-description"
     >
       <div className={styles.container}>
@@ -46,23 +44,23 @@ const CookieBanner: React.FC = () => {
           </div>
 
           <div className={styles.textContent}>
-            <h3 className={styles.title}>{t('cookies.banner.title')}</h3>
+            <h3 className={styles.title}>Cookie Einstellungen</h3>
             <p id="cookie-description" className={styles.description}>
-              {t('cookies.banner.description')}
+              Wir nutzen Cookies, um Ihr Erlebnis auf unserer Website zu verbessern.
             </p>
             <button
               className={styles.learnMore}
               onClick={() => window.open('/legal/privacy')}
-              aria-label={t('cookies.banner.learnMore')}
+              aria-label="Mehr erfahren"
             >
-              {t('cookies.banner.learnMore')} →
+              Mehr erfahren →
             </button>
           </div>
         </div>
 
         <div className={styles.actions}>
           <Button onClick={handleAccept} value="primary" appearance="button">
-            {t('cookies.banner.accept')}&nbsp;{t('cookies.banner.reject')}
+            Akzeptieren
           </Button>
         </div>
       </div>

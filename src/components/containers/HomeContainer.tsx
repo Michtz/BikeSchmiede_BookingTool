@@ -1,3 +1,4 @@
+'use client';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import OverlayContainer from '@/components/system/containers/Containers';
 import ScrollHeroVideo from '@/components/system/scorllVideoHero/ScrollHeroVideo';

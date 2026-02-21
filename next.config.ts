@@ -14,10 +14,6 @@ const nextConfig = {
       },
     ],
   },
-  eslint: {
-    dirs: ['src'],
-    ignoreDuringBuilds: false,
-  },
 };
 
 module.exports = nextConfig;

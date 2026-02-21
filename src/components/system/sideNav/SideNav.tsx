@@ -1,5 +1,5 @@
+'use client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import style from './SideNav.module.scss';
 import Link from '@/components/system/link/Link';
 import OdinLogo from '@/components/icons/OdinLogo';
@@ -10,8 +10,6 @@ interface SideNavProps {
 }
 
 const SideNav: React.FC<SideNavProps> = ({ isOpen = false, onClose }) => {
-  const { t } = useTranslation();
-
   return (
     <>
       <div
@@ -25,51 +23,51 @@ const SideNav: React.FC<SideNavProps> = ({ isOpen = false, onClose }) => {
             <OdinLogo width={250} height={30} />
             <ul className={style.navList}>
               <li className={style.navItem}>
-                <Link href="/public">{t('nav.home')}</Link>
+                <Link href="/">Home</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/about">{t('nav.about')}</Link>
+                <Link href="/about">Über uns</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/blog">{t('nav.blog')}</Link>
+                <Link href="/blog">Blog</Link>
               </li>
             </ul>
           </div>
 
           <div className={style.navSection}>
-            <h3 className={style.sectionTitle}>{t('sideNav.service')}</h3>
+            <h3 className={style.sectionTitle}>Service</h3>
             <ul className={style.navList}>
               <li className={style.navItem}>
-                <Link href="/service/contact">{t('sideNav.contact')}</Link>
+                <Link href="/service/contact">Kontakt</Link>
               </li>
               <li className={style.navItem}>
                 <Link href="/service/customer-service">
-                  {t('sideNav.customerService')}
+                  Kundenservice
                 </Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/service/faq">{t('sideNav.faq')}</Link>
+                <Link href="/service/faq">FAQ</Link>
               </li>
             </ul>
           </div>
 
           <div className={style.navSection}>
-            <h3 className={style.sectionTitle}>{t('sideNav.legal')}</h3>
+            <h3 className={style.sectionTitle}>Rechtliches</h3>
             <ul className={style.navList}>
               <li className={style.navItem}>
-                <Link href="/legal/imprint">{t('sideNav.imprint')}</Link>
+                <Link href="/legal/imprint">Impressum</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/legal/privacy">{t('sideNav.privacy')}</Link>
+                <Link href="/legal/privacy">Datenschutz</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/legal/terms">{t('sideNav.terms')}</Link>
+                <Link href="/legal/terms">AGB</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/legal/shipping">{t('sideNav.shipping')}</Link>
+                <Link href="/legal/shipping">Versand</Link>
               </li>
               <li className={style.navItem}>
-                <Link href="/legal/returns">{t('sideNav.returns')}</Link>
+                <Link href="/legal/returns">Rückgabe</Link>
               </li>
             </ul>
           </div>
