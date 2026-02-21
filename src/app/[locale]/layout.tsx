@@ -1,3 +1,4 @@
+'use client';
 import SWRProvider from '@/providers/SWRProvider';
 import 'material-icons/iconfont/material-icons.css';
 import 'material-icons/iconfont/outlined.css';
