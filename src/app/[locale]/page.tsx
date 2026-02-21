@@ -1,6 +1,6 @@
 'use client';
 import { FC } from 'react';
-import OdinHomeContainer from '@/components/containers/OdinHomeContainer';
+import HomeContainer from '@/components/containers/HomeContainer';
 
-const Home: FC = () => <OdinHomeContainer />;
+const Home: FC = () => <HomeContainer />;
 export default Home;

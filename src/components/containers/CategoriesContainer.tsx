@@ -1,14 +1,12 @@
 'use client';
-
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { Container } from '@/components/system/Container';
-import bikeA from '@/assets/odin_frame_black.png';
-
-import bikeTietleImage from '@/assets/tow_bianci_2.png';
-import ScrollHeroVideo from '@/components/system/ScrollHeroVideo';
-import ImageHoverTextContainer from '@/components/system/new/ImageHoverTextContainer';
-import { PLACHOLDERTEXT } from '@/components/section/product/ProductPageContainer';
-import OverlayContainer from '@/components/system/OverlayContainer';
+import { PLACHOLDERTEXT } from '@/components/sections/product/ProductPageContainer';
+import OverlayContainer, {
+  Container,
+  Title,
+} from '@/components/system/containers/Containers';
+import ImageHoverTextContainer from '@/components/system/imageHoverTextContainer/ImageHoverTextContainer';
+import ScrollHeroVideo from '@/components/system/scorllVideoHero/ScrollHeroVideo';
 
 const CategoriesContainer: FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -71,7 +69,7 @@ const CategoriesContainer: FC = () => {
   const items: any[] = [
     {
       id: 1,
-      imageA: bikeA,
+      imageA: '/assets/odin_frame_black.png',
       alt: 'Schmolke Bike',
       title: 'Gravity',
       text: PLACHOLDERTEXT,
@@ -79,7 +77,7 @@ const CategoriesContainer: FC = () => {
     },
     {
       id: 2,
-      imageA: bikeA,
+      imageA: '/assets/odin_frame_black.png',
       alt: 'Schmolke Bike',
       title: 'Reaction',
       text: PLACHOLDERTEXT,
@@ -88,7 +86,7 @@ const CategoriesContainer: FC = () => {
     },
     {
       id: 3,
-      imageA: bikeA,
+      imageA: '/assets/odin_frame_black.png',
       alt: 'Schmolke Bike',
       title: 'Flow',
       text: PLACHOLDERTEXT,
@@ -97,7 +95,43 @@ const CategoriesContainer: FC = () => {
     },
     {
       id: 4,
-      imageA: bikeA,
+      imageA: '/assets/odin_frame_black.png',
+      alt: 'Schmolke Bike',
+      title: 'Slide',
+      text: PLACHOLDERTEXT,
+      url: '/bikes/roadbikes/slide',
+    },
+  ];
+  const items2: any[] = [
+    {
+      id: 1,
+      imageA: '/assets/odin_frame_black.png',
+      alt: 'Schmolke Bike',
+      title: 'Gravity',
+      text: PLACHOLDERTEXT,
+      url: '/bikes/roadbikes/gravity',
+    },
+    {
+      id: 2,
+      imageA: '/assets/odin_frame_black.png',
+      alt: 'Schmolke Bike',
+      title: 'Reaction',
+      text: PLACHOLDERTEXT,
+
+      url: '/bikes/roadbikes/reaction',
+    },
+    {
+      id: 3,
+      imageA: '/assets/odin_frame_black.png',
+      alt: 'Schmolke Bike',
+      title: 'Flow',
+      text: PLACHOLDERTEXT,
+
+      url: '/bikes/roadbikes/flow',
+    },
+    {
+      id: 4,
+      imageA: '/assets/odin_frame_black.png',
       alt: 'Schmolke Bike',
       title: 'Slide',
       text: PLACHOLDERTEXT,
@@ -107,39 +141,14 @@ const CategoriesContainer: FC = () => {
 
   const content = (
     <>
-      <h2
-        style={{
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '40px',
-          fontWeight: 'bold',
-
-          paddingBottom: '60px',
-          marginBottom: '60px',
-          marginTop: '60px',
-        }}
-      >
-        Rahmen Typen
-      </h2>
+      <Title>Rahmen Typen</Title>
       <ImageHoverTextContainer items={items} />
     </>
   );
   const content2 = (
     <>
-      <h2
-        style={{
-          textAlign: 'center',
-          width: '100%',
-          fontSize: '40px',
-          fontWeight: 'bold',
-          paddingBottom: '60px',
-          marginBottom: '60px',
-          marginTop: '60px',
-        }}
-      >
-        Ganzes Rennrad
-      </h2>
-      <ImageHoverTextContainer items={items} />
+      <Title>Ganzes Rad</Title>
+      <ImageHoverTextContainer items={items2} />
     </>
   );
 
@@ -147,14 +156,13 @@ const CategoriesContainer: FC = () => {
     <Container padding={false} backgroundColor flow={'column'}>
       <ScrollHeroVideo
         videoSrc="/assets/output_smooth_odin_drive_right.mp4"
-        fallbackImage={bikeTietleImage}
+        fallbackImage={'/assets/odin_frame_black.png'}
         showImageOverlay={showImageOverlay}
       />
 
       <OverlayContainer key={1} ref={contentTriggerRef}>
         {content}
       </OverlayContainer>
-      <div style={{ height: '80vh', backgroundColor: 'transparent' }}></div>
 
       <OverlayContainer key={2} ref={contentTriggerRef2}>
         {content2}

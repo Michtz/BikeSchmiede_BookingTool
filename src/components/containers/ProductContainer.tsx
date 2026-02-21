@@ -1,8 +1,6 @@
-'use client';
-
 import React, { FC } from 'react';
-import { Container } from '@/components/system/Container';
-import ProductPageContainer from '@/components/section/product/ProductPageContainer';
+import ProductPageContainer from '@/components/sections/product/ProductPageContainer';
+import { Container } from '@/components/system/containers/Containers';
 
 type View = 'gravity' | 'flow' | 'reaction' | 'slide';
 

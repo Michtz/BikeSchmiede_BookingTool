@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import style from '@/styles/system/Modal.module.scss';
+import style from '@/styles/old/system/Modal.module.scss';
 
 interface ModalProps {
   isOpen: boolean;

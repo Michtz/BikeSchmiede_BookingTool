@@ -1,72 +1,13 @@
-// 'use client';
-//
-// import React, { FC } from 'react';
-// import { Container } from '@/components/system/Container';
-// import style from '@/styles/new/ConfiguratorContainer.module.scss';
-//
-// // types/configurator.types.ts (Empfohlen)
-//
-// export interface ConfiguratorOption {
-//   id: string;
-//   name: string;
-//   price: number;
-//   image?: string; // Optional: Bild für das spezifische Teil
-//   description?: string;
-// }
-//
-// export interface ConfiguratorGroup {
-//   id: string;
-//   title: string;
-//   items: ConfiguratorOption[];
-// }
-//
-// export interface ConfiguratorData {
-//   basePrice: number;
-//   defaultImage: string; // Basisbild des Bikes
-//   groups: ConfiguratorGroup[];
-// }
-// interface ConfiguratorContainerProps {}
-//
-// const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
-//   return (
-//     <Container padding={false} flow={'column'}>
-//       <SummeryContainer />
-//       <ContentContainer />
-//     </Container>
-//   );
-// };
-//
-// const SummeryContainer = () => {
-//   return <span className={style.summeryContainer}></span>;
-// };
-//
-// const ContentContainer = () => {
-//   return (
-//     <span className={style.contentContainer}>
-//       <PictureContainer />
-//       <SelectionContainer />
-//     </span>
-//   );
-// };
-// const PictureContainer = () => {
-//   return <span className={style.pictureContainer}></span>;
-// };
-// const SelectionContainer = () => {
-//   return <span className={style.selectionContainer}></span>;
-// };
-//
-// export default ConfiguratorContainer;
-
 'use client';
 
 import React, { FC, useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
-import { Container } from '@/components/system/Container';
-import style from '@/styles/new/ConfiguratorContainer.module.scss';
-import Button from '@/components/system/Button';
+import style from './oldStyles/ConfiguratorContainer.module.scss';
+import Button from '@/components/system/button/Button';
 import { dummyBikeData } from '@/data/ConfiguratorData';
-import { Accordion } from '@/components/system/Accordion';
-import BikeConfigurator from '@/components/section/configurator/BikeConfigurator';
+import { Accordion } from '@/components/system/accordion/Accordion';
+import BikeConfigurator from '@/components/sections/configurator/BikeConfigurator';
+import { Container } from '@/components/system/containers/Containers';
 
 interface ConfiguratorOption {
   id: string;
@@ -96,7 +37,6 @@ const ConfiguratorContainer: FC<ConfiguratorContainerProps> = () => {
   useEffect(() => {
     const initialSelections: Record<string, string> = {};
 
-    // dummyBikeData.groups[0].items[0].id;
     initialSelections[dummyBikeData.groups[0].id] =
       dummyBikeData.groups[0].items[0].id;
 

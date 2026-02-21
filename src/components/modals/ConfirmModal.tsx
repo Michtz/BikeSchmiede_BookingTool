@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button, { ButtonContainer } from '@/components/system/Button';
-import MaterialIcon from '@/components/system/MaterialIcon';
-import style from '@/styles/modals/ConfirmModal.module.scss';
+import Button, { ButtonContainer } from '@/components/system/button/Button';
+import MaterialIcon from '@/components/system/materialIcon/MaterialIcon';
+import style from '@/styles/old/modals/ConfirmModal.module.scss';
 import { useModalContent } from '@/hooks/ModalProvide';
 
 interface ConfirmModalProps {
