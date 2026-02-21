@@ -5,11 +5,11 @@ import Link from '@/components/system/link/Link';
 import OdinLogo from '@/components/icons/OdinLogo';
 
 interface SideNavProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-const SideNav: React.FC<SideNavProps> = ({ isOpen, onClose }) => {
+const SideNav: React.FC<SideNavProps> = ({ isOpen = false, onClose }) => {
   const { t } = useTranslation();
 
   return (

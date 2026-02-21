@@ -71,6 +71,7 @@ const Row: FC<RowProps> = ({ images, transform }) => {
     <div className={style.row} style={transform}>
       {images.map((src) => (
         <Image
+          key={src as string}
           src={src}
           alt={`add a better way for seo ${src}`}
           className={style.image}

@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import MaterialIcon from '../materialIcon/MaterialIcon';

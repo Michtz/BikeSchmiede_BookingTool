@@ -1,3 +1,4 @@
+'use client';
 import { FC } from 'react';
 import ProductContainer from '@/components/containers/ProductContainer';
 

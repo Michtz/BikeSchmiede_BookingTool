@@ -13,31 +13,26 @@ import { ErrorProvider } from '@/hooks/ErrorHook';
 import CookieBanner from '@/components/system/cookieBannner/CookieBanner';
 import { CookieProvider } from '@/hooks/CookieHook';
 import { SideCartProvider } from '@/hooks/SideCartHook';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <ErrorProvider>
       <CookieProvider>
         <FeedbackProvider>
-          <GoogleOAuthProvider
-            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-          >
-            <SideCartProvider>
-              <html lang="de" suppressHydrationWarning>
-                <head>
-                  <title>OdinBikes.ch</title>
-                </head>
-                <body>
-                  <Header />
-                  <SWRProvider>{children}</SWRProvider>
-                  <Feedback />
-                  <CookieBanner />
-                  <Footer />
-                </body>
-              </html>
-            </SideCartProvider>
-          </GoogleOAuthProvider>
+          <SideCartProvider>
+            <html lang="de" suppressHydrationWarning>
+              <head>
+                <title>OdinBikes.ch</title>
+              </head>
+              <body>
+                <Header />
+                <SWRProvider>{children}</SWRProvider>
+                <Feedback />
+                <CookieBanner />
+                <Footer />
+              </body>
+            </html>
+          </SideCartProvider>
         </FeedbackProvider>
       </CookieProvider>
     </ErrorProvider>

@@ -1,6 +1,4 @@
-import React, { FC, useRef } from 'react';
-import bikeTietleImage from '@/assets/odin_frame_black_cutout_1.png';
-import image1 from '@/assets/maikel_hochformat.jpg';
+import React, { FC } from 'react';
 
 import OverlayContainer, {
   ContentContainer,
@@ -18,27 +16,29 @@ interface ProductPageContainerProps {
 }
 
 const ProductPageContainer: FC<ProductPageContainerProps> = ({ view }) => {
-  const contentTriggerRef = useRef<HTMLDivElement>(null);
-
+  // const contentTriggerRef = useRef<HTMLDivElement>(null);
+  const image1 = '/assets/pantani-news-modified.jpg';
   return (
     <>
-      <StickyImageContainer image={bikeTietleImage} title={view} />
-      <OverlayContainer ref={contentTriggerRef}>
+      <StickyImageContainer image={image1} title={view} />
+      <OverlayContainer
+      // ref={contentTriggerRef}
+      >
         <ContentContainer
           title={'Beste Geometry zum klettern'}
           text={PLACHOLDERTEXT}
         />
       </OverlayContainer>
       <div style={{ height: '700px' }}></div>
-      <OverlayContainer ref={contentTriggerRef}>
+      <OverlayContainer>
         <MidScrollVideoPlayer
           videoSrc={'assets/output_smooth_assembly_odin_white.mp4'}
         />
       </OverlayContainer>
-      <OverlayContainer ref={contentTriggerRef}>
+      <OverlayContainer>
         <ScrollDeepDiveBike imageSrc={'/assets/test_feska.webp'} title={view} />
       </OverlayContainer>
-      <OverlayContainer ref={contentTriggerRef}>
+      <OverlayContainer>
         <ScrollStaggeredGrid
           imagesArray={[
             image1,

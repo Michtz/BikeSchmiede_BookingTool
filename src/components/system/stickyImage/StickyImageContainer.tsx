@@ -1,11 +1,11 @@
 'use client';
 
 import { FC } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import style from '@/components/system/stickyImage/StickyImageContainer.module.scss';
 
 interface ScrollHeroProps {
-  image: StaticImageData;
+  image: string;
   title: string;
 }
 

@@ -1,3 +1,4 @@
+'use client';
 import React, {
   Context,
   createContext,
@@ -6,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { v4 } from 'uuid';
-import Modal from '@/oldStuff/components/systemOld/Modal';
+import Modal from '@/components/modals/DeleteModal';
 
 /*
  * this hook is used to handle modal locig
