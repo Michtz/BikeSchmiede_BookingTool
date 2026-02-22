@@ -1,14 +1,17 @@
 import React, { FC, forwardRef, PropsWithChildren, ReactNode } from 'react';
 import style from './Containers.module.scss';
+import Button, { ButtonContainer } from '@/components/system/button/Button';
 
-interface BrandIntroProps extends PropsWithChildren {}
+interface BrandIntroProps extends PropsWithChildren {
+  border?: boolean;
+}
 
 const OverlayContainer = forwardRef<HTMLDivElement, BrandIntroProps>(
-  ({ children }, ref) => {
+  ({ children, border = true }, ref) => {
     return (
       <div className={style.contentBelow} ref={ref}>
         {children}
-        <div className={style.hr} />
+        {border && <div className={style.hr} />}
       </div>
     );
   },
@@ -67,14 +70,27 @@ export const Title: FC<ContainerProps> = ({ children }) => (
 interface ContentContainerProps {
   title?: string;
   text?: string;
+  buttonText?: string;
+  buttonSide?: 'left' | 'right';
+  href?: string;
+  border?: 'bottom' | false;
 }
 export const ContentContainer: FC<ContentContainerProps> = ({
   title,
   text,
+  buttonText,
+  buttonSide = 'left',
+  href,
+  border = 'bottom',
 }) => (
   <div className={style.contentContainer}>
     <h2>{title}</h2>
     <p>{text}</p>
+    {buttonText && (
+      <ButtonContainer side={buttonSide}>
+        <Button href={href}>{buttonText}</Button>
+      </ButtonContainer>
+    )}
   </div>
 );
 

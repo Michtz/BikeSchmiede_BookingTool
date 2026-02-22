@@ -1,6 +1,12 @@
 @use '../../../app/variables' as *;
 
 .text {
+  &[data-decoration='false'] {
+    border-bottom: none !important;
+  }
+}
+
+.text {
   color: $color-primary;
   letter-spacing: 2.2px;
   font-weight: normal;

@@ -64,7 +64,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     // If href is provided and not disabled, wrap in Link
     if (href && !disabled) {
-      return <Link href={href}>{buttonElement}</Link>;
+      return (
+        <Link noDecoration href={href}>
+          {buttonElement}
+        </Link>
+      );
     }
 
     return buttonElement;
@@ -78,6 +82,7 @@ interface ButtonContainerProps {
   spread?: boolean;
   className?: string;
   styles?: React.CSSProperties;
+  side?: 'left' | 'right';
 }
 
 export const ButtonContainer: React.FC<ButtonContainerProps> = ({
@@ -85,11 +90,13 @@ export const ButtonContainer: React.FC<ButtonContainerProps> = ({
   spread = true,
   className = '',
   styles,
+  side,
 }) => (
   <div
     onClick={(e) => e.stopPropagation()}
     className={`${style.buttonContainerContainer} ${className}`}
     data-spread={spread}
+    data-side={side}
     style={styles}
   >
     {children}

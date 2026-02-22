@@ -2,9 +2,11 @@
 
 .calculatorContainer {
   padding: 24px;
-  background-color: #ffffff;
+  background-color: $color-bg-primary;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   max-width: 800px;
   margin: 0 auto;
 }
@@ -13,16 +15,16 @@
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1a202c;
+  color: $color-primary;
   margin-bottom: 16px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid $color-primary;
   padding-bottom: 8px;
 }
 
 .totalSection {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid $color-primary;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,12 +33,12 @@
 .totalLabel {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.1rem;
-  color: #4a5568;
+  color: $color-primary;
 }
 
 .totalPrice {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: $color-secondary;
+  color: $color-primary;
 }

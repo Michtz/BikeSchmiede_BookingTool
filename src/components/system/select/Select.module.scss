@@ -13,11 +13,11 @@
   &.error {
     .select,
     .selectWrapper {
-      border-color: #dc2626;
+      border-color: $color-red-600;
     }
 
     .label {
-      color: #dc2626;
+      color: $color-red-600;
     }
   }
 
@@ -31,7 +31,7 @@
 
   &.readOnly {
     .select {
-      background-color: #f1f5f9;
+      background-color: $color-slate-100;
       cursor: not-allowed;
     }
   }
@@ -49,13 +49,13 @@
   font-weight: 500;
   display: flex;
   font-family: 'Josefin Sans', sans-serif;
-  color: #2d3748;
+  color: $color-primary;
   align-items: center;
   gap: 4px;
 }
 
 .required {
-  color: #dc2626;
+  color: $color-red-600;
   font-weight: 600;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .tooltipIcon {
-  color: #64748b;
+  color: $color-primary;
   cursor: help;
 
   &:hover + .tooltip {
@@ -80,11 +80,11 @@
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
-  background: #ffffff;
-  border: 1px solid #e1e5e9;
-  border-radius: 8px;
+  background: $color-bg-primary;
+  border: 1px solid $color-white;
+  border-radius: 0px;
   padding: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-dropdown;
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
@@ -99,35 +99,35 @@
     left: 50%;
     transform: translateX(-50%);
     border: 6px solid transparent;
-    border-top-color: #ffffff;
+    border-top-color: $color-white;
   }
 }
 
 .tooltipContent {
   font-size: 13px;
-  color: #1a1d23;
+  color: $color-primary;
   line-height: 1.4;
 }
 
 .tooltipMore {
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px solid #e1e5e9;
+  border-top: 1px solid $color-primary;
   font-size: 12px;
-  color: #64748b;
+  color: $color-primary;
 }
 
 .selectWrapper {
   position: relative;
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #e1e5e9;
-  border-radius: 8px;
+  background: $color-bg-primary;
+  border: 1px solid $color-primary;
+  border-radius: 0px;
   transition: all 0.2s ease;
 
   &:hover:not(.readOnly) {
-    border-color: #d1d9e0;
+    border-color: $color-gray-300;
   }
 }
 
@@ -138,7 +138,7 @@
   background: transparent;
   font-size: 14px;
   line-height: 1.5;
-  color: #1a1d23;
+  color: $color-primary;
   outline: none;
   width: 100%;
   appearance: none; /* Remove default arrow */
@@ -146,12 +146,12 @@
   -moz-appearance: none;
 
   &::placeholder {
-    color: #94a3b8;
+    color: $color-primary-700;
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: #cbd5e1;
+    color: $color-slate-300;
   }
 
   &.hasIcons {
@@ -163,7 +163,7 @@
 .startIcon {
   position: absolute;
   left: 12px;
-  color: #64748b;
+  color: $color-primary;
   pointer-events: none;
 }
 
@@ -177,17 +177,17 @@
 }
 
 .endIcon {
-  color: #64748b;
+  color: $color-primary-700;
   pointer-events: none;
 }
 
 .helperText {
   font-size: 12px;
-  color: #64748b;
+  color: $color-primary;
   line-height: 1.4;
   min-height: 16px;
 
   &.errorText {
-    color: #dc2626;
+    color: $color-red-600;
   }
 }

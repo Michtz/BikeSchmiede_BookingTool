@@ -8,6 +8,7 @@ import MidScrollVideoPlayer from '@/components/system/videoPlayer/MidScrollVideo
 import ScrollDeepDiveBike from '@/components/system/scrollDeepDive/ScrollDeepDive';
 import StickyImageContainer from '@/components/system/stickyImage/StickyImageContainer';
 import ScrollStaggeredGrid from '@/components/system/imageGridContainer/ScrollStaggeredGrid';
+import Calculator from '@/components/system/calculator/Calculator';
 
 export const PLACHOLDERTEXT: string = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis.`;
@@ -22,24 +23,22 @@ const ProductPageContainer: FC<ProductPageContainerProps> = ({ view }) => {
   return (
     <>
       <StickyImageContainer image={image1} title={view} />
-      <OverlayContainer
-      // ref={contentTriggerRef}
-      >
+      <OverlayContainer border={false}>
         <ContentContainer
           title={'Beste Geometry zum klettern'}
           text={PLACHOLDERTEXT}
         />
       </OverlayContainer>
       <div style={{ height: '700px' }}></div>
-      <OverlayContainer>
+      <OverlayContainer border={false}>
         <MidScrollVideoPlayer
           videoSrc={'assets/output_smooth_assembly_odin_white.mp4'}
         />
       </OverlayContainer>
-      <OverlayContainer>
+      <OverlayContainer border={false}>
         <ScrollDeepDiveBike imageSrc={'/assets/test_feska.webp'} title={view} />
       </OverlayContainer>
-      <OverlayContainer>
+      <OverlayContainer border={false}>
         <ScrollStaggeredGrid
           imagesArray={[
             image1,
@@ -54,14 +53,11 @@ const ProductPageContainer: FC<ProductPageContainerProps> = ({ view }) => {
             image1,
             image1,
             image1,
-            image1,
-            image1,
-            image1,
-            image1,
-            image1,
-            image1,
           ]}
         />
+      </OverlayContainer>
+      <OverlayContainer border={false}>
+        <Calculator />
       </OverlayContainer>
     </>
   );

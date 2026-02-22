@@ -8,6 +8,7 @@ import OverlayContainer, {
 import ImageHoverTextContainer from '@/components/system/imageHoverTextContainer/ImageHoverTextContainer';
 import ScrollHeroVideo from '@/components/system/scorllVideoHero/ScrollHeroVideo';
 import { LOREM_IPSUM_SHORT_TEXT } from '@/components/containers/HomeContainer';
+import Calculator from '@/components/system/calculator/Calculator';
 
 const CategoriesContainer: FC = () => {
   const items: any[] = [
@@ -106,6 +107,9 @@ const CategoriesContainer: FC = () => {
       <OverlayContainer key={1}>{content}</OverlayContainer>
 
       <OverlayContainer key={2}>{content2}</OverlayContainer>
+      <OverlayContainer key={3} border={false}>
+        <Calculator />
+      </OverlayContainer>
     </Container>
   );
 };

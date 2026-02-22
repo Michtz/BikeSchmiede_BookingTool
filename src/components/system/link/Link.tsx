@@ -17,6 +17,7 @@ interface LinkProps {
   fullWidth?: boolean;
   weight?: 'normal' | 'bold';
   active?: boolean;
+  noDecoration?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -32,6 +33,7 @@ const Link: React.FC<LinkProps> = ({
   fullWidth = false,
   weight = 'normal',
   active = false,
+  noDecoration = false,
 }) => {
   const router = useRouter();
   const prefetched = useRef<boolean>(false);
@@ -58,7 +60,9 @@ const Link: React.FC<LinkProps> = ({
 
   const content = (
     <>
-      <span className={style.text}>{children}</span>
+      <span data-decoration={!noDecoration} className={style.text}>
+        {children}
+      </span>
       {icon && <MaterialIcon icon={icon} />}
     </>
   );

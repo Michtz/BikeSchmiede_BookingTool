@@ -1,8 +1,8 @@
 'use client';
 import React, { forwardRef, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import MaterialIcon from '../materialIcon/MaterialIcon';
 import style from './Select.module.scss';
+import MaterialIcon from '@/components/system/materialIcon/MaterialIcon';
 
 interface TooltipProps {
   text: string;
@@ -16,10 +16,7 @@ export interface SelectOption {
 }
 
 interface SelectProps
-  extends Omit<
-    React.SelectHTMLAttributes<HTMLSelectElement>,
-    'size'
-  > {
+  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   label?: string;
   tooltip?: TooltipProps;
   helperText?: string;
@@ -47,7 +44,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       readOnly = false,
       inputProps,
       startIcon,
-      endIcon = 'expand_more', // Default dropdown arrow
+      endIcon = 'arrow_down', // Default dropdown arrow
       options,
       placeholder,
       className,
@@ -134,17 +131,27 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             onBlur={handleBlur}
             disabled={props.disabled || readOnly}
             aria-invalid={error}
-            aria-describedby={helperText ? `${props.id || 'select'}-helper` : undefined}
+            aria-describedby={
+              helperText ? `${props.id || 'select'}-helper` : undefined
+            }
             {...inputProps}
             {...props}
           >
             {placeholder && (
-              <option value="" disabled selected={!props.value && !props.defaultValue}>
+              <option
+                value=""
+                disabled
+                selected={!props.value && !props.defaultValue}
+              >
                 {placeholder}
               </option>
             )}
             {options.map((option) => (
-              <option key={option.value} value={option.value} disabled={option.disabled}>
+              <option
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+              >
                 {option.label}
               </option>
             ))}

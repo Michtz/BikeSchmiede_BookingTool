@@ -192,7 +192,7 @@
   height: 1px;
   background-color: $color-primary;
   width: 95%;
-  margin: 3rem auto 6rem auto;
+  margin: 2rem auto 0rem auto;
 }
 @media (max-width: 1150px) {
   .horizontalScrollContainer::before {
@@ -207,20 +207,16 @@
     justify-content: flex-start;
   }
 }
-@media (max-width: 768px) {
-  .hr {
-    margin: 1rem auto;
-  }
-}
 
 .contentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 3rem;
+  padding: 6rem 3rem 3rem 3rem;
   gap: 3rem;
   margin: 2rem;
+
   border: 1px solid $color-primary;
 
   h2 {

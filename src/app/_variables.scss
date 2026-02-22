@@ -38,3 +38,27 @@ $color-secondary-300: rgba($color-secondary, 0.3);
 $color-secondary-200: rgba($color-secondary, 0.2);
 $color-secondary-100: rgba($color-secondary, 0.1);
 $color-secondary-050: rgba($color-secondary, 0.05);
+
+$color-error: #ffff00;
+$color-text-muted: #6b7280;
+$color-disabled: #9ca3af;
+$color-bg-hover: rgba(255, 255, 255, 0.1);
+
+// Form & Input System Colors
+$color-white: #ffffff;
+$color-slate-100: #f1f5f9;
+$color-slate-300: #cbd5e1;
+$color-slate-400: #94a3b8;
+$color-slate-500: #64748b;
+$color-gray-200: #e1e5e9;
+$color-gray-300: #d1d9e0;
+$color-gray-800: #2d3748;
+$color-gray-900: #1a1d23;
+$color-red-600: #dc2626;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 8px 8px rgba(0, 0, 0, 0.02);
+$shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.05);
+$shadow-inner: inset 6px 3px 9px 4px rgba(0, 0, 0, 0.04);
+$shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.1);
