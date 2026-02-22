@@ -1,6 +1,6 @@
 @use '../../../app/variables' as *;
 
-.inputContainer {
+.selectContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -11,8 +11,8 @@
   }
 
   &.error {
-    .input,
-    .inputWrapper {
+    .select,
+    .selectWrapper {
       border-color: #dc2626;
     }
 
@@ -22,15 +22,15 @@
   }
 
   &.focused {
-    .input,
-    .inputWrapper {
+    .select,
+    .selectWrapper {
       border-color: $color-secondary;
       outline-offset: -1px;
     }
   }
 
   &.readOnly {
-    .input {
+    .select {
       background-color: #f1f5f9;
       cursor: not-allowed;
     }
@@ -117,7 +117,7 @@
   color: #64748b;
 }
 
-.inputWrapper {
+.selectWrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -131,7 +131,7 @@
   }
 }
 
-.input {
+.select {
   flex: 1;
   padding: 12px 16px;
   border: none;
@@ -140,7 +140,10 @@
   line-height: 1.5;
   color: #1a1d23;
   outline: none;
-  resize: none;
+  width: 100%;
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
   &::placeholder {
     color: #94a3b8;
@@ -154,13 +157,6 @@
   &.hasIcons {
     padding-left: 16px;
     padding-right: 44px;
-  }
-
-  // Textarea specific styles
-  &[rows] {
-    min-height: auto;
-    font-family: inherit;
-    resize: vertical;
   }
 }
 
@@ -177,20 +173,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-.clearIcon,
-.passwordToggle {
-  color: #64748b;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-
-  &:hover {
-    color: #1a1d23;
-    background-color: #f1f5f9;
-  }
+  pointer-events: none;
 }
 
 .endIcon {
@@ -207,13 +190,4 @@
   &.errorText {
     color: #dc2626;
   }
-}
-
-.checkboxLabel {
-  display: flex;
-  gap: 5px;
-  color: black;
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: normal;
-  font-size: 14px;
 }
