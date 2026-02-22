@@ -8,6 +8,7 @@ const OverlayContainer = forwardRef<HTMLDivElement, BrandIntroProps>(
     return (
       <div className={style.contentBelow} ref={ref}>
         {children}
+        <div className={style.hr} />
       </div>
     );
   },

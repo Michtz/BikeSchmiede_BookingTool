@@ -6,13 +6,18 @@
   background-color: $color-bg-primary;
   box-shadow: inset 0 20px 50px -10px $color-secondary-050;
   width: 100%;
-  padding-bottom: 20rem;
+  padding-bottom: 2rem;
 
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   overflow: visible;
+
+  .hr {
+    height: 1px;
+    width: 80%;
+  }
 }
 
 .stickyWrapper2 {
@@ -28,7 +33,7 @@
   display: flex;
   width: 100%;
 
-  background-color: var(--background);
+  background-color: $color-bg-primary;
 
   &[data-flow='column'] {
     flex-direction: column;
@@ -83,7 +88,7 @@
   }
 
   &[data-background-color='true'] {
-    background-color: var(--foreground);
+    background-color: $color-bg-primary;
   }
 
   &[data-max-width='1150'] {
@@ -185,17 +190,17 @@
 
 .hr {
   height: 1px;
-  background-color: #c3c3c3;
+  background-color: $color-primary;
   width: 95%;
   margin: 3rem auto 6rem auto;
 }
 @media (max-width: 1150px) {
   .horizontalScrollContainer::before {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1), transparent);
+    background: linear-gradient(to right, $color-primary, transparent);
   }
 
   .horizontalScrollContainer::after {
-    background: linear-gradient(to left, rgba(255, 255, 255, 1), transparent);
+    background: linear-gradient(to left, $color-primary, transparent);
   }
 
   .scrollWrapper {
@@ -213,17 +218,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8rem 5rem;
+  padding: 6rem 3rem;
   gap: 3rem;
+  margin: 2rem;
+  border: 1px solid $color-primary;
 
   h2 {
     font-size: 4rem;
     font-weight: bold;
-    color: white;
+    color: $color-primary;
   }
 
   p {
-    color: white;
+    color: $color-primary;
     font-size: 1.5rem;
   }
 }

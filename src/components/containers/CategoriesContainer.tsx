@@ -1,5 +1,5 @@
 'use client';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import { PLACHOLDERTEXT } from '@/components/sections/product/ProductPageContainer';
 import OverlayContainer, {
   Container,
@@ -7,65 +7,9 @@ import OverlayContainer, {
 } from '@/components/system/containers/Containers';
 import ImageHoverTextContainer from '@/components/system/imageHoverTextContainer/ImageHoverTextContainer';
 import ScrollHeroVideo from '@/components/system/scorllVideoHero/ScrollHeroVideo';
+import { LOREM_IPSUM_SHORT_TEXT } from '@/components/containers/HomeContainer';
 
 const CategoriesContainer: FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [showImageOverlay, setShowImageOverlay] = useState<boolean>(false);
-  const contentTriggerRef = useRef<HTMLDivElement>(null);
-  const contentTriggerRef2 = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isTicking = useRef(false);
-
-  const showImageOverlayRef = useRef(false);
-
-  const updateVideoPosition = () => {
-    if (!containerRef.current || !videoRef.current) return;
-
-    const container = containerRef.current;
-    const video = videoRef.current;
-
-    const containerTop = container.getBoundingClientRect().top;
-    const scrollLength = container.scrollHeight - window.innerHeight;
-
-    let progress = -containerTop / scrollLength;
-    if (progress < 0) progress = 0;
-    if (progress > 1) progress = 1;
-
-    if (Number.isFinite(video.duration)) {
-      const targetTime = video.duration * progress;
-      if (Math.abs(video.currentTime - targetTime) > 0.01) {
-        video.currentTime = targetTime;
-      }
-    }
-  };
-
-  const handleScroll = () => {
-    if (contentTriggerRef.current) {
-      const contentRect = contentTriggerRef.current.getBoundingClientRect();
-
-      const isCoveringImage = contentRect.top <= 0;
-
-      if (showImageOverlayRef.current !== isCoveringImage) {
-        console.log(isCoveringImage);
-        showImageOverlayRef.current = isCoveringImage;
-        setShowImageOverlay(isCoveringImage);
-      }
-    }
-    if (!isTicking.current) {
-      window.requestAnimationFrame(() => {
-        updateVideoPosition();
-        isTicking.current = false;
-      });
-      isTicking.current = true;
-    }
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-    // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, []);
   const items: any[] = [
     {
       id: 1,
@@ -156,17 +100,12 @@ const CategoriesContainer: FC = () => {
     <Container padding={false} backgroundColor flow={'column'}>
       <ScrollHeroVideo
         videoSrc="/assets/output_smooth_odin_drive_right.mp4"
-        fallbackImage={'/assets/odin_frame_black.png'}
-        showImageOverlay={showImageOverlay}
+        botsOnlyText={LOREM_IPSUM_SHORT_TEXT}
       />
 
-      <OverlayContainer key={1} ref={contentTriggerRef}>
-        {content}
-      </OverlayContainer>
+      <OverlayContainer key={1}>{content}</OverlayContainer>
 
-      <OverlayContainer key={2} ref={contentTriggerRef2}>
-        {content2}
-      </OverlayContainer>
+      <OverlayContainer key={2}>{content2}</OverlayContainer>
     </Container>
   );
 };

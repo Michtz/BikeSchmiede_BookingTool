@@ -1,25 +1,31 @@
 'use client';
 
 import React, { FC, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import OdinLogo from '@/components/icons/OdinLogo';
 import style from './ScrollHero.module.scss';
 
 interface ScrollHeroProps {
   videoSrc: string;
-  fallbackImage?: string;
-  showImageOverlay: boolean;
+  showImageOverlay?: boolean;
+  botsOnlyText: string;
 }
 
 const ScrollHeroVideo: FC<ScrollHeroProps> = ({
   videoSrc,
-  fallbackImage,
-  showImageOverlay,
+  showImageOverlay: showImageOverlayProp,
+  botsOnlyText,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showLogo, setShowLogo] = useState<boolean>(false);
+  const [showImageOverlayInternal, setShowImageOverlayInternal] =
+    useState<boolean>(false);
   const isTicking = useRef(false);
+
+  const showImageOverlay =
+    showImageOverlayProp !== undefined
+      ? showImageOverlayProp
+      : showImageOverlayInternal;
 
   const updateVideoPosition = () => {
     if (!containerRef.current || !videoRef.current) return;
@@ -45,6 +51,11 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
     if (showLogo !== shouldShowLogo) {
       setShowLogo(shouldShowLogo);
     }
+
+    const isCovering = containerTop <= -container.scrollHeight;
+    if (showImageOverlayInternal !== isCovering) {
+      setShowImageOverlayInternal(isCovering);
+    }
   };
 
   useEffect(() => {
@@ -61,55 +72,27 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
     // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, [showLogo]);
+  }, [showLogo, showImageOverlay, showImageOverlayProp]);
 
   const isVisible = showLogo && !showImageOverlay;
   return (
     <div className={style.scrollContainer} ref={containerRef}>
       <div className={style.stickyWrapper}>
-        {showImageOverlay ? (
-          <>
-            {fallbackImage && (
-              <Image
-                src={fallbackImage}
-                className={style.titleImage}
-                alt="Hero Background"
-                fill
-                priority
-                sizes="100vw"
-                style={{ objectFit: 'cover' }}
-              />
-            )}
-          </>
-        ) : (
-          <video
-            className={style.videoElement}
-            ref={videoRef}
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-        )}
+        <video
+          className={style.videoElement}
+          ref={videoRef}
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
 
         <div className={style.overlayContent}>
           <h1 className={`${style.logoFade} ${isVisible ? style.visible : ''}`}>
             <OdinLogo width={400} />
-            <span className={style.srOnly}>
-              Odin Roadbikes – Premium Custom-Build Carbon Roadbikes
-            </span>
+            <span className={style.srOnly}>{botsOnlyText}</span>
           </h1>
-          <h2
-            className={`${style.logoFade} ${showImageOverlay ? style.visible : ''}`}
-            style={{
-              fontSize: '40px',
-              position: 'absolute',
-              top: '60%',
-            }}
-          >
-            Unsere neusten Kreationen
-          </h2>
         </div>
       </div>
     </div>

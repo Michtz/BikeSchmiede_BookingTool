@@ -13,10 +13,17 @@ import './_variables.scss';
 export const metadata: Metadata = {
   title: {
     template: '%s | OdinBikes',
-    default: 'OdinBikes.ch | High-End Rennräder & Gravelbikes',
+    default: 'OdinBikes.ch | Custom High-End Rennräder & Gravelbikes',
   },
-  description: 'Entdecke die Welt von OdinBikes. High-Performance Rennräder und Gravelbikes, individuell konfigurierbar für dein perfektes Fahrerlebnis.',
-  keywords: ['Rennrad', 'Gravelbike', 'Fahrrad Konfigurator', 'OdinBikes', 'Custom Bikes'],
+  description:
+    'Entdecke die Welt von OdinBikes. Custom High-Performance Rennräder und Gravelbikes, individuell konfigurierbar für dein perfektes Fahrerlebnis.',
+  keywords: [
+    'Rennrad',
+    'Gravelbike',
+    'Fahrrad Konfigurator',
+    'OdinBikes',
+    'Custom Bikes',
+  ],
   authors: [{ name: 'OdinBikes' }],
   robots: 'index, follow',
   alternates: {
@@ -28,7 +35,8 @@ export const metadata: Metadata = {
     url: 'https://odinbikes.ch',
     siteName: 'OdinBikes',
     title: 'OdinBikes.ch | High-End Rennräder & Gravelbikes',
-    description: 'High-Performance Rennräder und Gravelbikes, individuell konfigurierbar.',
+    description:
+      'High-Performance Rennräder und Gravelbikes, individuell konfigurierbar.',
   },
 };
 
