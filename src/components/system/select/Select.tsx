@@ -44,7 +44,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       readOnly = false,
       inputProps,
       startIcon,
-      endIcon = 'arrow_down', // Default dropdown arrow
+      endIcon = 'expand_more',
       options,
       placeholder,
       className,

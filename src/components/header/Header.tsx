@@ -1,5 +1,5 @@
 'use client';
-import * as React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import style from './Header.module.scss';
 import Link from '@/components/system/link/Link';
 import HamburgerIcon from '@/components/icons/HamburgerIcon';
@@ -8,16 +8,41 @@ import LoadingSpinner from '@/components/system/loader/LoadingSpinner';
 import OdinLogo from '@/components/icons/OdinLogo';
 
 const ResponsiveAppBar = () => {
-  // const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-  //
-  // const toggleSideNav = () => {
-  //   setIsSideNavOpen(!isSideNavOpen);
-  // };
-  //
-  // const closeSideNav = () => {
-  //   setIsSideNavOpen(false);
-  // };
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isSticky, setIsSticky] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 100) {
+        setIsSticky(true);
+
+        if (currentScrollY < lastScrollY.current) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      } else {
+        setIsSticky(false);
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const headerClasses = [
+    style.header,
+    isLoading ? style.headerHidden : style.headerVisible,
+    isSticky ? style.sticky : '',
+    !isVisible && isSticky ? style.hidden : '',
+  ].join(' ');
 
   return (
     <>
@@ -29,9 +54,7 @@ const ResponsiveAppBar = () => {
         <LoadingSpinner color={'white'} />
       </div>
 
-      <header
-        className={`${style.header} ${isLoading ? style.headerHidden : style.headerVisible}`}
-      >
+      <header className={headerClasses}>
         <div
           className={`${style.NavContainer} ${!isLoading ? style.fadeIn : style.fadeOut}`}
         >

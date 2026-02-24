@@ -34,9 +34,11 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
     const video = videoRef.current;
 
     const containerTop = container.getBoundingClientRect().top;
-    const scrollLength = container.scrollHeight - window.innerHeight;
 
-    let progress = -containerTop / scrollLength;
+    // Die Animation soll über eine Strecke von z.B. 100vh gehen
+    const animationDistance = window.innerHeight / 3;
+    let progress = -containerTop / animationDistance;
+
     if (progress < 0) progress = 0;
     if (progress > 1) progress = 1;
 

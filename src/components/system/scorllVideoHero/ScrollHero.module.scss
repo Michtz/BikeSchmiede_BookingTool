@@ -1,11 +1,13 @@
 @use '../../../app/variables' as *;
 
 .scrollContainer {
-  height: 180vh;
+  height: 200vh;
   position: relative;
   background-color: #000;
   width: 100%;
   margin-top: -75px;
+  margin-bottom: -80vh;
+  z-index: 1;
 }
 
 .stickyWrapper {
@@ -15,7 +17,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;

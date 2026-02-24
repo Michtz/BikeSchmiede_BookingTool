@@ -20,11 +20,12 @@ const MaterialIcon: React.FC<MaterialIconProps> = ({
   iconSize = 'normal',
   onClick,
   color,
+  className,
   ...props
 }): React.ReactElement => {
   return (
     <span
-      className={`${outlined ? 'material-icons-outlined' : 'material-icons'} ${style['icon-container']}`}
+      className={`${outlined ? 'material-icons-outlined' : 'material-icons'} ${style['icon-container']} ${className || ''}`}
       data-size={iconSize}
       data-color={color}
       data-clickable={!!onClick || clickable || !!href}

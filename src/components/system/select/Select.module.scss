@@ -24,14 +24,14 @@
   &.focused {
     .select,
     .selectWrapper {
-      border-color: $color-secondary;
+      border-color: $color-primary;
       outline-offset: -1px;
     }
   }
 
   &.readOnly {
     .select {
-      background-color: $color-slate-100;
+      background-color: $color-bg-primary;
       cursor: not-allowed;
     }
   }
@@ -144,6 +144,7 @@
   appearance: none; /* Remove default arrow */
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
 
   &::placeholder {
     color: $color-primary-700;
