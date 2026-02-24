@@ -1,0 +1,64 @@
+$font-family-base: 'Archivo Black', sans-serif;
+$font-family-second: 'Josefin Sans', sans-serif;
+
+/* Color definitions with opacity scales */
+$color-bg-primary: #000;
+$color-primary: #eaeaea;
+$color-secondary: rgba(104, 104, 104, 0.22);
+
+$color-bg-primary-900: rgba($color-bg-primary, 0.9);
+$color-bg-primary-800: rgba($color-bg-primary, 0.8);
+$color-bg-primary-700: rgba($color-bg-primary, 0.7);
+$color-bg-primary-600: rgba($color-bg-primary, 0.6);
+$color-bg-primary-500: rgba($color-bg-primary, 0.5);
+$color-bg-primary-400: rgba($color-bg-primary, 0.4);
+$color-bg-primary-300: rgba($color-bg-primary, 0.3);
+$color-bg-primary-200: rgba($color-bg-primary, 0.2);
+$color-bg-primary-100: rgba($color-bg-primary, 0.1);
+$color-bg-primary-50: rgba($color-bg-primary, 0.05);
+
+$color-primary-900: rgba($color-primary, 0.9);
+$color-primary-800: rgba($color-primary, 0.8);
+$color-primary-700: rgba($color-primary, 0.7);
+$color-primary-600: rgba($color-primary, 0.6);
+$color-primary-500: rgba($color-primary, 0.5);
+$color-primary-400: rgba($color-primary, 0.4);
+$color-primary-300: rgba($color-primary, 0.3);
+$color-primary-200: rgba($color-primary, 0.2);
+$color-primary-100: rgba($color-primary, 0.1);
+$color-primary-50: rgba($color-primary, 0.05);
+
+$color-secondary-900: rgba($color-secondary, 0.9);
+$color-secondary-800: rgba($color-secondary, 0.8);
+$color-secondary-700: rgba($color-secondary, 0.7);
+$color-secondary-600: rgba($color-secondary, 0.6);
+$color-secondary-500: rgba($color-secondary, 0.5);
+$color-secondary-400: rgba($color-secondary, 0.4);
+$color-secondary-300: rgba($color-secondary, 0.3);
+$color-secondary-200: rgba($color-secondary, 0.2);
+$color-secondary-100: rgba($color-secondary, 0.1);
+$color-secondary-050: rgba($color-secondary, 0.05);
+
+$color-error: #ffff00;
+$color-text-muted: #6b7280;
+$color-disabled: #9ca3af;
+$color-bg-hover: rgba(255, 255, 255, 0.1);
+
+// Form & Input System Colors
+$color-white: #ffffff;
+$color-slate-100: #f1f5f9;
+$color-slate-300: #cbd5e1;
+$color-slate-400: #94a3b8;
+$color-slate-500: #64748b;
+$color-gray-200: #e1e5e9;
+$color-gray-300: #d1d9e0;
+$color-gray-800: #2d3748;
+$color-gray-900: #1a1d23;
+$color-red-600: #dc2626;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 8px 8px rgba(0, 0, 0, 0.02);
+$shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.05);
+$shadow-inner: inset 6px 3px 9px 4px rgba(0, 0, 0, 0.04);
+$shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.1);

@@ -1,7 +1,6 @@
 'use client';
 import React, { createContext, PropsWithChildren, useContext } from 'react';
 import { FieldError } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
 /*
  * this hook is used to handle errors in forms
@@ -15,35 +14,33 @@ interface ErrorHook {
   transformFieldError: (error?: FieldError) => TransformedFieldError;
 }
 
-const errorMessageKeys: { [key: string]: string } = {
-  notAEmail: 'error.not-a-email',
-  required: 'error.required',
-  email: 'error.email',
-  minLength: 'error.minLength',
-  maxLength: 'error.maxLength',
-  toSmall: 'error.toSmall',
-  noValidEmail: 'error.validate',
-  notTheSamePassword: 'error.notTheSamePassword',
-  invalidPhoneNumber: 'error.invalidPhoneNumber',
+const errorMessages: { [key: string]: string } = {
+  notAEmail: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+  required: 'Dieses Feld ist erforderlich.',
+  email: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+  minLength: 'Die Eingabe ist zu kurz.',
+  maxLength: 'Die Eingabe ist zu lang.',
+  toSmall: 'Der Wert ist zu klein.',
+  noValidEmail: 'Ungültige E-Mail-Adresse.',
+  notTheSamePassword: 'Die Passwörter stimmen nicht überein.',
+  invalidPhoneNumber: 'Ungültige Telefonnummer.',
 };
 
 const ErrorContext = createContext<ErrorHook | undefined>(undefined);
 
 export const ErrorProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const { t } = useTranslation();
-
   const transformFieldError = (error?: FieldError): TransformedFieldError => {
     if (!error) return { error: false };
     const errorKey: string | undefined = error.message || error.type;
-    if (errorKey && errorKey in errorMessageKeys)
+    if (errorKey && errorKey in errorMessages)
       return {
         error: true,
-        helperText: t(errorMessageKeys[errorKey]),
+        helperText: errorMessages[errorKey],
       };
 
     return {
       error: true,
-      helperText: t('error.error'),
+      helperText: 'Es ist ein Fehler aufgetreten.',
     };
   };
 

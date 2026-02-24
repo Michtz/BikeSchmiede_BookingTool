@@ -1,0 +1,72 @@
+@use '../../../app/variables' as *;
+
+.scrollContainer {
+  height: 200vh;
+  position: relative;
+  background-color: #000;
+  width: 100%;
+  margin-top: -75px;
+  margin-bottom: -80vh;
+  z-index: 1;
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.titleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlayContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoFade {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

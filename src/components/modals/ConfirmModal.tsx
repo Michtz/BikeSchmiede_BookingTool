@@ -1,8 +1,8 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import Button, { ButtonContainer } from '@/components/system/Button';
-import MaterialIcon from '@/components/system/MaterialIcon';
-import style from '@/styles/modals/ConfirmModal.module.scss';
+import Button, { ButtonContainer } from '@/components/system/button/Button';
+import MaterialIcon from '@/components/system/materialIcon/MaterialIcon';
+import style from '@/styles/old/modals/ConfirmModal.module.scss';
 import { useModalContent } from '@/hooks/ModalProvide';
 
 interface ConfirmModalProps {
@@ -22,10 +22,9 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   icon,
   destructive = false,
 }) => {
-  const { t } = useTranslation();
   const { onCallback } = useModalContent();
-  const defaultConfirmText = confirmText || t('ui.buttons.confirm');
-  const defaultCancelText = cancelText || t('ui.buttons.cancel');
+  const defaultConfirmText = confirmText || 'Bestätigen';
+  const defaultCancelText = cancelText || 'Abbrechen';
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -93,7 +92,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           {destructive && (
             <div className={style.warningNote}>
               <MaterialIcon icon="info" iconSize="small" />
-              <span>{t('modals.irreversible-action')}</span>
+              <span>Dieser Vorgang kann nicht rückgängig gemacht werden.</span>
             </div>
           )}
         </div>

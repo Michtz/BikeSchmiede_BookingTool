@@ -1,0 +1,227 @@
+@use '../../app/variables' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  padding: 0 2rem;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s ease;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  &.sticky {
+    position: fixed;
+    background-color: $color-bg-primary-300;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  &.hidden {
+    transition: none;
+    transform: translateY(-100%);
+  }
+
+  .NavContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease-in-out;
+
+    .hamburgerMenu {
+      display: none;
+      align-items: center;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
+      }
+    }
+
+    .navItemContainer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      padding-left: 20px;
+      list-style: none;
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+
+      .navItem {
+        padding-right: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        color: $color-primary;
+        font-family: $font-family-base;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        &:hover {
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+
+  .logo {
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+
+    &.logoSmall {
+      transform: scale(0.8);
+    }
+    &:hover {
+      transform: scale(0.85);
+    }
+  }
+}
+
+.headerLogo {
+  width: 220px;
+  height: 73px;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .rightNavContainer {
+    gap: 1rem !important;
+  }
+  .headerLogo {
+    width: 160px;
+  }
+}
+
+// Loading Overlay Styles
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-bg-primary;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+}
+
+.loadingLogo {
+  animation: logoLoading 2s ease-in-out;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 40%;
+
+  @keyframes logoLoading {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(0.9) translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(0.8) translateY(0);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .loadingLogo {
+    animation: logoLoading 2s ease-in-out;
+
+    @keyframes logoLoading {
+      0% {
+        opacity: 0;
+        transform: scale(0.4) translateY(20px);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(0.6) translateY(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(0.5) translateY(0);
+      }
+    }
+  }
+}
+
+.loadingOverlay.hidden .loadingLogo {
+  transform: scale(0.3) translateY(-50vh);
+  opacity: 0;
+}
+
+// Content Fade-in Animation
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+// Responsive Anpassungen
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+    height: 65px;
+  }
+
+  .loadingLogo {
+    transform: scale(0.6);
+  }
+
+  .logo.logoSmall {
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 0.75rem;
+  }
+
+  .loadingLogo {
+    transform: scale(0.4);
+  }
+
+  .logo.logoSmall {
+    transform: scale(0.5);
+  }
+}

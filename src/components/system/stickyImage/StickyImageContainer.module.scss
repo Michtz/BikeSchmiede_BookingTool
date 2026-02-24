@@ -1,0 +1,61 @@
+@use '../../../app/variables' as *;
+.scrollContainer {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  //background-color: #000;
+  width: 100%;
+  margin-top: -75px;
+
+  overflow: hidden;
+  //box-shadow: inset 0 -500px 100px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, #000 60%, rgba(47, 47, 47, 0.35) 100%);
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.titleImage {
+  width: 60%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.overlayContent {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoFade {
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0s ease;
+  font-size: 16rem;
+  text-transform: capitalize;
+}

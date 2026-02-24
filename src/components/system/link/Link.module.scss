@@ -1,0 +1,25 @@
+@use '../../../app/variables' as *;
+
+.text {
+  &[data-decoration='false'] {
+    border-bottom: none !important;
+  }
+}
+
+.text {
+  color: $color-primary;
+  letter-spacing: 2.2px;
+  font-weight: normal;
+  font-family: $font-family-second;
+  padding: 2px 4px;
+
+  &:hover {
+    text-shadow: 2px 1px 1px rgba(255, 255, 255, 0.5);
+    transition: ease-in 0.1s;
+    border-bottom: 1px solid $color-primary;
+  }
+
+  &[data-active='true'] {
+    border-bottom: 2px solid $color-primary;
+  }
+}

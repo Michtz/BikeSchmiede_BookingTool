@@ -4,4 +4,5 @@ export interface SvgIconProps {
   color?: string;
   className?: string;
   onClick?: () => void;
+  href?: string;
 }
