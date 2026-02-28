@@ -1,6 +1,10 @@
 import React, { FC, forwardRef, PropsWithChildren, ReactNode } from 'react';
 import style from './Containers.module.scss';
-import Button, { ButtonContainer } from '@/components/system/button/Button';
+import Button, {
+  ButtonContainer,
+  ButtonPositions,
+} from '@/components/system/button/Button';
+import Image from 'next/image';
 
 interface BrandIntroProps extends PropsWithChildren {
   border?: boolean;
@@ -81,11 +85,51 @@ export const ContentContainer: FC<ContentContainerProps> = ({
   buttonText,
   buttonSide = 'left',
   href,
-  border = 'bottom',
 }) => (
   <div className={style.contentContainer}>
     <h2>{title}</h2>
     <p>{text}</p>
+    {buttonText && (
+      <ButtonContainer side={buttonSide}>
+        <Button href={href}>{buttonText}</Button>
+      </ButtonContainer>
+    )}
+  </div>
+);
+
+interface ImageContainerProps {
+  title?: string;
+  text?: string;
+  buttonText?: string;
+  buttonSide?: ButtonPositions;
+  href?: string;
+  border?: 'bottom' | false;
+}
+export const ImageContainer: FC<ImageContainerProps> = ({
+  title,
+  text,
+  buttonText,
+  buttonSide = 'left',
+  href,
+  border = 'bottom',
+}) => (
+  <div className={style.imageContentContainer}>
+    <div className={style.imageContainer}>
+      <Image
+        className={style.image}
+        src={'/assets/pantaniModified.jpg'}
+        alt={'test'}
+        width={600}
+        height={600}
+      />
+      <Image
+        className={style.image}
+        src={'/assets/pantaniModified.jpg'}
+        alt={'test'}
+        width={600}
+        height={600}
+      />
+    </div>
     {buttonText && (
       <ButtonContainer side={buttonSide}>
         <Button href={href}>{buttonText}</Button>

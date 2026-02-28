@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import OverlayContainer, {
   ContentContainer,
+  ImageContainer,
 } from '@/components/system/containers/Containers';
 import ScrollHeroVideo from '@/components/system/scorllVideoHero/ScrollHeroVideo';
 import Calculator from '@/components/system/calculator/Calculator';
+import ScrollStaggeredGrid from '@/components/system/imageGridContainer/ScrollStaggeredGrid';
 
 /* video  DO NOT DELETE!!!!!!!!!!!!!!!!!! edit prompt MacBook-Pro assets % ffmpeg -i odin_animatie.mp4   -c:v libx264 -x264-params keyint=1:scenecut=0 -crf 22 -preset medium -an output_smooth_odin_frame.mp4*/
 
@@ -14,15 +16,16 @@ export const LOREM_IPSUM_SHORT_TEXT: string =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ';
 
 const HomeContainer: FC<HomeContainerProps> = () => {
+  const image1 = '/assets/pantaniModified.jpg';
   return (
     <>
       <ScrollHeroVideo
         botsOnlyText={LOREM_IPSUM_SHORT_TEXT}
         videoSrc="/assets/output_smooth.mp4"
       />
-      <OverlayContainer>
+      <OverlayContainer border={false}>
         <ContentContainer
-          title="Individuelle Carbon Rennräder"
+          title="Mehr als ein Rennrad"
           text="Entdecken Sie die perfekte Synergie aus Leistung und Design. Unsere handgefertigten Carbonrahmen sind für diejenigen gebaut, die auf jeder Straße Exzellenz verlangen."
           buttonText={'MEHR ERFAHREN'}
           buttonSide={'right'}
@@ -30,20 +33,7 @@ const HomeContainer: FC<HomeContainerProps> = () => {
         />
       </OverlayContainer>
       <OverlayContainer>
-        <div style={{ display: 'flex' }}>
-          <img
-            alt={LOREM_IPSUM_SHORT_TEXT}
-            src={'/assets/pantaniModified.jpg'}
-            width={'auto'}
-            height={'600px'}
-          />{' '}
-          <img
-            src={'/assets/pantaniModified.jpg'}
-            width={'auto'}
-            alt={LOREM_IPSUM_SHORT_TEXT}
-            height={'600px'}
-          />
-        </div>
+        <ImageContainer buttonText={'WOW zeig mer meh'} buttonSide={'middle'} />
       </OverlayContainer>
       <OverlayContainer>
         <ContentContainer
@@ -53,6 +43,9 @@ const HomeContainer: FC<HomeContainerProps> = () => {
           buttonSide={'right'}
           href={'/bikes/roadbikes'}
         />
+      </OverlayContainer>
+      <OverlayContainer>
+        <ImageContainer />
       </OverlayContainer>
       <OverlayContainer>
         <ContentContainer
@@ -66,6 +59,22 @@ const HomeContainer: FC<HomeContainerProps> = () => {
       <OverlayContainer>
         <Calculator />
       </OverlayContainer>
+      <ScrollStaggeredGrid
+        imagesArray={[
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+          image1,
+        ]}
+      />
     </>
   );
 };

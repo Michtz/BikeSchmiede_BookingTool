@@ -1,54 +1,79 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { FormContainer, FormRow, FormTitle } from '../form/Form';
 import Input from '../input/Input';
 import Select from '../select/Select';
 import Button from '../button/Button';
 import style from './Calculator.module.scss';
+import { sendBikeConfiguration } from '@/actions/sendEmail';
 
-// Example data for the dropdowns
-const CALCULATOR_OPTIONS = {
+interface CalculatorOption {
+  label: string;
+  value: string;
+  price: number;
+}
+
+const CALCULATOR_OPTIONS: Record<string, CalculatorOption[]> = {
   frame: [
     {
       label: 'Odin Carbon Race Frame - Matte Black',
       value: 'frame_carbon_black',
+      price: 100,
     },
     {
       label: 'Odin Carbon Race Frame - Glossy White',
       value: 'frame_carbon_white',
+      price: 100,
     },
-    { label: 'Odin Titanium Endurance Frame', value: 'frame_titanium' },
+    {
+      label: 'Odin Titanium Endurance Frame',
+      value: 'frame_titanium',
+      price: 100,
+    },
   ],
   gruppe: [
-    { label: 'Shimano Dura-Ace Di2', value: 'shimano_dura_ace' },
-    { label: 'SRAM Red eTap AXS', value: 'sram_red_etap' },
-    { label: 'Campagnolo Super Record EPS', value: 'campagnolo_super_record' },
+    { label: 'Shimano Dura-Ace Di2', value: 'shimano_dura_ace', price: 100 },
+    { label: 'SRAM Red eTap AXS', value: 'sram_red_etap', price: 100 },
+    {
+      label: 'Campagnolo Super Record EPS',
+      value: 'campagnolo_super_record',
+      price: 100,
+    },
   ],
   laufrader: [
-    { label: 'DT Swiss ARC 1100 Dicut', value: 'dt_swiss_arc' },
-    { label: 'Zipp 404 Firecrest', value: 'zipp_404' },
-    { label: 'Enve SES 5.6', value: 'enve_ses' },
+    { label: 'DT Swiss ARC 1100 Dicut', value: 'dt_swiss_arc', price: 100 },
+    { label: 'Zipp 404 Firecrest', value: 'zipp_404', price: 100 },
+    { label: 'Enve SES 5.6', value: 'enve_ses', price: 100 },
   ],
   reifen: [
-    { label: 'Continental Grand Prix 5000 S TR', value: 'conti_gp5000' },
-    { label: 'Vittoria Corsa Pro', value: 'vittoria_corsa' },
-    { label: 'Schwalbe Pro One', value: 'schwalbe_pro_one' },
+    {
+      label: 'Continental Grand Prix 5000 S TR',
+      value: 'conti_gp5000',
+      price: 100,
+    },
+    { label: 'Vittoria Corsa Pro', value: 'vittoria_corsa', price: 100 },
+    { label: 'Schwalbe Pro One', value: 'schwalbe_pro_one', price: 100 },
   ],
   tretlager: [
-    { label: 'CeramicSpeed Coated', value: 'ceramicspeed' },
-    { label: 'Shimano Dura-Ace', value: 'shimano_bb' },
-    { label: 'Chris King ThreadFit', value: 'chris_king' },
+    { label: 'CeramicSpeed Coated', value: 'ceramicspeed', price: 100 },
+    { label: 'Shimano Dura-Ace', value: 'shimano_bb', price: 100 },
+    { label: 'Chris King ThreadFit', value: 'chris_king', price: 100 },
   ],
   lenkerband: [
-    { label: 'Supacaz Super Sticky Kush', value: 'supacaz' },
-    { label: 'Lizard Skins DSP 2.5', value: 'lizard_skins' },
-    { label: 'Fizik Vento Solocush', value: 'fizik_vento' },
+    { label: 'Supacaz Super Sticky Kush', value: 'supacaz', price: 100 },
+    { label: 'Lizard Skins DSP 2.5', value: 'lizard_skins', price: 100 },
+    { label: 'Fizik Vento Solocush', value: 'fizik_vento', price: 100 },
   ],
   sattel: [
-    { label: 'Selle Italia SLR Boost', value: 'selle_italia' },
-    { label: 'Fizik Antares Versus Evo', value: 'fizik_antares' },
-    { label: 'Specialized S-Works Power', value: 'specialized_power' },
+    { label: 'Selle Italia SLR Boost', value: 'selle_italia', price: 100 },
+    { label: 'Fizik Antares Versus Evo', value: 'fizik_antares', price: 100 },
+    {
+      label: 'Specialized S-Works Power',
+      value: 'specialized_power',
+      price: 100,
+    },
   ],
 };
 
@@ -63,55 +88,42 @@ interface CalculatorState {
   email: string;
 }
 
-const INITIAL_STATE: CalculatorState = {
-  frame: '',
-  gruppe: '',
-  laufrader: '',
-  reifen: '',
-  tretlager: '',
-  lenkerband: '',
-  sattel: '',
-  email: '',
-};
-
 export const Calculator: React.FC = () => {
-  const [formData, setFormData] = useState<CalculatorState>(INITIAL_STATE);
+  const { register, handleSubmit, watch, reset } = useForm<CalculatorState>();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleChange = (field: keyof CalculatorState, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  const formValues = watch();
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const currentTotal = Object.keys(CALCULATOR_OPTIONS).reduce((total, key) => {
+    const selectedValue = formValues[key as keyof CalculatorState];
+    const option = CALCULATOR_OPTIONS[key].find(
+      (o) => o.value === selectedValue,
+    );
+    return total + (option?.price || 0);
+  }, 0);
+
+  const onSubmit = async (data: CalculatorState) => {
     setLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    console.log('Sending calculation to:', formData.email);
-    console.log('Configuration:', formData);
+    const result = await sendBikeConfiguration(data, currentTotal);
 
     setLoading(false);
-    setSuccess(true);
 
-    // Reset success message after 3 seconds
-    setTimeout(() => {
-      setSuccess(false);
-      setFormData(INITIAL_STATE);
-    }, 3000);
+    if (result.success) {
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        reset();
+      }, 3000);
+    } else {
+      alert('Fehler beim Senden der E-Mail.');
+    }
   };
 
   return (
     <div className={style.calculatorContainer}>
-      <FormContainer
-        onSubmitAction={async (e) => await handleSubmit(e)}
-        className=""
-      >
+      <FormContainer onSubmitAction={handleSubmit(onSubmit)} className="">
         <FormTitle
           title="ODIN Roadbike Kalkulator"
           description="Konfigurieren Sie Ihr Traumrad und erhalten Sie das Angebot per E-Mail."
@@ -122,85 +134,74 @@ export const Calculator: React.FC = () => {
         <FormRow direction="column" gap="medium">
           <Select
             label="Frame / Rahmen"
-            name="frame"
-            value={formData.frame}
-            onChange={(e) => handleChange('frame', e.target.value)}
             options={CALCULATOR_OPTIONS.frame}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('frame')}
           />
-
           <Select
             label="Gruppe"
-            name="gruppe"
-            value={formData.gruppe}
-            onChange={(e) => handleChange('gruppe', e.target.value)}
             options={CALCULATOR_OPTIONS.gruppe}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('gruppe')}
           />
-
           <Select
             label="Laufräder"
-            name="laufrader"
-            value={formData.laufrader}
-            onChange={(e) => handleChange('laufrader', e.target.value)}
             options={CALCULATOR_OPTIONS.laufrader}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('laufrader')}
           />
         </FormRow>
 
         <FormRow direction="column" gap="medium">
           <Select
             label="Reifen"
-            name="reifen"
-            value={formData.reifen}
-            onChange={(e) => handleChange('reifen', e.target.value)}
             options={CALCULATOR_OPTIONS.reifen}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('reifen')}
           />
-
           <Select
             label="Tretlager"
-            name="tretlager"
-            value={formData.tretlager}
-            onChange={(e) => handleChange('tretlager', e.target.value)}
             options={CALCULATOR_OPTIONS.tretlager}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('tretlager')}
           />
         </FormRow>
 
         <FormRow direction="column" gap="medium">
           <Select
             label="Lenkerband"
-            name="lenkerband"
-            value={formData.lenkerband}
-            onChange={(e) => handleChange('lenkerband', e.target.value)}
             options={CALCULATOR_OPTIONS.lenkerband}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('lenkerband')}
           />
-
           <Select
             label="Sattel"
-            name="sattel"
-            value={formData.sattel}
-            onChange={(e) => handleChange('sattel', e.target.value)}
             options={CALCULATOR_OPTIONS.sattel}
             placeholder="Bitte wählen..."
             fullWidth
             required
+            {...register('sattel')}
           />
         </FormRow>
+
+        <div className={style.sectionTitle}>Zusammenfassung</div>
+        <div
+          style={{ padding: '1rem 0', fontSize: '1.25rem', fontWeight: 'bold' }}
+        >
+          Aktueller Preis: {currentTotal} €
+        </div>
 
         <div className={style.sectionTitle}>Abschluss</div>
 
@@ -208,15 +209,12 @@ export const Calculator: React.FC = () => {
           <Input
             label="E-Mail Adresse"
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
             placeholder="ihre.email@beispiel.com"
             fullWidth
             required
             helperText="Wir senden Ihnen die Konfiguration an diese Adresse."
+            {...register('email')}
           />
-
           <Button
             type="submit"
             variant="primary"
