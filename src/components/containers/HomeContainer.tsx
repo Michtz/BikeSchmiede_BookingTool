@@ -30,6 +30,22 @@ const HomeContainer: FC<HomeContainerProps> = () => {
         />
       </OverlayContainer>
       <OverlayContainer>
+        <div style={{ display: 'flex' }}>
+          <img
+            alt={LOREM_IPSUM_SHORT_TEXT}
+            src={'/assets/pantaniModified.jpg'}
+            width={'auto'}
+            height={'600px'}
+          />{' '}
+          <img
+            src={'/assets/pantaniModified.jpg'}
+            width={'auto'}
+            alt={LOREM_IPSUM_SHORT_TEXT}
+            height={'600px'}
+          />
+        </div>
+      </OverlayContainer>
+      <OverlayContainer>
         <ContentContainer
           title="Schweizer Ingenieurskunst"
           text="Präzision, Langlebigkeit und Innovation. Jedes Odin-Bike ist ein Zeugnis Schweizer Handwerkskunst und unserer Leidenschaft für radfahrerische Perfektion."

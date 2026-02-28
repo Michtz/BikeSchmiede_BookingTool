@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ComingSoonContainer from '@/components/containers/ComingSoonContainer';
+import HomeContainer from '@/components/containers/HomeContainer';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <ComingSoonContainer />;
+  return <HomeContainer />;
 }
