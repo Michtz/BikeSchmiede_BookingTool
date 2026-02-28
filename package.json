@@ -13,6 +13,7 @@
     "check-missing-translations": "node check-missing-translations.js"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@react-oauth/google": "^0.12.2",

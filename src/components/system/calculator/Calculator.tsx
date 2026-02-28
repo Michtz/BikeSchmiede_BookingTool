@@ -8,6 +8,7 @@ import Select from '../select/Select';
 import Button from '../button/Button';
 import style from './Calculator.module.scss';
 import { sendBikeConfiguration } from '@/actions/sendEmail';
+import BookingModal from '@/components/modals/BookingModal';
 
 interface CalculatorOption {
   label: string;
@@ -92,7 +93,7 @@ export const Calculator: React.FC = () => {
   const { register, handleSubmit, watch, reset } = useForm<CalculatorState>();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const formValues = watch();
 
   const currentTotal = Object.keys(CALCULATOR_OPTIONS).reduce((total, key) => {
@@ -107,7 +108,7 @@ export const Calculator: React.FC = () => {
     setLoading(true);
 
     const result = await sendBikeConfiguration(data, currentTotal);
-
+    setIsModalOpen(true);
     setLoading(false);
 
     if (result.success) {
@@ -120,6 +121,20 @@ export const Calculator: React.FC = () => {
       alert('Fehler beim Senden der E-Mail.');
     }
   };
+
+  const bookingDataString = `
+Konfiguration:
+Rahmen: ${formValues.frame}
+Gruppe: ${formValues.gruppe}
+Laufräder: ${formValues.laufrader}
+Reifen: ${formValues.reifen}
+Tretlager: ${formValues.tretlager}
+Lenkerband: ${formValues.lenkerband}
+Sattel: ${formValues.sattel}
+
+Gesamtpreis: ${currentTotal} €
+Kunden-Email: ${formValues.email}
+`.trim();
 
   return (
     <div className={style.calculatorContainer}>
@@ -225,6 +240,13 @@ export const Calculator: React.FC = () => {
           </Button>
         </FormRow>
       </FormContainer>
+
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        calLink="michael-venetz-mer2x6"
+        notes={bookingDataString}
+      />
     </div>
   );
 };
