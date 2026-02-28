@@ -76,13 +76,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
+export type ButtonPositions = 'left' | 'right' | 'middle';
 interface ButtonContainerProps {
   children: React.ReactNode;
   spread?: boolean;
   className?: string;
   styles?: React.CSSProperties;
-  side?: 'left' | 'right';
+  side?: ButtonPositions;
 }
 
 export const ButtonContainer: React.FC<ButtonContainerProps> = ({

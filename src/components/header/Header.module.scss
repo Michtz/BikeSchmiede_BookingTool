@@ -72,6 +72,8 @@
         text-transform: uppercase;
         font-weight: bold;
 
+        opacity: 0.01;
+
         &:hover {
           transform: translateY(-1px);
         }

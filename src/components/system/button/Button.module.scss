@@ -12,6 +12,7 @@
   border: 1px solid transparent;
   font-size: 14px;
   text-decoration: none;
+  font-family: $font-family-base;
 
   &[data-size='small'] {
     padding: 0.5rem 1rem;
@@ -65,7 +66,7 @@
     background-color: $color-bg-primary;
     box-shadow: $shadow-md;
     margin: 1rem;
-    border: 1px solid $color-primary;
+    border: 1px solid $color-primary-200;
     border-radius: 0;
 
     font-weight: bold;
@@ -73,7 +74,7 @@
     color: $color-primary;
 
     &:hover {
-      background-color: $color-primary;
+      background-color: $color-primary-900;
       color: $color-bg-primary;
       transition: 0.2s ease-in-out;
       transform: scale(1.06);
@@ -147,6 +148,9 @@
 
   &[data-side='right'] {
     flex-flow: row-reverse;
+  }
+  &[data-side='middle'] {
+    justify-content: center !important;
   }
 
   &[data-spread='true'] {
