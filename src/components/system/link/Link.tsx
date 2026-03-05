@@ -46,7 +46,7 @@ const Link: React.FC<LinkProps> = ({
 
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     if (disabled) return;
-
+    console.log(disabled);
     if (onClick) {
       onClick(event);
       return;
@@ -94,7 +94,6 @@ const Link: React.FC<LinkProps> = ({
       </span>
     );
   }
-
   // External link
   if (external) {
     return (
@@ -111,8 +110,9 @@ const Link: React.FC<LinkProps> = ({
   }
 
   // Internal link
+  console.log(disabled);
   return (
-    <a {...sharedProps} href={href}>
+    <a {...sharedProps} href={disabled ? '' : href}>
       {content}
     </a>
   );

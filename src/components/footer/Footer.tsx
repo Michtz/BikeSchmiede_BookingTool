@@ -42,10 +42,10 @@ const Footer: FC = () => {
         </div>
 
         <div className={`${style.footerColumn} ${style.additionalInfo}`}>
-          <Link href="/legalterms" aria-label="Das Rechtliche">
+          <Link href="/impressum" aria-label="Das Rechtliche">
             Impressum
           </Link>
-          <Link href="/privacy" aria-label="Datenschutz">
+          <Link href="/legal" aria-label="Datenschutz">
             Datenschutz
           </Link>
         </div>

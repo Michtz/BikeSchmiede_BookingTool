@@ -41,6 +41,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           &times;
         </button>
         <Cal
+          id={'1234568'}
           calLink={calLink}
           style={{ width: '100%', height: '100%', overflow: 'scroll' }}
           config={{ theme: 'dark', notes: notes as string }}

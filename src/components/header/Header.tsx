@@ -67,14 +67,11 @@ const ResponsiveAppBar = () => {
             />
           </div>
 
-          <ul className={style.navItemContainer}>
-            <li className={style.navItem}>
-              <Link href={'/bikes/gravelbikes'}>Gravelbikes</Link>
-            </li>
-            <li className={style.navItem}>
-              <Link href={'/bikes/roadbikes'}>Rennräder</Link>
-            </li>
-          </ul>
+          {/*<ul className={style.navItemContainer}>*/}
+          {/*  /!*<li className={style.navItem}>*!/*/}
+          {/*  /!*  <Link href={'/bikes/gravelbikes'}>Gravelbikes</Link>*!/*/}
+          {/*  /!*</li>*!/*/}
+          {/*</ul>*/}
           <span
             className={`${style.logo} ${!isLoading ? style.logoSmall : ''}`}
           >
@@ -82,11 +79,22 @@ const ResponsiveAppBar = () => {
           </span>
           <ul className={style.navItemContainer}>
             <li className={style.navItem}>
-              <Link href={'/configurator'}>Configurator</Link>
+              <Link disabled href={'/bikes/roadbikes'}>
+                Rennräder
+              </Link>
             </li>
+
             <li className={style.navItem}>
-              <Link href={'/parts'}>Parts</Link>
+              <Link disabled href={'/bikes/about'}>
+                Über Odin
+              </Link>
             </li>
+            {/*<li className={style.navItem}>*/}
+            {/*  <Link href={'/configurator'}>Configurator</Link>*/}
+            {/*</li>*/}
+            {/*<li className={style.navItem}>*/}
+            {/*  <Link href={'/parts'}>Parts</Link>*/}
+            {/*</li>*/}
           </ul>
         </div>
       </header>

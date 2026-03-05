@@ -1,3 +1,4 @@
+// Hinzugefügte Klassen: .summaryList und .summaryItem
 @use '../../../app/variables' as *;
 
 .calculatorContainer {
@@ -17,14 +18,26 @@
   font-weight: 600;
   color: $color-primary;
   margin-bottom: 16px;
-  border-bottom: 1px solid $color-primary;
+  border-bottom: 1px solid $color-primary-200;
   padding-bottom: 8px;
+}
+
+.summaryList {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
 }
 
 .totalSection {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 2px solid $color-primary;
+  border-top: 2px solid $color-primary-200;
   display: flex;
   justify-content: space-between;
   align-items: center;

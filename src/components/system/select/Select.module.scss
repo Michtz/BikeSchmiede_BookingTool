@@ -24,7 +24,7 @@
   &.focused {
     .select,
     .selectWrapper {
-      border-color: $color-primary;
+      border-color: $color-primary-300;
       outline-offset: -1px;
     }
   }
@@ -65,7 +65,7 @@
 }
 
 .tooltipIcon {
-  color: $color-primary;
+  color: $color-primary-400;
   cursor: help;
 
   &:hover + .tooltip {
@@ -122,12 +122,15 @@
   display: flex;
   align-items: center;
   background: $color-bg-primary;
-  border: 1px solid $color-primary;
+  border: 1px solid $color-primary-200;
   border-radius: 0px;
   transition: all 0.2s ease;
 
   &:hover:not(.readOnly) {
-    border-color: $color-gray-300;
+    border-color: $color-primary-300;
+  }
+  &:focus {
+    border-color: $color-primary-300;
   }
 }
 

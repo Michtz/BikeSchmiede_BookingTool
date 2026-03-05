@@ -3,6 +3,8 @@ import React, { FC } from 'react';
 import { PLACHOLDERTEXT } from '@/components/sections/product/ProductPageContainer';
 import OverlayContainer, {
   Container,
+  ContentContainer,
+  ImageContainer,
   Title,
 } from '@/components/system/containers/Containers';
 import ImageHoverTextContainer from '@/components/system/imageHoverTextContainer/ImageHoverTextContainer';
@@ -103,11 +105,24 @@ const CategoriesContainer: FC = () => {
         videoSrc="/assets/output_smooth_odin_drive_right.mp4"
         botsOnlyText={LOREM_IPSUM_SHORT_TEXT}
       />
+      <OverlayContainer>
+        <ContentContainer
+          title="Bei uns bekommst du nicht einfach ein Fahrrad"
+          text="Präzision, Langlebigkeit und Innovation. Jedes Odin-Bike ist ein Zeugnis Blabal Schweizer Handwerkskunst und unserer Leidenschaft für radfahrerische Perfektion."
+        />
+      </OverlayContainer>
 
       <OverlayContainer key={1}>{content}</OverlayContainer>
+      <OverlayContainer>
+        <ImageContainer
+          key={2}
+          buttonText={'WOW zeig mer meh'}
+          buttonSide={'middle'}
+        />
+      </OverlayContainer>
+      <OverlayContainer key={3}>{content2}</OverlayContainer>
 
-      <OverlayContainer key={2}>{content2}</OverlayContainer>
-      <OverlayContainer key={3} border={false}>
+      <OverlayContainer key={4} border={false}>
         <Calculator />
       </OverlayContainer>
     </Container>

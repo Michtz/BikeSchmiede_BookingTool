@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormContainer, FormRow, FormTitle } from '../form/Form';
 import Input from '../input/Input';
 import Select from '../select/Select';
-import Button from '../button/Button';
+import Button, { ButtonContainer } from '../button/Button';
 import style from './Calculator.module.scss';
-import { sendBikeConfiguration } from '@/actions/sendEmail';
 import BookingModal from '@/components/modals/BookingModal';
 
 interface CalculatorOption {
@@ -78,23 +77,23 @@ const CALCULATOR_OPTIONS: Record<string, CalculatorOption[]> = {
   ],
 };
 
-interface CalculatorState {
-  frame: string;
-  gruppe: string;
-  laufrader: string;
-  reifen: string;
-  tretlager: string;
-  lenkerband: string;
-  sattel: string;
-  email: string;
-}
+type CalculatorOptions =
+  | 'frame'
+  | 'gruppe'
+  | 'laufrader'
+  | 'reifen'
+  | 'tretlager'
+  | 'lenkerband'
+  | 'sattel'
+  | 'email';
+
+type CalculatorState = Record<CalculatorOptions, string>;
 
 export const Calculator: React.FC = () => {
-  const { register, handleSubmit, watch, reset } = useForm<CalculatorState>();
+  const { register, handleSubmit, watch } = useForm<CalculatorState>();
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const formValues = watch();
+  const formValues: CalculatorState = watch();
 
   const currentTotal = Object.keys(CALCULATOR_OPTIONS).reduce((total, key) => {
     const selectedValue = formValues[key as keyof CalculatorState];
@@ -104,23 +103,26 @@ export const Calculator: React.FC = () => {
     return total + (option?.price || 0);
   }, 0);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
   const onSubmit = async (data: CalculatorState) => {
     setLoading(true);
-
-    const result = await sendBikeConfiguration(data, currentTotal);
     setIsModalOpen(true);
     setLoading(false);
-
-    if (result.success) {
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-        reset();
-      }, 3000);
-    } else {
-      alert('Fehler beim Senden der E-Mail.');
-    }
-  };
+  }; // Todo: fix submit and use it to open..
 
   const bookingDataString = `
 Konfiguration:
@@ -140,15 +142,12 @@ Kunden-Email: ${formValues.email}
     <div className={style.calculatorContainer}>
       <FormContainer onSubmitAction={handleSubmit(onSubmit)} className="">
         <FormTitle
-          title="ODIN Roadbike Kalkulator"
-          description="Konfigurieren Sie Ihr Traumrad und erhalten Sie das Angebot per E-Mail."
+          title="ODIN Konfigurator"
+          description="Konfigurieren Sie Ihr Traumrad und erhalten Sie das Angebot per E-Mail oder buchen Sie einen Termin für die Beratung."
         />
-
-        <div className={style.sectionTitle}>Komponenten</div>
-
         <FormRow direction="column" gap="medium">
           <Select
-            label="Frame / Rahmen"
+            label="Rahmen-Type:"
             options={CALCULATOR_OPTIONS.frame}
             placeholder="Bitte wählen..."
             fullWidth
@@ -156,7 +155,7 @@ Kunden-Email: ${formValues.email}
             {...register('frame')}
           />
           <Select
-            label="Gruppe"
+            label="Schalt-Gruppe:"
             options={CALCULATOR_OPTIONS.gruppe}
             placeholder="Bitte wählen..."
             fullWidth
@@ -164,7 +163,7 @@ Kunden-Email: ${formValues.email}
             {...register('gruppe')}
           />
           <Select
-            label="Laufräder"
+            label="Laufräder:"
             options={CALCULATOR_OPTIONS.laufrader}
             placeholder="Bitte wählen..."
             fullWidth
@@ -172,10 +171,9 @@ Kunden-Email: ${formValues.email}
             {...register('laufrader')}
           />
         </FormRow>
-
         <FormRow direction="column" gap="medium">
           <Select
-            label="Reifen"
+            label="Reifen:"
             options={CALCULATOR_OPTIONS.reifen}
             placeholder="Bitte wählen..."
             fullWidth
@@ -183,7 +181,7 @@ Kunden-Email: ${formValues.email}
             {...register('reifen')}
           />
           <Select
-            label="Tretlager"
+            label="Tretlager:"
             options={CALCULATOR_OPTIONS.tretlager}
             placeholder="Bitte wählen..."
             fullWidth
@@ -191,10 +189,9 @@ Kunden-Email: ${formValues.email}
             {...register('tretlager')}
           />
         </FormRow>
-
         <FormRow direction="column" gap="medium">
           <Select
-            label="Lenkerband"
+            label="Lenkerband:"
             options={CALCULATOR_OPTIONS.lenkerband}
             placeholder="Bitte wählen..."
             fullWidth
@@ -210,16 +207,30 @@ Kunden-Email: ${formValues.email}
             {...register('sattel')}
           />
         </FormRow>
-
         <div className={style.sectionTitle}>Zusammenfassung</div>
-        <div
-          style={{ padding: '1rem 0', fontSize: '1.25rem', fontWeight: 'bold' }}
-        >
-          Aktueller Preis: {currentTotal} €
+        <ul className={style.summaryList}>
+          {(Object.keys(formValues) as CalculatorOptions[]).map((opt) => {
+            if (!formValues[opt]) return null;
+            return (
+              <li className={style.summaryItem} key={opt}>
+                <span>{opt}: </span>
+                <span>
+                  {formValues[opt]} &nbsp;
+                  {
+                    CALCULATOR_OPTIONS[opt]?.find(
+                      (items) => items.value === formValues[opt],
+                    )?.price
+                  }
+                  Chf.
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        <div className={style.totalSection}>
+          <span className={style.totalLabel}>Aktueller Preis:</span>
+          <span className={style.totalPrice}>{currentTotal} Chf.</span>
         </div>
-
-        <div className={style.sectionTitle}>Abschluss</div>
-
         <FormRow direction="column" gap="medium">
           <Input
             label="E-Mail Adresse"
@@ -230,14 +241,19 @@ Kunden-Email: ${formValues.email}
             helperText="Wir senden Ihnen die Konfiguration an diese Adresse."
             {...register('email')}
           />
-          <Button
-            type="submit"
-            variant="primary"
-            loading={loading}
-            disabled={success}
-          >
-            {success ? 'Gesendet!' : 'Kalkulation Senden'}
-          </Button>
+          <ButtonContainer side={'right'}>
+            {/*<Button*/}
+            {/*  type="submit"*/}
+            {/*  variant="secondary"*/}
+            {/*  loading={loading}*/}
+            {/*  disabled={success}*/}
+            {/*>*/}
+            {/*  {success ? 'Gesendet!' : 'Kalkulation Senden'}*/}
+            {/*</Button>*/}
+            <Button type="submit" variant="primary" loading={loading}>
+              Beratung Buchen
+            </Button>
+          </ButtonContainer>
         </FormRow>
       </FormContainer>
 
