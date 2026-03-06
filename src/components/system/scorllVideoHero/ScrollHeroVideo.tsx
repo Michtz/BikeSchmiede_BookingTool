@@ -42,7 +42,7 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
     if (progress < 0) progress = 0;
     if (progress > 1) progress = 1;
 
-    if (Number.isFinite(video.duration)) {
+    if (video.duration && Number.isFinite(video.duration)) {
       const targetTime = video.duration * progress;
       if (Math.abs(video.currentTime - targetTime) > 0.01) {
         video.currentTime = targetTime;
@@ -61,6 +61,18 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
   };
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // "Prime" the video for mobile devices to allow seeking
+      video.play().then(() => {
+        video.pause();
+        updateVideoPosition();
+      }).catch(() => {
+        // Autoplay might be blocked, but we can still try to seek
+        updateVideoPosition();
+      });
+    }
+
     const handleScroll = () => {
       if (!isTicking.current) {
         window.requestAnimationFrame(() => {
@@ -72,7 +84,12 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', updateVideoPosition);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateVideoPosition);
+    };
     // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, [showLogo, showImageOverlay, showImageOverlayProp]);
 
@@ -85,10 +102,11 @@ const ScrollHeroVideo: FC<ScrollHeroProps> = ({
           ref={videoRef}
           muted
           playsInline
+          autoPlay
           preload="auto"
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+          src={videoSrc}
+          onLoadedMetadata={updateVideoPosition}
+        />
 
         <div className={style.overlayContent}>
           <h1 className={`${style.logoFade} ${isVisible ? style.visible : ''}`}>
