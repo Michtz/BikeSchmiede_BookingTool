@@ -91,6 +91,22 @@
     &:hover {
       transform: scale(0.85);
     }
+
+    @media (max-width: 768px) {
+      svg {
+        width: 110px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      svg {
+        width: 90px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      svg {
+        width: 60px !important;
+      }
+    }
   }
 }
 
